@@ -37,6 +37,7 @@ export default function OutlinedInputAdornments(props) {
         variant="outlined"
         label="M-ver."
         value={props.BuyPrice_Mver}
+        onChange={props.Mverhandler}
     
         
         InputProps={{

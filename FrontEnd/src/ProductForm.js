@@ -55,7 +55,9 @@ class ProductForm extends Component {
       OnTechRatioChange,  
       OnKEPCORatioChange,    
       OnMokpoRatioChange,    
-      OnRewardRatioChange
+      OnRewardRatioChange,
+
+      OnBuyPriceMverChange
 
 
     } = fstore;
@@ -116,6 +118,7 @@ class ProductForm extends Component {
             BuyPrice_Sver={BuyPrice_Sver}
             BuyPrice_SAver={BuyPrice_SAver}
             BuyPrice_MPack={BuyPrice_MPack}
+            Mverhandler = {OnBuyPriceMverChange}
             title="구매가"
             placeholder="$"
             readonly="true"
@@ -123,7 +126,7 @@ class ProductForm extends Component {
           <Divider section />
 
           <Header as="h3" />
-          <FormRatioInput
+          <FormRatioInput 
             PurchaseRatio={PurchaseRatio}
             TechRatio={TechRatio}
             KEPCORatio={KEPCORatio}

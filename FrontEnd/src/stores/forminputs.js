@@ -13,10 +13,10 @@ export default class FormInputStore {
 
   @observable WonDollarRatio = null;
 
-  @observable BuyPrice_Mver = null;
-  @observable BuyPrice_Sver = null;
-  @observable BuyPrice_SAver = null;
-  @observable BuyPrice_MPack = null;
+  @observable BuyPrice_Mver = 0;
+  @observable BuyPrice_Sver = 0;
+  @observable BuyPrice_SAver = 0;
+  @observable BuyPrice_MPack = 0;
 
   @observable PurchaseRatio = null;
   @observable TechRatio = null;
@@ -85,6 +85,10 @@ export default class FormInputStore {
     this.RewardRatio = e.target.value;
   };
 
+  OnBuyPriceMverChange = (e) =>{
+    this.BuyPrice_Mver = e.target.value;
+  }
+  
 
 
   
