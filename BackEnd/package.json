@@ -1,0 +1,35 @@
+{
+  "name": "sales_mannagement_system_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KEPCO-DSL-DEV/SalesMannagementSystem_Backend.git"
+  },
+  "keywords": [],
+  "author": "DSL_DEV <biz-dsldev@kepco.co.kr> (nosite.com)",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.8.0",
+    "graphql": "^14.4.2",
+    "merge-graphql-schemas": "^1.6.2-bdaf070.0",
+    "pg": "^7.11.0",
+    "typeorm": "^0.2.18"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-google": "^0.13.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.1"
+  },
+  "bugs": {
+    "url": "https://github.com/KEPCO-DSL-DEV/SalesMannagementSystem_Backend/issues"
+  },
+  "homepage": "https://github.com/KEPCO-DSL-DEV/SalesMannagementSystem_Backend#readme"
+}
