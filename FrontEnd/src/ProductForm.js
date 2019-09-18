@@ -1,13 +1,17 @@
+
 import React, { Component } from "react";
+import FormPoNumber from "./Component/Form_PoNumber";
 import FormBuyPrice from "./Component/Form_BuyPrice";
 import FormSellPrice from "./Component/Form_SellPrice";
 import FormWonDollarRatio from "./Component/Form_WonDollarRatio";
 import FormRatioInput from "./Component/Form_RatioInput";
 import FormOrderNum from "./Component/Form_OrderNum";
-
+//import dataButton from "./Component/dataButton";
 import SubmitButton from "./Component/SubmitButton";
 import { Divider, Header, Segment } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
+
+
 
 @inject("fstore")
 @observer
@@ -16,6 +20,10 @@ class ProductForm extends Component {
     const { fstore } = this.props;
 
     const {
+      PoNumber,
+      OnPoNumberChange,
+      OnIssueDateChange,
+
       SellPrice_Mver,
       SellPrice_Sver,
       SellPrice_SAver,
@@ -50,6 +58,7 @@ class ProductForm extends Component {
       OnOrderNumMPackChange,
 
       OnWonDollarRatioChange,
+      OnWDRDateChange,
 
       OnPurchaseRatioChange,  
       OnTechRatioChange,  
@@ -57,7 +66,9 @@ class ProductForm extends Component {
       OnMokpoRatioChange,    
       OnRewardRatioChange,
 
-      OnBuyPriceMverChange
+      OnBuyPriceMverChange,
+
+      OnSubmitForm
 
 
     } = fstore;
@@ -68,6 +79,18 @@ class ProductForm extends Component {
     return (
       <div>
         <Segment>
+        
+        <Header as="h3" />
+        <FormPoNumber
+            PoNumber={PoNumber}
+           // params={fstore}
+            title="PO From BAUR"
+            label="PO#"
+            placeholder=" "
+            PoNumberhandler = {OnPoNumberChange}
+            IssueDatehandler = {OnIssueDateChange}
+          />
+          <Divider section />
           <Header as="h3" />
           <FormSellPrice
             SellPrice_Mver={SellPrice_Mver}
@@ -109,7 +132,10 @@ class ProductForm extends Component {
             label="￦/$ Ratio"
             placeholder="￦"
             WonDollarRatiohandler = {OnWonDollarRatioChange}
+            WDRDatehandler = {OnWDRDateChange}
           />
+           
+    
           <Divider section />
 
           <Header as="h3" />
@@ -143,8 +169,10 @@ class ProductForm extends Component {
             readonly="false"
           />
           <Divider section />
+          <Header as="h3" />
 
-          <SubmitButton />
+          <SubmitButton onSubmithandler={OnSubmitForm}/>
+          
         </Segment>
       </div>
     );

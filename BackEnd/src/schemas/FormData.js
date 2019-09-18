@@ -1,0 +1,95 @@
+const { getRepository } = require("typeorm");
+const FormData = require("../entities/FormData");
+
+const FormDataArguments_Str = [
+    "CreatedDate",
+    "IssueDate",
+    "PoNumber",
+    "WDRDate",
+  ];
+  
+  const FormDataArguments_Flt = [
+    //"SeqNum",
+    "SellPrice_Mver",
+    "SellPrice_Sver",
+    "SellPrice_SAver",
+    "SellPrice_MPack",
+    "OrderNum_Mver",
+    "OrderNum_Sver",
+    "OrderNum_SAver",
+    "OrderNum_MPack",
+    "WonDollarRatio",
+    "PurchaseRatio",
+    "TechRatio",
+    "KEPCORatio",
+    "MokpoRatio",
+    "RewardRatio"
+
+];
+const FormDataArguments = [...FormDataArguments_Flt, ...FormDataArguments_Str];
+// TODO: what is not null and what is nullable
+const schemaObject = {
+  typedef: `
+        type FormData {
+            id: ID!
+            ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
+            ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+        }
+        type Query {
+            formDatas: [FormData]
+            formData(id: ID!): FormData!
+        }
+        type Mutation {
+            addFormData(
+                ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
+                ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+            ): FormData
+            editFormData(
+                id: ID!
+                ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
+                ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+            ): FormData
+            deleteFormData(id: ID!): Boolean
+        }
+    `,
+  resolvers: {
+    Query: {
+        formDatas: () => {
+        return getRepository(FormData).find();
+      },
+      formData: (_, { id }) => {
+        return getRepository(FormData).findOne(id);
+      }
+    },
+    Mutation: {
+      addFormData: (_, { ...FormDataArguments }) => {
+        const formData = Object.assign(FormData, {
+          ...FormDataArguments
+        });
+
+        return getRepository(FormData).save(formData);
+      },
+      editFormData: async (_, { id, ...FormDataArguments }) => {
+        const editItem = await getRepository(FormData).findOne({ id });
+
+        const editedEntry = Object.assign(editItem, { ...FormDataArguments });
+
+        await getRepository(FormData).save(editedEntry);
+      },
+      deleteFormData: async (_, { id }) => {
+        try {
+          const delItem = await getRepository(FormData).findOne({ id });
+
+          await getRepository(FormData).remove(delItem);
+
+          return true;
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+      }
+    }
+  }
+};
+
+module.exports = schemaObject;

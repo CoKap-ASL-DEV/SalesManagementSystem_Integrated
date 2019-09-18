@@ -9,6 +9,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    alignContent : "center",
+    height:20,
     //backgroundColor:"#eeeeee"
 
   },
@@ -16,8 +18,15 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0.5),
   //  marginTop: theme.spacing(3)
   },
+  subjectText: {
+    flexBasis: 150,    
+    
+  },
+
   textField: {
-    flexBasis: 170,
+    flexBasis: 150,
+    height:40,
+  
   },
 }));
 
@@ -29,7 +38,7 @@ export default function OutlinedInputAdornments(props) {
 
   return (
 <div className={classes.root}>
-    <h3 className={clsx(classes.margin, classes.textField)}>{props.title}</h3>
+    <h3 className={clsx(classes.margin, classes.subjectText)}>{props.title}</h3>
   
       <TextField
         id="Form_OrderNum_Mver"
@@ -41,6 +50,7 @@ export default function OutlinedInputAdornments(props) {
     
         
         InputProps={{
+          className : classes.textField,
           endAdornment: <InputAdornment position="end">{props.placeholder}</InputAdornment>,
           readOnly: readprops,
         }}
@@ -54,6 +64,7 @@ export default function OutlinedInputAdornments(props) {
         onChange ={props.Sverhandler}
         
         InputProps={{
+          className : classes.textField,
           endAdornment: <InputAdornment position="end">{props.placeholder}</InputAdornment>,
           readOnly: readprops,
         }}
@@ -68,6 +79,7 @@ export default function OutlinedInputAdornments(props) {
           onChange ={props.SAverhandler}
           
           InputProps={{
+            className : classes.textField,
             endAdornment: <InputAdornment position="end">{props.placeholder}</InputAdornment>,
             readOnly: readprops,
           }}
@@ -82,6 +94,7 @@ export default function OutlinedInputAdornments(props) {
           onChange ={props.MPackhandler}
           
           InputProps={{
+            className : classes.textField,
             endAdornment: <InputAdornment position="end">{props.placeholder}</InputAdornment>,
             readOnly: readprops,
           }}

@@ -2,17 +2,10 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const { createConnection } = require('typeorm');
-// const { merge } = require('lodash');
-
-const equityRatioSchema = require('./schemas/EquityRatio');
-const equityRatioPrivateSchema = require('./schemas/EquityRatioPrivate');
-const exchangeRateSchema = require('./schemas/ExchangeRate');
-const priceSchema = require('./schemas/Price');
-const saleCaseSchema = require('./schemas/SaleCase');
+const FormDataSchema = require('./schemas/FormData');
 const path = require('path');
 
 const app = express();
-
 
 app.use(express.static(path.join(__dirname, '../../FrontEnd/build')));
 
@@ -20,26 +13,12 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../../FrontEnd/build', 'index.html'));
   });
 
-// app.get('/',(req,res)=>{
-//     res.send("Hello Express");
-// });
-
-
-
 const typeDefs = mergeTypes([
-    equityRatioSchema.typedef,
-    equityRatioPrivateSchema.typedef,
-    exchangeRateSchema.typedef,
-    priceSchema.typedef,
-    saleCaseSchema.typedef
+    FormDataSchema.typedef,
 ], { all: true });
 
 const resolvers = mergeResolvers([   
-    equityRatioSchema.resolvers,
-    equityRatioPrivateSchema.resolvers,
-    exchangeRateSchema.resolvers,
-    priceSchema.resolvers,
-    saleCaseSchema.resolvers
+    FormDataSchema.resolvers,
 ]);
 
 const server = new ApolloServer({
@@ -47,7 +26,6 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
-
 
 createConnection({
     'type': 'postgres',
@@ -59,11 +37,7 @@ createConnection({
     'synchronize': true,
     'logging': false,
     'entities': [
-        require('./entities/EquityRatio'),
-        require('./entities/EquityRatioPrivate'),
-        require('./entities/ExchangeRate'),
-        require('./entities/Price'),
-        require('./entities/SaleCase')
+        require('./entities/FormData')
     ]
 }).then((/*res*/) => {
     app.listen({ port: 3000 }),(url) => {

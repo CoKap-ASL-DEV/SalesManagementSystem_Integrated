@@ -1,6 +1,9 @@
 import { observable, action } from "mobx";
 
 export default class FormInputStore {
+  @observable IssueDate = null;
+  @observable PoNumber = null;
+
   @observable SellPrice_Mver = null;
   @observable SellPrice_Sver = null;
   @observable SellPrice_SAver = null;
@@ -11,6 +14,7 @@ export default class FormInputStore {
   @observable OrderNum_SAver = null;
   @observable OrderNum_MPack = null;
 
+  @observable WDRDate = null;
   @observable WonDollarRatio = null;
 
   @observable BuyPrice_Mver = 0;
@@ -25,6 +29,14 @@ export default class FormInputStore {
   @observable RewardRatio = null;
 
   @action
+  OnPoNumberChange = (e) => {        
+    this.PoNumber = e.target.value;
+  };
+  OnIssueDateChange = (date, dateString) => {        
+    this.IssueDate = dateString;    //2019-09-05 형식
+  };
+  
+
   OnSellPriceMverChange = (e) => {    
     this.SellPrice_Mver = e.target.value;
     this.BuyPrice_Mver = this.SellPrice_Mver * 0.7;
@@ -62,6 +74,13 @@ export default class FormInputStore {
   
   OnWonDollarRatioChange = (e) => {        
     this.WonDollarRatio = e.target.value;
+    console.log(this.WonDollarRatio);
+    
+  };
+
+  OnWDRDateChange = (date, dateString) => {        
+    this.WDRDate = dateString;    //2019-09-05 형식
+    //console.log(this.WDRDate);
   };
 
 
@@ -87,8 +106,12 @@ export default class FormInputStore {
 
   OnBuyPriceMverChange = (e) =>{
     this.BuyPrice_Mver = e.target.value;
-  }
+  };
   
+
+  OnSubmitForm = (e) =>{
+    console.log('Hello,onClick')
+  };
 
 
   

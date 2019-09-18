@@ -32,6 +32,7 @@ function App() {
   
   const classes = useStyles();
   return (
+    
     <div className="App">
       <div className={classes.root}>
         <link
@@ -42,8 +43,9 @@ function App() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-            
+              <br/>
               <h1>Sales Management System</h1>
+              
             </Paper>
           </Grid>
           <Grid item xs={8}>
