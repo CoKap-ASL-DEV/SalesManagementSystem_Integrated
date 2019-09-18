@@ -1,0 +1,45 @@
+.inputlist {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    input {
+        text-align: center;
+        width: 5rem;
+        outline: none;
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid #000000;
+    }
+}
+.saleslist {
+    display: flex;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    .item {
+        flex: 1;
+        font-size: 1rem;
+        outline: none;
+        border: none;
+        background: transparent;
+    }
+    input {
+        text-align: center;
+        width: 8rem;
+        outline: none;
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid #000000;
+    }
+    li {
+        text-align: right;
+        list-style: none;
+    }
+    h5 {
+        text-align: center;
+        padding-left: 2rem;
+        font-size : 17px;
+    }
+}
+
+
