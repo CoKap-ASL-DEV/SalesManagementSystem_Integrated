@@ -8,6 +8,7 @@ import FormRatioInput from "./Component/Form_RatioInput";
 import FormOrderNum from "./Component/Form_OrderNum";
 //import dataButton from "./Component/dataButton";
 import SubmitButton from "./Component/SubmitButton";
+import SubmitButton2 from "./Component/SubmitButton2";
 import { Divider, Header, Segment } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
 
@@ -172,6 +173,9 @@ class ProductForm extends Component {
           <Header as="h3" />
 
           <SubmitButton onSubmithandler={OnSubmitForm}/>
+          
+          <SubmitButton2/>
+          
           
         </Segment>
       </div>

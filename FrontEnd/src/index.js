@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
 import FormStore from "./stores/forminputs";
 
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider, withApollo, ApolloConsumer } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
@@ -24,14 +24,16 @@ export const client = new ApolloClient({
 
 const fstore = new FormStore();
 
+//const AppWithClient = withApollo(App);
+
 ReactDOM.render(
-  <Provider fstore={fstore}>
-    <ApolloProvider client={client}>
-      <div>
+  <ApolloProvider client={client}>
+    <Provider fstore={fstore}>
+      
         <App />
-      </div>
-    </ApolloProvider>
-  </Provider>,
+      
+    </Provider>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 
