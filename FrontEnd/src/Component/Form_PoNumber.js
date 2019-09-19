@@ -48,7 +48,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
 
       <TextField
-        id="Form_PoNumber"
+        id="Form_PoNumber"        
         className={classes.textField}
         variant="outlined"
         label={props.label}

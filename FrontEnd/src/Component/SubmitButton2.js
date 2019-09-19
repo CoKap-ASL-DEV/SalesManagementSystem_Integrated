@@ -13,36 +13,68 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const currentdate = new Date();
+const year = String(currentdate.getFullYear());
+
 export default function SubmitButton2(props) {
   const classes = useStyles();
 
+  const {
+    IssueDate,
+    PoNumber,
+
+    SellPrice_Mver,
+    SellPrice_Sver,
+    SellPrice_SAver,
+    SellPrice_MPack,
+
+    OrderNum_Mver,
+    OrderNum_Sver,
+    OrderNum_SAver,
+    OrderNum_MPack,
+
+    WDRDate, 
+    WonDollarRatio,
+
+    PurchaseRatio,
+    TechRatio,
+    KEPCORatio,
+    MokpoRatio,
+    RewardRatio
+  } = props.inputStates;
+
   return (
+    ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
+    /// data : mutation return값
+
     <Mutation mutation={Query}>
       {(addFormData, { data }) => (
         <Button
           onClick={() => {
-            addFormData(
-              {variables: {SellPrice_Mver: 1000,
-                    SellPrice_Sver: 2000,
-                    SellPrice_SAver: 3000,
-                    SellPrice_MPack: 4000,
-                    OrderNum_Mver: 10,
-                    OrderNum_Sver: 20,
-                    OrderNum_SAver: 30,
-                    OrderNum_MPack: 40,
-                    WonDollarRatio: 50,
-                    PurchaseRatio: 60,
-                    TechRatio: 34,
-                    KEPCORatio: 44,
-                    MokpoRatio: 54,
-                    RewardRatio: 64,
-                    CreatedDate: "19-03-01",
-                    IssueDate: "19-05-05",
-                    PoNumber: "PO191007-2132",
-                    WDRDate: "19-09-10"
-              }}         
-              );
-              console.log("tetsssss");            
+            addFormData({
+              variables: {
+                SellPrice_Mver: parseFloat(SellPrice_Mver),
+                SellPrice_Sver: parseFloat(SellPrice_Sver),
+                SellPrice_SAver: parseFloat(SellPrice_SAver),
+                SellPrice_MPack: parseFloat(SellPrice_MPack),
+                OrderNum_Mver: parseFloat(OrderNum_Mver),
+                OrderNum_Sver: parseFloat(OrderNum_Sver),
+                OrderNum_SAver: parseFloat(OrderNum_SAver),
+                OrderNum_MPack: parseFloat(OrderNum_MPack),
+                WonDollarRatio: parseFloat(WonDollarRatio),
+                PurchaseRatio: parseFloat(PurchaseRatio),
+                TechRatio: parseFloat(TechRatio),
+                KEPCORatio: parseFloat(KEPCORatio),
+                MokpoRatio: parseFloat(MokpoRatio),
+                RewardRatio: parseFloat(RewardRatio),
+                CreatedDate: year,
+                IssueDate: IssueDate,
+                PoNumber: PoNumber,
+                WDRDate: WDRDate
+              }
+            });
+            console.log(typeof(props.inputStates.OrderNum_MPack));
+            //console.log(data);
           }}
           //onClick={this.props.onSubmithandler}
           variant="outlined"

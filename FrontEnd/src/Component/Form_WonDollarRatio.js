@@ -55,6 +55,7 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         id="Form_WonDollarRatio"
+        type = "number"
         className={classes.textField}
         variant="outlined"
         label={props.label}

@@ -6,29 +6,29 @@ export default class FormInputStore {
   @observable IssueDate = null;
   @observable PoNumber = null;
 
-  @observable SellPrice_Mver = null;
-  @observable SellPrice_Sver = null;
-  @observable SellPrice_SAver = null;
-  @observable SellPrice_MPack = null;
+  @observable SellPrice_Mver = 0.0;
+  @observable SellPrice_Sver = 0.0;
+  @observable SellPrice_SAver = 0.0;
+  @observable SellPrice_MPack = 0.0;
 
-  @observable OrderNum_Mver = null;
-  @observable OrderNum_Sver = null;
-  @observable OrderNum_SAver = null;
-  @observable OrderNum_MPack = null;
+  @observable OrderNum_Mver = 0.0;
+  @observable OrderNum_Sver = 0.0;
+  @observable OrderNum_SAver = 0.0;
+  @observable OrderNum_MPack = 0.0;
 
   @observable WDRDate = null;
-  @observable WonDollarRatio = null;
+  @observable WonDollarRatio = 0.0;
 
-  @observable BuyPrice_Mver = 0;
-  @observable BuyPrice_Sver = 0;
-  @observable BuyPrice_SAver = 0;
-  @observable BuyPrice_MPack = 0;
+  @observable BuyPrice_Mver = 0.0;
+  @observable BuyPrice_Sver = 0.0;
+  @observable BuyPrice_SAver = 0.0;
+  @observable BuyPrice_MPack = 0.0;
 
-  @observable PurchaseRatio = null;
-  @observable TechRatio = null;
-  @observable KEPCORatio = null;
-  @observable MokpoRatio = null;
-  @observable RewardRatio = null;
+  @observable PurchaseRatio = 0;
+  @observable TechRatio = 0;
+  @observable KEPCORatio = 0;
+  @observable MokpoRatio = 0;
+  @observable RewardRatio = 0;
 
   @action
   OnPoNumberChange = (e) => {        
@@ -86,6 +86,23 @@ export default class FormInputStore {
   };
 
 
+
+  OnBuyPriceMverChange = (e) =>{
+    this.BuyPrice_Mver = e.target.value;
+  };
+  OnBuyPriceSverChange = (e) =>{
+    this.BuyPrice_Sver = e.target.value;
+  };
+  OnBuyPriceSAverChange = (e) =>{
+    this.BuyPrice_SAver = e.target.value;
+  };
+  OnBuyPriceMPackChange = (e) =>{
+    this.BuyPrice_MPack = e.target.value;
+  };
+
+
+
+
   OnPurchaseRatioChange = (e) => {        
     this.PurchaseRatio = e.target.value;
   };
@@ -106,9 +123,9 @@ export default class FormInputStore {
     this.RewardRatio = e.target.value;
   };
 
-  OnBuyPriceMverChange = (e) =>{
-    this.BuyPrice_Mver = e.target.value;
-  };
+ 
+
+
   
 
   OnSubmitForm = (e) =>{

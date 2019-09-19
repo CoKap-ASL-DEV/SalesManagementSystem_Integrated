@@ -40,6 +40,7 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         id="Form_PurchaseRatio"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Purchase_Ratio"
@@ -55,6 +56,7 @@ export default function OutlinedInputAdornments(props) {
       />
       <TextField
         id="Form_TechRatio"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Tech_Ratio"
@@ -71,6 +73,7 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         id="Form_KEPCORatio"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="KEPCO_Ratio"
@@ -87,6 +90,7 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         id="Form_MokpoRatio"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="MokPo_Ratio"
@@ -102,6 +106,7 @@ export default function OutlinedInputAdornments(props) {
       />
       <TextField
         id="Form_RewardRatio"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Reward_Ratio"

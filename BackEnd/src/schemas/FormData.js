@@ -62,10 +62,10 @@ const schemaObject = {
       }
     },
     Mutation: {
-      addFormData: (_, { ...FormDataArguments }) => {
-        const formData = Object.assign(FormData, {
+      addFormData: (_, {...FormDataArguments }) => {
+        const formData = Object.assign({
           ...FormDataArguments
-        });
+        },FormData);  //assign 파라미터를 반대로 하니 데이터는 업데이트 되는데 id가 자동생성 안됨
 
         return getRepository(FormData).save(formData);
       },

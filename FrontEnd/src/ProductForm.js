@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import FormPoNumber from "./Component/Form_PoNumber";
 import FormBuyPrice from "./Component/Form_BuyPrice";
@@ -12,8 +11,6 @@ import SubmitButton2 from "./Component/SubmitButton2";
 import { Divider, Header, Segment } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
 
-
-
 @inject("fstore")
 @observer
 class ProductForm extends Component {
@@ -21,9 +18,8 @@ class ProductForm extends Component {
     const { fstore } = this.props;
 
     const {
+      IssueDate,
       PoNumber,
-      OnPoNumberChange,
-      OnIssueDateChange,
 
       SellPrice_Mver,
       SellPrice_Sver,
@@ -34,7 +30,8 @@ class ProductForm extends Component {
       OrderNum_Sver,
       OrderNum_SAver,
       OrderNum_MPack,
-      
+
+      WDRDate,
       WonDollarRatio,
 
       BuyPrice_Mver,
@@ -47,7 +44,10 @@ class ProductForm extends Component {
       KEPCORatio,
       MokpoRatio,
       RewardRatio,
-      
+
+      OnPoNumberChange,
+      OnIssueDateChange,
+
       OnSellPriceMverChange,
       OnSellPriceSverChange,
       OnSellPriceSAverChange,
@@ -61,18 +61,45 @@ class ProductForm extends Component {
       OnWonDollarRatioChange,
       OnWDRDateChange,
 
-      OnPurchaseRatioChange,  
-      OnTechRatioChange,  
-      OnKEPCORatioChange,    
-      OnMokpoRatioChange,    
+      OnBuyPriceMverChange,
+      OnBuyPriceSverChange,
+      OnBuyPriceSAverChange,
+      OnBuyPriceMPackChange,
+
+      OnPurchaseRatioChange,
+      OnTechRatioChange,
+      OnKEPCORatioChange,
+      OnMokpoRatioChange,
       OnRewardRatioChange,
 
-      OnBuyPriceMverChange,
+      
 
       OnSubmitForm
-
-
     } = fstore;
+
+    const inputDataStates = {
+      IssueDate,
+      PoNumber,
+
+      SellPrice_Mver,
+      SellPrice_Sver,
+      SellPrice_SAver,
+      SellPrice_MPack,
+
+      OrderNum_Mver,
+      OrderNum_Sver,
+      OrderNum_SAver,
+      OrderNum_MPack,
+
+      WDRDate,
+      WonDollarRatio,
+
+      PurchaseRatio,
+      TechRatio,
+      KEPCORatio,
+      MokpoRatio,
+      RewardRatio
+    };
 
     //console.log(fstore.Sver);
     //console.log(formvar.SellPrice_Sver);
@@ -80,16 +107,15 @@ class ProductForm extends Component {
     return (
       <div>
         <Segment>
-        
-        <Header as="h3" />
-        <FormPoNumber
+          <Header as="h3" />
+          <FormPoNumber
             PoNumber={PoNumber}
-           // params={fstore}
+            // params={fstore}
             title="PO From BAUR"
             label="PO#"
             placeholder=" "
-            PoNumberhandler = {OnPoNumberChange}
-            IssueDatehandler = {OnIssueDateChange}
+            PoNumberhandler={OnPoNumberChange}
+            IssueDatehandler={OnIssueDateChange}
           />
           <Divider section />
           <Header as="h3" />
@@ -98,10 +124,10 @@ class ProductForm extends Component {
             SellPrice_Sver={SellPrice_Sver}
             SellPrice_SAver={SellPrice_SAver}
             SellPrice_MPack={SellPrice_MPack}
-            Mverhandler = {OnSellPriceMverChange}
-            Sverhandler = {OnSellPriceSverChange}
-            SAverhandler = {OnSellPriceSAverChange}
-            MPackhandler = {OnSellPriceMPackChange}
+            Mverhandler={OnSellPriceMverChange}
+            Sverhandler={OnSellPriceSverChange}
+            SAverhandler={OnSellPriceSAverChange}
+            MPackhandler={OnSellPriceMPackChange}
             title="판매가"
             placeholder="$"
             readonly="false"
@@ -114,10 +140,10 @@ class ProductForm extends Component {
             OrderNum_Sver={OrderNum_Sver}
             OrderNum_SAver={OrderNum_SAver}
             OrderNum_MPack={OrderNum_MPack}
-            Mverhandler = {OnOrderNumMverChange}
-            Sverhandler = {OnOrderNumSverChange}
-            SAverhandler = {OnOrderNumSAverChange}
-            MPackhandler = {OnOrderNumMPackChange}
+            Mverhandler={OnOrderNumMverChange}
+            Sverhandler={OnOrderNumSverChange}
+            SAverhandler={OnOrderNumSAverChange}
+            MPackhandler={OnOrderNumMPackChange}
             params={fstore}
             title="주문수량"
             placeholder="ea"
@@ -132,11 +158,10 @@ class ProductForm extends Component {
             title="환  율"
             label="￦/$ Ratio"
             placeholder="￦"
-            WonDollarRatiohandler = {OnWonDollarRatioChange}
-            WDRDatehandler = {OnWDRDateChange}
+            WonDollarRatiohandler={OnWonDollarRatioChange}
+            WDRDatehandler={OnWDRDateChange}
           />
-           
-    
+
           <Divider section />
 
           <Header as="h3" />
@@ -145,7 +170,10 @@ class ProductForm extends Component {
             BuyPrice_Sver={BuyPrice_Sver}
             BuyPrice_SAver={BuyPrice_SAver}
             BuyPrice_MPack={BuyPrice_MPack}
-            Mverhandler = {OnBuyPriceMverChange}
+            Mverhandler={OnBuyPriceMverChange}
+            Sverhandler={OnBuyPriceSverChange}
+            SAverhandler={OnBuyPriceSAverChange}
+            MPackhandler={OnBuyPriceMPackChange}
             title="구매가"
             placeholder="$"
             readonly="true"
@@ -153,18 +181,17 @@ class ProductForm extends Component {
           <Divider section />
 
           <Header as="h3" />
-          <FormRatioInput 
+          <FormRatioInput
             PurchaseRatio={PurchaseRatio}
             TechRatio={TechRatio}
             KEPCORatio={KEPCORatio}
             MokpoRatio={MokpoRatio}
             RewardRatio={RewardRatio}
             PurchaseRatiohandler={OnPurchaseRatioChange}
-            TechRatiohandler = {OnTechRatioChange}
-            KEPCORatiohandler = {OnKEPCORatioChange}
-            MokpoRatiohandler = {OnMokpoRatioChange}
-            RewardRatiohandler = {OnRewardRatioChange}
-             
+            TechRatiohandler={OnTechRatioChange}
+            KEPCORatiohandler={OnKEPCORatioChange}
+            MokpoRatiohandler={OnMokpoRatioChange}
+            RewardRatiohandler={OnRewardRatioChange}
             title="비   율"
             placeholder="%"
             readonly="false"
@@ -172,11 +199,9 @@ class ProductForm extends Component {
           <Divider section />
           <Header as="h3" />
 
-          <SubmitButton onSubmithandler={OnSubmitForm}/>
-          
-          <SubmitButton2/>
-          
-          
+          <SubmitButton onSubmithandler={OnSubmitForm} />
+
+          <SubmitButton2 inputStates={inputDataStates} />
         </Segment>
       </div>
     );

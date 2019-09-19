@@ -41,6 +41,7 @@ export default function OutlinedInputAdornments(props) {
   
       <TextField
         id="Form_SellPrice_Mver"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="M-ver."
@@ -56,6 +57,7 @@ export default function OutlinedInputAdornments(props) {
       />
       <TextField
         id="Form_SellPrice_Sver"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="S-ver"
@@ -71,6 +73,7 @@ export default function OutlinedInputAdornments(props) {
  
         <TextField
           id="Form_SellPrice_SAver" 
+          type = "number"
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="SA-ver"
@@ -86,6 +89,7 @@ export default function OutlinedInputAdornments(props) {
 
         <TextField
           id="Form_SellPrice_MPack" 
+          type = "number"
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="M-pack"

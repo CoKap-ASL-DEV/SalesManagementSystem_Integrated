@@ -1,5 +1,7 @@
 import { gql } from "apollo-boost";
 
+
+//두번째 이름인 addFormData가 API 서버에 정의된 이름임
 const SUBMITFORM_Data = gql`
   mutation AddFormData(
     $SellPrice_Mver: Float,
@@ -21,7 +23,7 @@ const SUBMITFORM_Data = gql`
     $PoNumber: String,
     $WDRDate: String
   ) {
-    addFormData(
+    addFormData(   
       SellPrice_Mver: $SellPrice_Mver,
       SellPrice_Sver: $SellPrice_Sver,
       SellPrice_SAver: $SellPrice_SAver,
@@ -45,6 +47,5 @@ const SUBMITFORM_Data = gql`
     }
   }
 `;
-
 
 export default SUBMITFORM_Data;

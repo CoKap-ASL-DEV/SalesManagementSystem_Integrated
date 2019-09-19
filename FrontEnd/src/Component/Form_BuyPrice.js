@@ -40,6 +40,7 @@ export default function OutlinedInputAdornments(props) {
   
       <TextField
         id="Form_BuyPrice_Mver"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="M-ver."
@@ -55,10 +56,12 @@ export default function OutlinedInputAdornments(props) {
       />
       <TextField
         id="Form_BuyPrice_Sver"
+        type = "number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="S-ver"
         value={props.BuyPrice_Sver}
+        onChange={props.Sverhandler}
         
         InputProps={{
           className : classes.textField,
@@ -69,10 +72,12 @@ export default function OutlinedInputAdornments(props) {
  
         <TextField
           id="Form_BuyPrice_SAver" 
+          type = "number"
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="SA-ver"
           value={props.BuyPrice_SAver}
+          onChange={props.SAverhandler}
           
           InputProps={{
             className : classes.textField,
@@ -83,11 +88,12 @@ export default function OutlinedInputAdornments(props) {
 
         <TextField
           id="Form_BuyPrice_MPack" 
+          type = "number"
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
           label="M-pack"
           value={props.BuyPrice_MPack}
-          
+          onChange={props.MPackhandler}
           InputProps={{
             className : classes.textField,
             endAdornment: <InputAdornment position="end">{props.placeholder}</InputAdornment>,
