@@ -5,9 +5,7 @@ import FormSellPrice from "./Component/Form_SellPrice";
 import FormWonDollarRatio from "./Component/Form_WonDollarRatio";
 import FormRatioInput from "./Component/Form_RatioInput";
 import FormOrderNum from "./Component/Form_OrderNum";
-//import dataButton from "./Component/dataButton";
 import SubmitButton from "./Component/SubmitButton";
-import SubmitButton2 from "./Component/SubmitButton2";
 import { Divider, Header, Segment } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
 
@@ -72,9 +70,8 @@ class ProductForm extends Component {
       OnMokpoRatioChange,
       OnRewardRatioChange,
 
-      
-
-      OnSubmitForm
+    
+      initializeStates
     } = fstore;
 
     const inputDataStates = {
@@ -160,6 +157,7 @@ class ProductForm extends Component {
             placeholder="￦"
             WonDollarRatiohandler={OnWonDollarRatioChange}
             WDRDatehandler={OnWDRDateChange}
+            WDRDates ={WDRDate}
           />
 
           <Divider section />
@@ -199,9 +197,9 @@ class ProductForm extends Component {
           <Divider section />
           <Header as="h3" />
 
-          <SubmitButton onSubmithandler={OnSubmitForm} />
+          
 
-          <SubmitButton2 inputStates={inputDataStates} />
+          <SubmitButton inputStates={inputDataStates} resetStates={initializeStates}/>
         </Segment>
       </div>
     );

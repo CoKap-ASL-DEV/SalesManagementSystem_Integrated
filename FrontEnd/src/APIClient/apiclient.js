@@ -6,10 +6,17 @@ import { Query } from "react-apollo";
 export const GET_SELLPRICE = gql`
   query {
     formDatas {
+      SellPrice_Sver
+      SellPrice_SAver
       SellPrice_MPack
+      
     }
   }
 `;
+
+
+
+
 
 export const SUBMITFORM_Data = gql`
   mutation AddFormData(
@@ -98,13 +105,17 @@ const ApiClient = () => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
-      return data.formDatas.map(({ SellPrice_MPack }) => (
+      return data.formDatas.map(({SellPrice_Sver,
+        SellPrice_SAver,
+        SellPrice_MPack,}) => (
         <div>
-          <p>{SellPrice_MPack}</p>
+          <p>Sver : {SellPrice_Sver}, SAver: {SellPrice_SAver}, Mpack: {SellPrice_MPack}</p>
         </div>
       ));
     }}
   </Query>
 );
+
+
 
 export default ApiClient;

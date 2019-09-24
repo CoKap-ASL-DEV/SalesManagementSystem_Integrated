@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
 import FormStore from "./stores/forminputs";
 
-import { ApolloProvider, withApollo, ApolloConsumer } from "react-apollo";
+import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
@@ -24,14 +24,15 @@ export const client = new ApolloClient({
 
 const fstore = new FormStore();
 
-//const AppWithClient = withApollo(App);
+//Could not find "client" in the context or passed in as an option.
+// Wrap the root component in an <ApolloProvider>, or pass an ApolloClient instance in via options
+//==> apollo라이브러리 업데이트로 해결
+//=> 이거 해결후 바벨 관련 에러남 -> @babel/runtime 설치하고 나서 해결
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Provider fstore={fstore}>
-      
-        <App />
-      
+    <Provider fstore={fstore}>      
+        <App />      
     </Provider>
   </ApolloProvider>,
   document.getElementById("root")

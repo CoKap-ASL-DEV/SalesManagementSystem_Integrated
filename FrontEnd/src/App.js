@@ -70,7 +70,7 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-            <APIClient/>
+            {/* <APIClient/> */}
             </Paper>
           </Grid>
           

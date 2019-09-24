@@ -5,6 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 //import { sizing } from '@material-ui/system';
 import TextField from "@material-ui/core/TextField";
 import { DatePicker } from 'antd';
+import moment from "moment"
 //import { height } from "@material-ui/system";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,8 +50,8 @@ export default function OutlinedInputAdornments(props) {
     <div className={classes.root}>
       <h3 className={clsx(classes.margin, classes.subjectText)}>{props.title}</h3>
 
-      
-      <DatePicker size='large' placeholder="환율기준일" className = {classes.textField} onChange={props.WDRDatehandler} />
+      {/* {dateofbirth !== "" ? moment(dateofbirth) : null} */}
+      <DatePicker Value={props.WDRDates !=="" ? moment(props.WDRDates, 'YYYY-MM-DD'): moment([2015, 25, 35]).format()} size='large' placeholder="환율기준일" className = {classes.textField} onChange={props.WDRDatehandler} />
       {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
 
       <TextField

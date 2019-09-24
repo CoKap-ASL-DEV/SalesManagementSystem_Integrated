@@ -6,29 +6,29 @@ export default class FormInputStore {
   @observable IssueDate = null;
   @observable PoNumber = null;
 
-  @observable SellPrice_Mver = 0.0;
-  @observable SellPrice_Sver = 0.0;
-  @observable SellPrice_SAver = 0.0;
-  @observable SellPrice_MPack = 0.0;
+  @observable SellPrice_Mver = null;
+  @observable SellPrice_Sver = null;
+  @observable SellPrice_SAver = null;
+  @observable SellPrice_MPack = null;
 
-  @observable OrderNum_Mver = 0.0;
-  @observable OrderNum_Sver = 0.0;
-  @observable OrderNum_SAver = 0.0;
-  @observable OrderNum_MPack = 0.0;
+  @observable OrderNum_Mver = null;
+  @observable OrderNum_Sver = null;
+  @observable OrderNum_SAver = null;
+  @observable OrderNum_MPack = null;
 
   @observable WDRDate = null;
-  @observable WonDollarRatio = 0.0;
+  @observable WonDollarRatio = null;
 
-  @observable BuyPrice_Mver = 0.0;
-  @observable BuyPrice_Sver = 0.0;
-  @observable BuyPrice_SAver = 0.0;
-  @observable BuyPrice_MPack = 0.0;
+  @observable BuyPrice_Mver = 0;
+  @observable BuyPrice_Sver = 0;
+  @observable BuyPrice_SAver = 0;
+  @observable BuyPrice_MPack = 0;
 
-  @observable PurchaseRatio = 0;
-  @observable TechRatio = 0;
-  @observable KEPCORatio = 0;
-  @observable MokpoRatio = 0;
-  @observable RewardRatio = 0;
+  @observable PurchaseRatio = null;
+  @observable TechRatio = null;
+  @observable KEPCORatio = null;
+  @observable MokpoRatio = null;
+  @observable RewardRatio = null;
 
   @action
   OnPoNumberChange = (e) => {        
@@ -124,12 +124,34 @@ export default class FormInputStore {
   };
 
  
-
-
+  initializeStates = (e) =>{
+    this.IssueDate = "";
+    this.PoNumber = "";
   
+    this.SellPrice_Mver = 0;
+    this.SellPrice_Sver = 0;
+    this.SellPrice_SAver = 0;
+    this.SellPrice_MPack = 0;
+  
+    this.OrderNum_Mver = 0;
+    this.OrderNum_Sver = 0;
+    this.OrderNum_SAver = 0;
+    this.OrderNum_MPack = 0;
+  
+    this.WDRDate = null;
+    this.WonDollarRatio = 0;
 
-  OnSubmitForm = (e) =>{
-    console.log('Hello,onClick')
+    this.BuyPrice_Mver = 0;
+    this.BuyPrice_Sver = 0;
+    this.BuyPrice_SAver = 0;
+    this.BuyPrice_MPack = 0;
+  
+    this.PurchaseRatio = 0;
+    this.TechRatio = 0;
+    this.KEPCORatio = 0;
+    this.MokpoRatio = 0;
+    this.RewardRatio = 0;
+//    console.log('Hello,onClick')
   };
 
 

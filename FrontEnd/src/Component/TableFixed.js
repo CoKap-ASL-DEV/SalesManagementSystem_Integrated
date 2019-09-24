@@ -1,38 +1,40 @@
-import { Table } from "antd";
 import React from "react";
+import { Table } from "antd";
 import "antd/dist/antd.css";
+import GET_TALBE_QUERY from "../APIClient/get_table";
+import { Query } from "react-apollo";
 
 const colWidth = 200;
 
 const columns = [
   {
     title: "순번",
-    
-    width: colWidth-100,
-    dataIndex: "name",
-    key: "name",
-    fixed: 'left',
-    align: "center",
+
+    width: colWidth - 100,
+    dataIndex: "SeqNum",
+    key: "SeqNum",
+    fixed: "left",
+    align: "center"
   },
   {
     title: "구매 Order from BAUR",
     align: "center",
-    fixed: 'left',
+    fixed: "left",
     children: [
       {
         title: "PO #",
-        dataIndex: "address",
-        key: "1",
-        width: colWidth-50,
-        fixed: 'left',
+        dataIndex: "PoNumber",
+        key: "PoNumber",
+        width: colWidth - 50,
+        fixed: "left",
         align: "center"
       },
       {
         title: "Issue Date",
-        dataIndex: "address",
-        key: "2",
-        width: colWidth-50,
-        fixed: 'left',
+        dataIndex: "IssueDate",
+        key: "IssueDate",
+        width: colWidth - 50,
+        fixed: "left",
         align: "center"
       }
     ]
@@ -43,15 +45,15 @@ const columns = [
     children: [
       {
         title: "기준일",
-        dataIndex: "address",
-        key: "3",
+        dataIndex: "WDRDate",
+        key: "WDRDate",
         width: colWidth,
         align: "center"
       },
       {
         title: "매매기준율",
-        dataIndex: "address",
-        key: "4",
+        dataIndex: "WonDollarRatio",
+        key: "WonDollarRatio",
         width: colWidth,
         align: "center"
       }
@@ -64,36 +66,36 @@ const columns = [
     children: [
       {
         title: "M-Ver.",
-        dataIndex: "address",
-        key: "3",
+        dataIndex: "OrderNum_Mver",
+        key: "OrderNum_Mver",
         width: colWidth,
         align: "center"
       },
       {
         title: "S-Ver.",
-        dataIndex: "address",
-        key: "4",
+        dataIndex: "OrderNum_Sver",
+        key: "OrderNum_Sver",
         width: colWidth,
         align: "center"
       },
       {
         title: "SA-Ver.",
-        dataIndex: "address",
-        key: "5",
+        dataIndex: "OrderNum_SAver",
+        key: "OrderNum_SAver",
         width: colWidth,
         align: "center"
       },
       {
         title: "M Package",
-        dataIndex: "address",
-        key: "6",
+        dataIndex: "OrderNum_MPack",
+        key: "OrderNum_MPack",
         width: colWidth,
         align: "center"
       },
       {
         title: "총수량",
-        dataIndex: "address",
-        key: "7",
+        dataIndex: "TotalNum",
+        key: "TotalNum",
         width: colWidth,
         align: "center"
       }
@@ -106,15 +108,15 @@ const columns = [
     children: [
       {
         title: "US$",
-        dataIndex: "address",
-        key: "8",
+        dataIndex: "TotalSellPrice_Dlr",
+        key: "TotalSellPrice_Dlr",
         width: colWidth,
         align: "center"
       },
       {
         title: "원화",
-        dataIndex: "address",
-        key: "9",
+        dataIndex: "TotalSellPrice_Won",
+        key: "TotalSellPrice_Won",
         width: colWidth,
         align: "center"
       }
@@ -126,15 +128,15 @@ const columns = [
     children: [
       {
         title: "US$",
-        dataIndex: "address",
-        key: "10",
+        dataIndex: "TotalBuyPrice_Dlr",
+        key: "TotalBuyPrice_Dlr",
         width: colWidth,
         align: "center"
       },
       {
         title: "원화",
-        dataIndex: "address",
-        key: "11",
+        dataIndex: "TotalBuyPrice_Won",
+        key: "TotalBuyPrice_Won",
         width: colWidth,
         align: "center"
       }
@@ -147,22 +149,22 @@ const columns = [
     children: [
       {
         title: "한전",
-        dataIndex: "address",
-        key: "12",
+        dataIndex: "TechFare_KEPCO",        
+        key: "TechFare_KEPCO",
         width: colWidth,
         align: "center"
       },
       {
         title: "목포해양대",
-        dataIndex: "address",
-        key: "13",
+        dataIndex: "TechFare_Mokpo",
+        key: "TechFare_Mokpo",
         width: colWidth,
         align: "center"
       },
       {
         title: "소계",
-        dataIndex: "address",
-        key: "14",
+        dataIndex: "TotalTechFare",
+        key: "TotalTechFare",
         width: colWidth,
         align: "center"
       }
@@ -173,8 +175,8 @@ const columns = [
     title: "특허처분보상\n60%",
     align: "center",
     width: colWidth,
-    dataIndex: "name",
-    key: "name",        
+    dataIndex: "PatentReward",
+    key: "PatentReward"
   },
   {
     title: "순수익",
@@ -182,27 +184,27 @@ const columns = [
     children: [
       {
         title: "파워플러스",
-        dataIndex: "address",
-        key: "15",
+        dataIndex: "NetIncome_PowerPlus",
+        key: "NetIncome_PowerPlus",
         width: colWidth,
         align: "center"
       },
       {
         title: "한전",
-        dataIndex: "address",
-        key: "16",
+        dataIndex: "NetIncome_KEPCO",
+        key: "NetIncome_KEPCO",
         width: colWidth,
         align: "center"
       },
       {
         title: "소계",
-        dataIndex: "address",
-        key: "17",
+        dataIndex: "Total_NetIncome",
+        key: "Total_NetIncome",
         width: colWidth,
         align: "center"
       }
     ]
-  },
+  }
 
   // {
   //   title: "Action",
@@ -213,26 +215,125 @@ const columns = [
   // }
 ];
 
-const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
-    name: `Ed ${i}`,
-    age: 32,
-    address: `Park no. ${i}`
-  });
-}
+const getDataSrc = data =>
+  data.formDatas.map(
+    (
+      {
+        PoNumber,
+        IssueDate,
+        WDRDate,
+        WonDollarRatio,
+        OrderNum_Mver,
+        OrderNum_Sver,
+        OrderNum_SAver,
+        OrderNum_MPack,
+
+        SellPrice_Mver,
+        SellPrice_Sver,
+        SellPrice_SAver,
+        SellPrice_MPack,
+
+        PurchaseRatio,
+        TechRatio,
+        KEPCORatio,
+        MokpoRatio,
+        RewardRatio
+      },
+      index
+    ) => {
+      const TotalNum =
+        OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
+      const TotalSellPrice_Dlr =
+        SellPrice_Mver * OrderNum_Mver +
+        SellPrice_Sver * OrderNum_Sver +
+        SellPrice_SAver * OrderNum_SAver +
+        SellPrice_MPack * OrderNum_MPack;
+      const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
+      const TotalBuyPrice_Dlr = TotalSellPrice_Dlr * PurchaseRatio;
+      const TotalBuyPrice_Won = TotalSellPrice_Won * PurchaseRatio;
+      const TechFare_KEPCO = TotalBuyPrice_Won * TechRatio * KEPCORatio;
+      const TechFare_Mokpo = TotalBuyPrice_Won * TechRatio * MokpoRatio;
+      const TotalTechFare = TechFare_KEPCO * TechFare_Mokpo;
+      const PatentReward = TechFare_KEPCO * RewardRatio;
+      const NetIncome_PowerPlus = TotalBuyPrice_Won - TechFare_KEPCO;
+      const NetIncome_KEPCO = TotalSellPrice_Won - TotalBuyPrice_Won;
+      const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
+
+      return {
+        SeqNum: index,
+        PoNumber: PoNumber,
+        IssueDate: IssueDate,
+        WDRDate: WDRDate,
+        WonDollarRatio: WonDollarRatio,
+        OrderNum_Mver: OrderNum_Mver,
+        OrderNum_Sver: OrderNum_Sver,
+        OrderNum_SAver: OrderNum_SAver,
+        OrderNum_MPack: OrderNum_MPack,
+        TotalNum: TotalNum,
+        TotalSellPrice_Dlr: TotalSellPrice_Dlr,
+        TotalSellPrice_Won: TotalSellPrice_Won,
+        TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
+        TotalBuyPrice_Won: TotalBuyPrice_Won,
+        TechFare_KEPCO: TechFare_KEPCO,
+        TechFare_Mokpo :TechFare_Mokpo,
+        TotalTechFare:TotalTechFare,
+        PatentReward:PatentReward,
+        NetIncome_PowerPlus:NetIncome_PowerPlus,
+        NetIncome_KEPCO:NetIncome_KEPCO,
+        Total_NetIncome:Total_NetIncome
+
+      };
+    }
+  );
+
+const GetData = () => (
+  <Query query={GET_TALBE_QUERY}>
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error :(</p>;
+      const dtSrc = getDataSrc(data);
+      return (
+        <Table
+          columns={columns}
+          dataSource={dtSrc}
+          scroll={{ x: 3800 }}
+          size="small"
+          bordered
+          mountnode
+        />
+      );
+    }}
+  </Query>
+);
+
+// const data = [];
+// for (let i = 0; i < 100; i++) {
+//   data.push({
+//     key: i,
+//     name: `Ed ${i}`,
+//     age: 32,
+//     address: `Park no. ${i}`
+//   });
+// }
 
 const FixedTable = () => {
+  // console.log(GetData()[2]);
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      scroll={{ x: 3800}}
-      size="small"
-      bordered
-      mountnode
-    />
+    <div>
+      <GetData />
+    </div>
+    //           <Table
+    //             columns={columns}
+    //             dataSource={getdata}
+    //             scroll={{ x: 3800 }}
+    //             size="small"
+    //             bordered
+    //             mountnode
+    //           />
+    // <div>
+    // <h1>test {getdata().SellPrice_MPack}, {getdata().SellPrice_Sver}</h1>
+    // <h1>test {getdata().address}, {getdata().key}</h1>
+    // </div>
   );
 };
 
