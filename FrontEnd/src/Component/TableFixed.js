@@ -1,12 +1,25 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Popconfirm } from "antd";
 import "antd/dist/antd.css";
 import GET_TALBE_QUERY from "../APIClient/get_table";
+
+import DelBtn from "./DeleteTableDataButton";
 import { Query } from "react-apollo";
 
 const colWidth = 200;
 
 const columns = [
+  {
+    title: "operation",
+    dataIndex: "operation",
+    fixed: "left",
+    align: "center",
+    render: (text, record) => (
+      // this.state.dataSource.length >= 1 ? (
+      <DelBtn delId={record.SeqNum} />
+    )
+    // ) : null
+  },
   {
     title: "순번",
 
@@ -35,7 +48,11 @@ const columns = [
         key: "IssueDate",
         width: colWidth - 50,
         fixed: "left",
-        align: "center"
+        align: "center",
+
+        onFilter: (value, record) => record.IssueDate.indexOf(value) === 0,
+        sorter: (a, b) => a.IssueDate.length - b.IssueDate.length,
+        sortDirections: ["descend"]
       }
     ]
   },
@@ -149,7 +166,7 @@ const columns = [
     children: [
       {
         title: "한전",
-        dataIndex: "TechFare_KEPCO",        
+        dataIndex: "TechFare_KEPCO",
         key: "TechFare_KEPCO",
         width: colWidth,
         align: "center"
@@ -219,6 +236,7 @@ const getDataSrc = data =>
   data.formDatas.map(
     (
       {
+        id,
         PoNumber,
         IssueDate,
         WDRDate,
@@ -260,7 +278,7 @@ const getDataSrc = data =>
       const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
 
       return {
-        SeqNum: index,
+        SeqNum: id,
         PoNumber: PoNumber,
         IssueDate: IssueDate,
         WDRDate: WDRDate,
@@ -275,19 +293,18 @@ const getDataSrc = data =>
         TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
         TotalBuyPrice_Won: TotalBuyPrice_Won,
         TechFare_KEPCO: TechFare_KEPCO,
-        TechFare_Mokpo :TechFare_Mokpo,
-        TotalTechFare:TotalTechFare,
-        PatentReward:PatentReward,
-        NetIncome_PowerPlus:NetIncome_PowerPlus,
-        NetIncome_KEPCO:NetIncome_KEPCO,
-        Total_NetIncome:Total_NetIncome
-
+        TechFare_Mokpo: TechFare_Mokpo,
+        TotalTechFare: TotalTechFare,
+        PatentReward: PatentReward,
+        NetIncome_PowerPlus: NetIncome_PowerPlus,
+        NetIncome_KEPCO: NetIncome_KEPCO,
+        Total_NetIncome: Total_NetIncome
       };
     }
   );
 
 const GetData = () => (
-  <Query query={GET_TALBE_QUERY}>
+  <Query query={GET_TALBE_QUERY} pollInterval={10}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;

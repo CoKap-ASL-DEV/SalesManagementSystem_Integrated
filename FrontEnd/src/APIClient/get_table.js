@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 const GET_TABLE = gql`
   query {
     formDatas {
+      id
       PoNumber
       IssueDate
       WDRDate
@@ -20,7 +21,7 @@ const GET_TABLE = gql`
       WonDollarRatio
 
       PurchaseRatio
-      
+
       TechRatio
       KEPCORatio
       MokpoRatio

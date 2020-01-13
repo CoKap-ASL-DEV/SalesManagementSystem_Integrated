@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
 import ProductForm from "./ProductForm";
 import FixedTable from "./Component/TableFixed";
 import HistoryVar from "./Component/HistoryVar";
-import HistoryItems from "./Component/HistoryItems"
+import HistoryItems from "./Component/HistoryItems";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
-import APIClient from "./APIClient/apiclient"
-
+import APIClient from "./APIClient/apiclient";
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -29,23 +28,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  
   const classes = useStyles();
   return (
-    
     <div className="App">
       <div className={classes.root}>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-        
+
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <br/>
+              <br />
               <h1>Sales Management System</h1>
-              
             </Paper>
           </Grid>
           <Grid item xs={8}>
@@ -58,29 +54,23 @@ function App() {
             <Paper className={classes.paper}>
               <HistoryVar />
               <HistoryItems />
-              
             </Paper>
           </Grid>
 
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <FixedTable />              
+              <FixedTable />
             </Paper>
-
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-            {/* <APIClient/> */}
+              <APIClient />
             </Paper>
           </Grid>
-          
-
         </Grid>
       </div>
-      
     </div>
   );
-
 }
 
 export default App;

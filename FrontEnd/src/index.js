@@ -13,7 +13,7 @@ import { HttpLink } from "apollo-link-http";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: "http://localhost:3000/graphql"
+  uri: "http://localhost:2000/graphql"
 });
 
 export const client = new ApolloClient({
@@ -31,8 +31,8 @@ const fstore = new FormStore();
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Provider fstore={fstore}>      
-        <App />      
+    <Provider fstore={fstore}>
+      <App />
     </Provider>
   </ApolloProvider>,
   document.getElementById("root")
