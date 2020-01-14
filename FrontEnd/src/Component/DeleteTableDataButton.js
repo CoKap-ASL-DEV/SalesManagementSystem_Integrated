@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import DELETE_TABLE_QUERY from "../APIClient/delete_table";
 import { Popconfirm } from "antd";
+import GET_TABLE from "../APIClient/get_table";
 import { Mutation } from "@apollo/react-components";
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +24,16 @@ export default function DelButton(props) {
     ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
     /// data : mutation return값
 
-    <Mutation mutation={DELETE_TABLE_QUERY}>
+    <Mutation
+      mutation={DELETE_TABLE_QUERY}
+      refetchQueries={[{ query: GET_TABLE }]}
+      // update: (cache, { data }) => {
+      //   cache.writeQuery({
+      //     query: GET_TABLE,
+      //     data
+      //   });
+      // }
+    >
       {(deleteFormData, { data }) => (
         <Popconfirm
           title="Sure to delete?"
@@ -37,7 +47,7 @@ export default function DelButton(props) {
         >
           <Button
             variant="outlined"
-            size="medium"
+            size="small"
             color="primary"
             className={classes.margin}
           >

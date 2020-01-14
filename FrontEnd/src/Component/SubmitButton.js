@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SUBMIT_FORM_QUERY from "../APIClient/submit_form";
+import GET_TABLE from "../APIClient/get_table";
 import { Mutation } from "@apollo/react-components";
 
 const useStyles = makeStyles(theme => ({
@@ -13,12 +14,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
-
-
 const date = new Date();
-const currentDate = String(date.getFullYear())+"-"+String(date.getMonth())+"-"+String(date.getDate());
+const currentDate =
+  String(date.getFullYear()) +
+  "-" +
+  String(date.getMonth()) +
+  "-" +
+  String(date.getDate());
 //const year = String(date.getFullYear());
 
 export default function SubmitButton2(props) {
@@ -38,7 +40,7 @@ export default function SubmitButton2(props) {
     OrderNum_SAver,
     OrderNum_MPack,
 
-    WDRDate, 
+    WDRDate,
     WonDollarRatio,
 
     PurchaseRatio,
@@ -52,7 +54,10 @@ export default function SubmitButton2(props) {
     ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
     /// data : mutation return값
 
-    <Mutation mutation={SUBMIT_FORM_QUERY}>
+    <Mutation
+      mutation={SUBMIT_FORM_QUERY}
+      refetchQueries={[{ query: GET_TABLE }]}
+    >
       {(addFormData, { data }) => (
         <Button
           onClick={() => {
@@ -78,9 +83,9 @@ export default function SubmitButton2(props) {
                 WDRDate: WDRDate
               }
             });
-            console.log(typeof(props.inputStates.OrderNum_MPack));
+            console.log(typeof props.inputStates.OrderNum_MPack);
             props.resetStates();
-            
+
             //console.log(data);
           }}
           //onClick={this.props.onSubmithandler}

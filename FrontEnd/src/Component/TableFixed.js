@@ -304,7 +304,8 @@ const getDataSrc = data =>
   );
 
 const GetData = () => (
-  <Query query={GET_TALBE_QUERY} pollInterval={10}>
+  //<Query query={GET_TALBE_QUERY} pollInterval={10}>
+  <Query query={GET_TALBE_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
