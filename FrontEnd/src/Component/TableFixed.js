@@ -13,6 +13,7 @@ const columns = [
     title: "operation",
     dataIndex: "operation",
     fixed: "left",
+    width: colWidth - 10,
     align: "center",
     render: (text, record) => (
       // this.state.dataSource.length >= 1 ? (
@@ -23,7 +24,7 @@ const columns = [
   {
     title: "순번",
 
-    width: colWidth - 100,
+    width: colWidth - 120,
     dataIndex: "SeqNum",
     key: "SeqNum",
     fixed: "left",
@@ -31,15 +32,18 @@ const columns = [
   },
   {
     title: "구매 Order from BAUR",
-    align: "center",
     fixed: "left",
+    align: "center",
+    width: colWidth - 50,
+
     children: [
       {
         title: "PO #",
         dataIndex: "PoNumber",
         key: "PoNumber",
         width: colWidth - 50,
-        fixed: "left",
+        //width: colWidth + 0.1,
+        // fixed: "left",
         align: "center"
       },
       {
@@ -47,7 +51,8 @@ const columns = [
         dataIndex: "IssueDate",
         key: "IssueDate",
         width: colWidth - 50,
-        fixed: "left",
+        //width: colWidth + 0.1,
+        // fixed: "left",
         align: "center",
 
         onFilter: (value, record) => record.IssueDate.indexOf(value) === 0,
@@ -59,6 +64,7 @@ const columns = [
   {
     title: "적용환율",
     align: "center",
+
     children: [
       {
         title: "기준일",
@@ -222,14 +228,6 @@ const columns = [
       }
     ]
   }
-
-  // {
-  //   title: "Action",
-  //   key: "operation",
-  //   //fixed: "right",
-  //   width: 100,
-  //   render: () => <a href="javascript:;">action</a>
-  // }
 ];
 
 const getDataSrc = data =>
@@ -314,7 +312,7 @@ const GetData = () => (
         <Table
           columns={columns}
           dataSource={dtSrc}
-          scroll={{ x: 3800 }}
+          scroll={{ x: 3600 }}
           size="small"
           bordered
           mountnode

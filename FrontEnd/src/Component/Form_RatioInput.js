@@ -8,8 +8,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    alignContent : "center",
-    height:20,
+    alignContent: "center",
+    height: 20
     //backgroundColor:"#eeeeee"
   },
   margin: {
@@ -17,37 +17,37 @@ const useStyles = makeStyles(theme => ({
     //   marginTop: theme.spacing(3)
   },
   subjectText: {
-    flexBasis: 150,    
-    
+    flexBasis: 150
   },
 
   textField: {
     flexBasis: 150,
-    height:40,
+    height: 40
   }
 }));
 
 export default function OutlinedInputAdornments(props) {
   const classes = useStyles();
 
-
   const readprops = props.readonly === "true";
 
   return (
     <div className={classes.root}>
-      <h3 className={clsx(classes.margin, classes.subjectText)}>{props.title}</h3>
-            
+      <h3 className={clsx(classes.margin, classes.subjectText)}>
+        {props.title}
+      </h3>
 
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_PurchaseRatio"
-        type = "number"
+        type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Purchase_Ratio"
         value={props.PurchaseRatio}
         onChange={props.PurchaseRatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
             <InputAdornment position="end">{props.placeholder}</InputAdornment>
           ),
@@ -55,15 +55,16 @@ export default function OutlinedInputAdornments(props) {
         }}
       />
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_TechRatio"
-        type = "number"
+        type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Tech_Ratio"
         value={props.TechRatio}
         onChange={props.TechRatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
             <InputAdornment position="end">{props.placeholder}</InputAdornment>
           ),
@@ -72,15 +73,16 @@ export default function OutlinedInputAdornments(props) {
       />
 
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_KEPCORatio"
-        type = "number"
+        type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="KEPCO_Ratio"
         value={props.KEPCORatio}
         onChange={props.KEPCORatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
             <InputAdornment position="end">{props.placeholder}</InputAdornment>
           ),
@@ -89,15 +91,16 @@ export default function OutlinedInputAdornments(props) {
       />
 
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_MokpoRatio"
-        type = "number"
+        type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="MokPo_Ratio"
         value={props.MokpoRatio}
         onChange={props.MokpoRatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
             <InputAdornment position="end">{props.placeholder}</InputAdornment>
           ),
@@ -105,15 +108,16 @@ export default function OutlinedInputAdornments(props) {
         }}
       />
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_RewardRatio"
-        type = "number"
+        type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="Reward_Ratio"
         value={props.RewardRatio}
         onChange={props.RewardRatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
             <InputAdornment position="end">{props.placeholder}</InputAdornment>
           ),

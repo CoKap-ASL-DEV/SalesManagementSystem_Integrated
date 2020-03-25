@@ -53,7 +53,7 @@ function App() {
           <Grid item xs={4}>
             <Paper className={classes.paper}>
               <HistoryVar />
-              <HistoryItems />
+              {/* <HistoryItems /> */}
             </Paper>
           </Grid>
 
@@ -62,11 +62,9 @@ function App() {
               <FixedTable />
             </Paper>
           </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <APIClient />
-            </Paper>
-          </Grid>
+          {/* <Grid item xs={12}>
+            <Paper className={classes.paper}> <APIClient /> </Paper>
+          </Grid> */}
         </Grid>
       </div>
     </div>

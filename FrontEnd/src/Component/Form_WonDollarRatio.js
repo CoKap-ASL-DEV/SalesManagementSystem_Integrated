@@ -4,16 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 //import { sizing } from '@material-ui/system';
 import TextField from "@material-ui/core/TextField";
-import { DatePicker } from 'antd';
-import moment from "moment"
+import { DatePicker } from "antd";
+import moment from "moment";
 //import { height } from "@material-ui/system";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    alignContent : "center",
-    height:20,
-    
+    alignContent: "center",
+    height: 20
+
     // backgroundColor:"#eeeeee"
   },
   margin: {
@@ -22,12 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
 
   subjectText: {
-    flexBasis: 150,    
+    flexBasis: 150
   },
 
   textField: {
     flexBasis: 150,
-    height:40,
+    height: 40
     // paddingTop: 0,
     // paddingBottom: 0,
     //textAlignVertical: 'top',
@@ -35,45 +35,52 @@ const useStyles = makeStyles(theme => ({
     // textAlign : 'middle',
     // verticalAlign : "middle",
     //fontSize: "1.5em"
-  },
-  
-  
-
-
+  }
 }));
 
 export default function OutlinedInputAdornments(props) {
   const classes = useStyles();
-
+  const wdrDate = props.WDRDates == null ? null : moment(props.WDRDates);
 
   return (
     <div className={classes.root}>
-      <h3 className={clsx(classes.margin, classes.subjectText)}>{props.title}</h3>
+      <h3 className={clsx(classes.margin, classes.subjectText)}>
+        {props.title}
+      </h3>
 
       {/* {dateofbirth !== "" ? moment(dateofbirth) : null} */}
-      <DatePicker Value={props.WDRDates !=="" ? moment(props.WDRDates, 'YYYY-MM-DD'): moment([2015, 25, 35]).format()} size='large' placeholder="환율기준일" className = {classes.textField} onChange={props.WDRDatehandler} />
-      {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+      <DatePicker
+        defaultValue={null}
+        value={wdrDate}
+        size="large"
+        placeholder="환율기준일"
+        className={classes.textField}
+        onChange={props.WDRDatehandler}
+      />
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
 
       <TextField
+        InputLabelProps={{ shrink: props.shrink }}
         id="Form_WonDollarRatio"
-        type = "number"
+        type="number"
         className={classes.textField}
         variant="outlined"
         label={props.label}
         value={props.WonDollarRatio}
         onChange={props.WonDollarRatiohandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
-            <InputAdornment  position="end">{props.placeholder}</InputAdornment>
-
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
           )
         }}
       />
-      
-    
-      
-    
     </div>
   );
 }

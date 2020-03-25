@@ -4,15 +4,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 //import { sizing } from '@material-ui/system';
 import TextField from "@material-ui/core/TextField";
-import { DatePicker } from 'antd';
+import { DatePicker } from "antd";
+import moment from "moment";
 //import { height } from "@material-ui/system";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    alignContent : "center",
-    height:20,
-    
+    alignContent: "center",
+    height: 20
+
     // backgroundColor:"#eeeeee"
   },
   margin: {
@@ -21,51 +22,58 @@ const useStyles = makeStyles(theme => ({
   },
 
   subjectText: {
-    flexBasis: 150,    
+    flexBasis: 150
   },
 
   textField: {
     flexBasis: 150,
-    height:40,
-
-  },
-  
-  
-
-
+    height: 40
+  }
 }));
 
 export default function OutlinedInputAdornments(props) {
   const classes = useStyles();
-
-
+  const issueDate = props.IssueDate == null ? null : moment(props.IssueDate);
   return (
     <div className={classes.root}>
-      <h3 className={clsx(classes.margin, classes.subjectText)}>{props.title}</h3>
+      <h3 className={clsx(classes.margin, classes.subjectText)}>
+        {props.title}
+      </h3>
 
-      
-      <DatePicker size='large' placeholder="IssueDate" className = {classes.textField} onChange={props.IssueDatehandler} />
-      {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+      <DatePicker
+        //value={moment("1999-01-01")}
+
+        defaultValue={null}
+        //
+        value={issueDate}
+        size="large"
+        placeholder="IssueDate"
+        className={classes.textField}
+        onChange={props.IssueDatehandler}
+      />
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
+      {"\u00A0"}
 
       <TextField
-        id="Form_PoNumber"        
+        InputLabelProps={{ shrink: props.shrink }}
+        id="Form_PoNumber"
         className={classes.textField}
         variant="outlined"
         label={props.label}
         value={props.PoNumber}
         onChange={props.PoNumberhandler}
         InputProps={{
-          className : classes.textField,
+          className: classes.textField,
           endAdornment: (
-            <InputAdornment  position="end">{props.placeholder}</InputAdornment>
-
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
           )
         }}
       />
-      
-    
-      
-    
     </div>
   );
 }

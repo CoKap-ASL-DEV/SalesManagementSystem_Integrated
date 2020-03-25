@@ -70,8 +70,8 @@ class ProductForm extends Component {
       OnMokpoRatioChange,
       OnRewardRatioChange,
 
-    
-      initializeStates
+      initializeStates,
+      TextShrink
     } = fstore;
 
     const inputDataStates = {
@@ -111,8 +111,10 @@ class ProductForm extends Component {
             title="PO From BAUR"
             label="PO#"
             placeholder=" "
+            IssueDate={IssueDate}
             PoNumberhandler={OnPoNumberChange}
             IssueDatehandler={OnIssueDateChange}
+            shrink={TextShrink}
           />
           <Divider section />
           <Header as="h3" />
@@ -125,59 +127,12 @@ class ProductForm extends Component {
             Sverhandler={OnSellPriceSverChange}
             SAverhandler={OnSellPriceSAverChange}
             MPackhandler={OnSellPriceMPackChange}
+            shrink={TextShrink}
             title="판매가"
             placeholder="$"
             readonly="false"
           />
           <Divider section />
-
-          <Header as="h3" />
-          <FormOrderNum
-            OrderNum_Mver={OrderNum_Mver}
-            OrderNum_Sver={OrderNum_Sver}
-            OrderNum_SAver={OrderNum_SAver}
-            OrderNum_MPack={OrderNum_MPack}
-            Mverhandler={OnOrderNumMverChange}
-            Sverhandler={OnOrderNumSverChange}
-            SAverhandler={OnOrderNumSAverChange}
-            MPackhandler={OnOrderNumMPackChange}
-            params={fstore}
-            title="주문수량"
-            placeholder="ea"
-            readonly="false"
-          />
-          <Divider section />
-
-          <Header as="h3" />
-          <FormWonDollarRatio
-            WonDollarRatio={WonDollarRatio}
-            params={fstore}
-            title="환  율"
-            label="￦/$ Ratio"
-            placeholder="￦"
-            WonDollarRatiohandler={OnWonDollarRatioChange}
-            WDRDatehandler={OnWDRDateChange}
-            WDRDates ={WDRDate}
-          />
-
-          <Divider section />
-
-          <Header as="h3" />
-          <FormBuyPrice
-            BuyPrice_Mver={BuyPrice_Mver}
-            BuyPrice_Sver={BuyPrice_Sver}
-            BuyPrice_SAver={BuyPrice_SAver}
-            BuyPrice_MPack={BuyPrice_MPack}
-            Mverhandler={OnBuyPriceMverChange}
-            Sverhandler={OnBuyPriceSverChange}
-            SAverhandler={OnBuyPriceSAverChange}
-            MPackhandler={OnBuyPriceMPackChange}
-            title="구매가"
-            placeholder="$"
-            readonly="true"
-          />
-          <Divider section />
-
           <Header as="h3" />
           <FormRatioInput
             PurchaseRatio={PurchaseRatio}
@@ -190,16 +145,67 @@ class ProductForm extends Component {
             KEPCORatiohandler={OnKEPCORatioChange}
             MokpoRatiohandler={OnMokpoRatioChange}
             RewardRatiohandler={OnRewardRatioChange}
+            shrink={TextShrink}
             title="비   율"
             placeholder="%"
             readonly="false"
           />
+
           <Divider section />
           <Header as="h3" />
+          <FormBuyPrice
+            BuyPrice_Mver={BuyPrice_Mver}
+            BuyPrice_Sver={BuyPrice_Sver}
+            BuyPrice_SAver={BuyPrice_SAver}
+            BuyPrice_MPack={BuyPrice_MPack}
+            Mverhandler={OnBuyPriceMverChange}
+            Sverhandler={OnBuyPriceSverChange}
+            SAverhandler={OnBuyPriceSAverChange}
+            MPackhandler={OnBuyPriceMPackChange}
+            shrink={TextShrink}
+            title="구매가"
+            placeholder="$"
+            readonly="true"
+          />
 
-          
+          <Divider section />
+          <Header as="h3" />
+          <FormOrderNum
+            OrderNum_Mver={OrderNum_Mver}
+            OrderNum_Sver={OrderNum_Sver}
+            OrderNum_SAver={OrderNum_SAver}
+            OrderNum_MPack={OrderNum_MPack}
+            Mverhandler={OnOrderNumMverChange}
+            Sverhandler={OnOrderNumSverChange}
+            SAverhandler={OnOrderNumSAverChange}
+            MPackhandler={OnOrderNumMPackChange}
+            shrink={TextShrink}
+            params={fstore}
+            title="주문수량"
+            placeholder="ea"
+            readonly="false"
+          />
 
-          <SubmitButton inputStates={inputDataStates} resetStates={initializeStates}/>
+          <Divider section />
+          <Header as="h3" />
+          <FormWonDollarRatio
+            WonDollarRatio={WonDollarRatio}
+            params={fstore}
+            title="환  율"
+            label="￦/$ Ratio"
+            placeholder="￦"
+            WonDollarRatiohandler={OnWonDollarRatioChange}
+            WDRDatehandler={OnWDRDateChange}
+            WDRDates={WDRDate}
+            shrink={TextShrink}
+          />
+
+          <Divider section />
+
+          <SubmitButton
+            inputStates={inputDataStates}
+            resetStates={initializeStates}
+          />
         </Segment>
       </div>
     );
