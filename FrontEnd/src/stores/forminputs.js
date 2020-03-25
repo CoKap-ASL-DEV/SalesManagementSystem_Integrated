@@ -118,7 +118,7 @@ export default class FormInputStore {
   };
 
   initializeStates = e => {
-    this.IssueDate = "";
+    this.IssueDate = null;
     this.PoNumber = "";
 
     this.SellPrice_Mver = 0;
