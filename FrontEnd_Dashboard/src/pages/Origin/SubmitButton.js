@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Mutation } from "@apollo/react-components";
+
 import SUBMIT_FORM_QUERY from "../../services/submit_form";
 import GET_TABLE from "../../services/get_table";
-import { Mutation } from "@apollo/react-components";
 
 const useStyles = makeStyles(theme => ({
   margin: {

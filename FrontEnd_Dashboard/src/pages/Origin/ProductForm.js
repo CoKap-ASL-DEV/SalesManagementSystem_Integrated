@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Divider, Header, Segment } from "semantic-ui-react";
+import { observer, inject } from "mobx-react";
+
 import FormPoNumber from "./Form_PoNumber";
 import FormBuyPrice from "./Form_BuyPrice";
 import FormSellPrice from "./Form_SellPrice";
@@ -6,8 +9,6 @@ import FormWonDollarRatio from "./Form_WonDollarRatio";
 import FormRatioInput from "./Form_RatioInput";
 import FormOrderNum from "./Form_OrderNum";
 import SubmitButton from "./SubmitButton";
-import { Divider, Header, Segment } from "semantic-ui-react";
-import { observer, inject } from "mobx-react";
 
 @inject("fstore")
 @observer

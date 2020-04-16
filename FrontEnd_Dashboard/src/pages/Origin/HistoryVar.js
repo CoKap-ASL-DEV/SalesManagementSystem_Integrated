@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Button, List } from "semantic-ui-react";
-import "antd/dist/antd.css";
-import GET_TALBE_QUERY from "../../services/get_table";
 import { Query } from "react-apollo";
 import { inject, observer } from "mobx-react";
+import "antd/dist/antd.css";
+
+import GET_TALBE_QUERY from "../../services/get_table";
 
 const getDataSrc = data =>
   data.formDatas.map(

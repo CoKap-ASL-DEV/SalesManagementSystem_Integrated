@@ -40,7 +40,7 @@ class App extends React.Component {
             <React.Suspense fallback={<PageSpinner />}>
               <Switch>
                 <Route exact path="/" component={RootRedirect} />
-                <Route exact path="/orogin" component={OriginPage} />
+                <Route exact path="/origin" component={OriginPage} />
                 <Route exact path="/not-found" component={NotFoundPage} />
                 <Route exact component={NotFoundRedirect} />
               </Switch>
