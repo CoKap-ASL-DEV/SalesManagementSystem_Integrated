@@ -1,0 +1,32 @@
+.kepco-range-picker {
+  .react-datepicker-wrapper {
+    width: 100%;
+
+    input {
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.425);
+      border-radius: 0.25rem;
+
+      &:hover {
+        outline: -webkit-focus-ring-color auto 1px;
+      }
+    }
+  }
+
+  .react-datepicker-popper {
+    min-width: 220px;
+    z-index: 10;
+  }
+
+  .arrow {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+}
