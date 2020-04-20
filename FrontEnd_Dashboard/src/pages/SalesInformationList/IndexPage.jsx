@@ -2,7 +2,6 @@ import React from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { Col, Row } from 'reactstrap';
 
 import Page from 'components/Page';
 
@@ -34,17 +33,13 @@ export default () => {
       className="sales-information-list"
       title="판매 정보 리스트"
     >
-      <Row className="pt-5">
-        <Col>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <FixedTable />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Col>
-      </Row>
+      <Grid className="pt-5" container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <FixedTable />
+          </Paper>
+        </Grid>
+      </Grid>
     </Page>
   );
 }
