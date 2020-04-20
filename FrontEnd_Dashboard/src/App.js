@@ -19,6 +19,12 @@ const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 const RootRedirect = () => <Redirect to="/origin" />;
 const NotFoundRedirect = () => <Redirect to="/not-found" />;
 
+const styleLink = document.createElement('link');
+styleLink.rel = 'stylesheet';
+styleLink.href =
+  'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
+document.head.appendChild(styleLink);
+
 class App extends React.Component {
   render() {
     return (

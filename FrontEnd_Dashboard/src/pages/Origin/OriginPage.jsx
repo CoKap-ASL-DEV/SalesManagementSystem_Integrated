@@ -10,11 +10,11 @@ import HistoryItems from "./HistoryItems";
 
 // import APIClient from "./APIClient/apiclient";
 
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href =
-  "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+// const styleLink = document.createElement("link");
+// styleLink.rel = "stylesheet";
+// styleLink.href =
+//   "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
+// document.head.appendChild(styleLink);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,10 +32,10 @@ function App() {
   return (
     <div className="App">
       <div className={classes.root}>
-        <link
+        {/* <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
+        /> */}
 
         <Grid container spacing={3}>
           <Grid item xs={12}>
