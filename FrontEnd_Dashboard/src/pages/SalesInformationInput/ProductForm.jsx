@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Divider, Header, Segment } from "semantic-ui-react";
-import { observer, inject } from "mobx-react";
+import React, { Component } from 'react';
+import { Divider, Header, Segment } from 'semantic-ui-react';
+import { observer, inject } from 'mobx-react';
 
-import FormPoNumber from "./Form_PoNumber";
-import FormBuyPrice from "./Form_BuyPrice";
-import FormSellPrice from "./Form_SellPrice";
-import FormWonDollarRatio from "./Form_WonDollarRatio";
-import FormRatioInput from "./Form_RatioInput";
-import FormOrderNum from "./Form_OrderNum";
-import SubmitButton from "./SubmitButton";
+import FormPoNumber from './Form_PoNumber';
+import FormBuyPrice from './Form_BuyPrice';
+import FormSellPrice from './Form_SellPrice';
+import FormWonDollarRatio from './Form_WonDollarRatio';
+import FormRatioInput from './Form_RatioInput';
+import FormOrderNum from './Form_OrderNum';
+import SubmitButton from './SubmitButton';
 
-@inject("fstore")
+@inject('fstore')
 @observer
 class ProductForm extends Component {
   render() {
@@ -72,7 +72,7 @@ class ProductForm extends Component {
       OnRewardRatioChange,
 
       initializeStates,
-      TextShrink
+      TextShrink,
     } = fstore;
 
     const inputDataStates = {
@@ -96,7 +96,7 @@ class ProductForm extends Component {
       TechRatio,
       KEPCORatio,
       MokpoRatio,
-      RewardRatio
+      RewardRatio,
     };
 
     //console.log(fstore.Sver);

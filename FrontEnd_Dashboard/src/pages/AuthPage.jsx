@@ -22,7 +22,8 @@ class AuthPage extends React.Component {
           height: '100vh',
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <Col md={6} lg={4}>
           <Card body>
             <AuthForm

@@ -6,17 +6,17 @@ export default class SpinnerStore {
 
   @action showSpinner = () => {
     this.isShowSpinner = true;
-  }
+  };
 
   @action hideSpinner = () => {
     this.isShowSpinner = false;
-  }
+  };
 
   @action showTraining = () => {
     this.isShowTraining = true;
-  }
+  };
 
   @action hideTraining = () => {
     this.isShowTraining = false;
-  }
+  };
 }

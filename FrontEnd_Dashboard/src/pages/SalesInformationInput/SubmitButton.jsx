@@ -1,26 +1,26 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { Mutation } from "@apollo/react-components";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { Mutation } from '@apollo/react-components';
 
-import SUBMIT_FORM_QUERY from "../../services/submit_form";
-import GET_TABLE from "../../services/get_table";
+import SUBMIT_FORM_QUERY from '../../services/submit_form';
+import GET_TABLE from '../../services/get_table';
 
 const useStyles = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   extendedIcon: {
-    marginRight: theme.spacing(1)
-  }
+    marginRight: theme.spacing(1),
+  },
 }));
 
 const date = new Date();
 const currentDate =
   String(date.getFullYear()) +
-  "-" +
+  '-' +
   String(date.getMonth()) +
-  "-" +
+  '-' +
   String(date.getDate());
 //const year = String(date.getFullYear());
 
@@ -48,7 +48,7 @@ export default function SubmitButton2(props) {
     TechRatio,
     KEPCORatio,
     MokpoRatio,
-    RewardRatio
+    RewardRatio,
   } = props.inputStates;
 
   return (
@@ -81,8 +81,8 @@ export default function SubmitButton2(props) {
                 CreatedDate: currentDate,
                 IssueDate: IssueDate,
                 PoNumber: PoNumber,
-                WDRDate: WDRDate
-              }
+                WDRDate: WDRDate,
+              },
             });
             console.log(typeof props.inputStates.OrderNum_MPack);
             props.resetStates();

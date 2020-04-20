@@ -1,58 +1,37 @@
-import React, { Component } from "react";
-import { Button, List } from "semantic-ui-react";
-import { Query } from "react-apollo";
-import { inject, observer } from "mobx-react";
-import "antd/dist/antd.css";
+import React, { Component } from 'react';
+import { Button, List } from 'semantic-ui-react';
+import { Query } from 'react-apollo';
+import { inject, observer } from 'mobx-react';
+import 'antd/dist/antd.css';
 
-import GET_TALBE_QUERY from "../../services/get_table";
+import GET_TALBE_QUERY from '../../services/get_table';
 
 const getDataSrc = data =>
   data.formDatas.map(
-    (
-      {
-        // id,
-        PoNumber,
-        IssueDate,
-        WDRDate,
-        WonDollarRatio,
-        OrderNum_Mver,
-        OrderNum_Sver,
-        OrderNum_SAver,
-        OrderNum_MPack,
+    ({
+      id,
+      PoNumber,
+      IssueDate,
+      WDRDate,
+      WonDollarRatio,
+      OrderNum_Mver,
+      OrderNum_Sver,
+      OrderNum_SAver,
+      OrderNum_MPack,
 
-        SellPrice_Mver,
-        SellPrice_Sver,
-        SellPrice_SAver,
-        SellPrice_MPack,
+      SellPrice_Mver,
+      SellPrice_Sver,
+      SellPrice_SAver,
+      SellPrice_MPack,
 
-        PurchaseRatio,
-        TechRatio,
-        KEPCORatio,
-        MokpoRatio,
-        RewardRatio
-      },
-      index
-    ) => {
-      // const TotalNum =
-      //   OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
-      // const TotalSellPrice_Dlr =
-      //   SellPrice_Mver * OrderNum_Mver +
-      //   SellPrice_Sver * OrderNum_Sver +
-      //   SellPrice_SAver * OrderNum_SAver +
-      //   SellPrice_MPack * OrderNum_MPack;
-      // const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
-      // const TotalBuyPrice_Dlr = TotalSellPrice_Dlr * PurchaseRatio;
-      // const TotalBuyPrice_Won = TotalSellPrice_Won * PurchaseRatio;
-      // const TechFare_KEPCO = TotalBuyPrice_Won * TechRatio * KEPCORatio;
-      // const TechFare_Mokpo = TotalBuyPrice_Won * TechRatio * MokpoRatio;
-      // const TotalTechFare = TechFare_KEPCO * TechFare_Mokpo;
-      // const PatentReward = TechFare_KEPCO * RewardRatio;
-      // const NetIncome_PowerPlus = TotalBuyPrice_Won - TechFare_KEPCO;
-      // const NetIncome_KEPCO = TotalSellPrice_Won - TotalBuyPrice_Won;
-      // const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
-
+      PurchaseRatio,
+      TechRatio,
+      KEPCORatio,
+      MokpoRatio,
+      RewardRatio,
+    }) => {
       return {
-        // SeqNum: id,
+        id,
         PoNumber: PoNumber,
         IssueDate: IssueDate,
 
@@ -72,9 +51,9 @@ const getDataSrc = data =>
         TechRatio: TechRatio,
         KEPCORatio: KEPCORatio,
         MokpoRatio: MokpoRatio,
-        RewardRatio: RewardRatio
+        RewardRatio: RewardRatio,
       };
-    }
+    },
   );
 
 const HistItems = props => {
@@ -87,7 +66,7 @@ const HistItems = props => {
             //alert("haha");
           }}
         >
-          {" "}
+          {' '}
           Add
         </Button>
       </List.Content>
@@ -99,7 +78,7 @@ const HistItems = props => {
   );
 };
 
-@inject("fstore")
+@inject('fstore')
 @observer
 class GetData extends Component {
   render() {
@@ -115,33 +94,14 @@ class GetData extends Component {
           return (
             <List divided verticalAlign="middle">
               {dtSrc.map(item => {
-                return <HistItems item={item} setParam={ParamtoStates} />;
-                // return <h1>{item.IssueDate}</h1>;
+                return (
+                  <HistItems
+                    key={item.id}
+                    item={item}
+                    setParam={ParamtoStates}
+                  />
+                );
               })}
-              {/* <List.Item>
-              <List.Content floated="right">
-                <Button>Add</Button>
-              </List.Content>
-              <List.Content>{dtSrc[0].IssueDate}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content floated="right">
-                <Button>Add</Button>
-              </List.Content>
-              <List.Content>{dtSrc[1].IssueDate}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content floated="right">
-                <Button>Add</Button>
-              </List.Content>
-              <List.Content>{dtSrc[2].IssueDate}</List.Content>
-            </List.Item>
-            <List.Item>
-              <List.Content floated="right">
-                <Button>Add</Button>
-              </List.Content>
-              <List.Content>{dtSrc[3].IssueDate}</List.Content>
-            </List.Item>*/}
             </List>
           );
         }}
@@ -151,7 +111,6 @@ class GetData extends Component {
 }
 
 const ListFloated = () => {
-  // console.log(GetData()[2]);
   return (
     <div>
       <GetData />

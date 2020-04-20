@@ -15,11 +15,7 @@ const columns = [
     fixed: 'left',
     width: colWidth - 10,
     align: 'center',
-    render: (text, record) => (
-      // this.state.dataSource.length >= 1 ? (
-      <DelBtn delId={record.SeqNum} />
-    ),
-    // ) : null
+    render: (text, record) => <DelBtn delId={record.SeqNum} />,
   },
   {
     title: '순번',
@@ -42,8 +38,6 @@ const columns = [
         dataIndex: 'PoNumber',
         key: 'PoNumber',
         width: colWidth - 50,
-        //width: colWidth + 0.1,
-        // fixed: "left",
         align: 'center',
       },
       {
@@ -51,8 +45,6 @@ const columns = [
         dataIndex: 'IssueDate',
         key: 'IssueDate',
         width: colWidth - 50,
-        //width: colWidth + 0.1,
-        // fixed: "left",
         align: 'center',
 
         onFilter: (value, record) => record.IssueDate.indexOf(value) === 0,
@@ -232,31 +224,28 @@ const columns = [
 
 const getDataSrc = data =>
   data.formDatas.map(
-    (
-      {
-        id,
-        PoNumber,
-        IssueDate,
-        WDRDate,
-        WonDollarRatio,
-        OrderNum_Mver,
-        OrderNum_Sver,
-        OrderNum_SAver,
-        OrderNum_MPack,
+    ({
+      id,
+      PoNumber,
+      IssueDate,
+      WDRDate,
+      WonDollarRatio,
+      OrderNum_Mver,
+      OrderNum_Sver,
+      OrderNum_SAver,
+      OrderNum_MPack,
 
-        SellPrice_Mver,
-        SellPrice_Sver,
-        SellPrice_SAver,
-        SellPrice_MPack,
+      SellPrice_Mver,
+      SellPrice_Sver,
+      SellPrice_SAver,
+      SellPrice_MPack,
 
-        PurchaseRatio,
-        TechRatio,
-        KEPCORatio,
-        MokpoRatio,
-        RewardRatio,
-      },
-      index,
-    ) => {
+      PurchaseRatio,
+      TechRatio,
+      KEPCORatio,
+      MokpoRatio,
+      RewardRatio,
+    }) => {
       const TotalNum =
         OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
       const TotalSellPrice_Dlr =
@@ -276,6 +265,7 @@ const getDataSrc = data =>
       const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
 
       return {
+        key: id,
         SeqNum: id,
         PoNumber: PoNumber,
         IssueDate: IssueDate,
@@ -302,7 +292,6 @@ const getDataSrc = data =>
   );
 
 const GetData = () => (
-  //<Query query={GET_TALBE_QUERY} pollInterval={10}>
   <Query query={GET_TALBE_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -322,34 +311,11 @@ const GetData = () => (
   </Query>
 );
 
-// const data = [];
-// for (let i = 0; i < 100; i++) {
-//   data.push({
-//     key: i,
-//     name: `Ed ${i}`,
-//     age: 32,
-//     address: `Park no. ${i}`
-//   });
-// }
-
 const FixedTable = () => {
-  // console.log(GetData()[2]);
   return (
     <div>
       <GetData />
     </div>
-    //           <Table
-    //             columns={columns}
-    //             dataSource={getdata}
-    //             scroll={{ x: 3800 }}
-    //             size="small"
-    //             bordered
-    //             mountnode
-    //           />
-    // <div>
-    // <h1>test {getdata().SellPrice_MPack}, {getdata().SellPrice_Sver}</h1>
-    // <h1>test {getdata().address}, {getdata().key}</h1>
-    // </div>
   );
 };
 

@@ -22,18 +22,9 @@ export default function DelButton(props) {
   const { delId } = props;
 
   return (
-    ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
-    /// data : mutation return값
-
     <Mutation
       mutation={DELETE_TABLE_QUERY}
       refetchQueries={[{ query: GET_TABLE }]}
-      // update: (cache, { data }) => {
-      //   cache.writeQuery({
-      //     query: GET_TABLE,
-      //     data
-      //   });
-      // }
     >
       {(deleteFormData, { data }) => (
         <Popconfirm
