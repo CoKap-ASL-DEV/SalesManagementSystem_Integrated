@@ -16,7 +16,7 @@ const SalesInformationList = React.lazy(() =>
 );
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 
-const RootRedirect = () => <Redirect to="/origin" />;
+const RootRedirect = () => <Redirect to="/sale-list" />;
 const NotFoundRedirect = () => <Redirect to="/not-found" />;
 
 const styleLink = document.createElement('link');

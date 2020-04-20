@@ -87,7 +87,6 @@ const sidebarBackground = {
 // ];
 
 const navItems = [
-  { to: '/origin', name: '기존페이지', exact: false, Icon: MdEventSeat },
   { to: '/sale-list', name: '판매 리스트', exact: false, Icon: MdList },
   {
     to: '/sales-inform-input',
@@ -95,6 +94,7 @@ const navItems = [
     exact: false,
     Icon: MdNoteAdd,
   },
+  { to: '/origin', name: '기존페이지', exact: false, Icon: MdEventSeat },
 ];
 
 const bem = bn.create('sidebar');
