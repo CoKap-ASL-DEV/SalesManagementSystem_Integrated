@@ -8,10 +8,16 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
 const OriginPage = React.lazy(() => import('pages/Origin/OriginPage'));
+const SalesInformationInput = React.lazy(() =>
+  import('pages/SalesInformationInput/IndexPage'),
+);
+const SalesInformationList = React.lazy(() =>
+  import('pages/SalesInformationList/IndexPage'),
+);
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 
-const RootRedirect = () => <Redirect to='/origin' />;
-const NotFoundRedirect = () => <Redirect to='/not-found' />;
+const RootRedirect = () => <Redirect to="/origin" />;
+const NotFoundRedirect = () => <Redirect to="/not-found" />;
 
 class App extends React.Component {
   render() {
@@ -23,9 +29,7 @@ class App extends React.Component {
             exact
             path="/login"
             layout={EmptyLayout}
-            component={props => (
-              <AuthPage {...props} authState={STATE_LOGIN} />
-            )}
+            component={props => <AuthPage {...props} authState={STATE_LOGIN} />}
           />
           <LayoutRoute
             exact
@@ -41,6 +45,16 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={RootRedirect} />
                 <Route exact path="/origin" component={OriginPage} />
+                <Route
+                  exact
+                  path="/sale-list"
+                  component={SalesInformationList}
+                />
+                <Route
+                  exact
+                  path="/sales-inform-input"
+                  component={SalesInformationInput}
+                />
                 <Route exact path="/not-found" component={NotFoundPage} />
                 <Route exact component={NotFoundRedirect} />
               </Switch>

@@ -2,10 +2,9 @@ import logoKepco from 'assets/img/logo/logo_kepco_long.png';
 import sidebarBgImage from 'assets/img/sidebar/sidebar-4.jpg';
 import React from 'react';
 import {
+  MdEventSeat,
   MdNoteAdd,
-  MdInsertChart,
-  MdQueuePlayNext,
-  MdToday,
+  MdList,
   // MdAccountCircle,
   // MdArrowDropDownCircle,
   // MdBorderAll,
@@ -88,7 +87,14 @@ const sidebarBackground = {
 // ];
 
 const navItems = [
-  { to: '/origin', name: '기존페이지', exact: false, Icon: MdNoteAdd },
+  { to: '/origin', name: '기존페이지', exact: false, Icon: MdEventSeat },
+  { to: '/sale-list', name: '판매 리스트', exact: false, Icon: MdList },
+  {
+    to: '/sales-inform-input',
+    name: '판매정보 추가',
+    exact: false,
+    Icon: MdNoteAdd,
+  },
 ];
 
 const bem = bn.create('sidebar');
@@ -117,17 +123,9 @@ class Sidebar extends React.Component {
         <div className={bem.e('content')}>
           <Navbar className="text-center">
             <div className="w-100 icon-wrapper">
-              <img
-                src={logoKepco}
-                className="w-100"
-                alt=""
-              />
+              <img src={logoKepco} className="w-100" alt="" />
             </div>
-            <h3 className="w-100 text-white ">
-              전력 판매량
-                <br />
-              예측 시스템
-            </h3>
+            <h3 className="w-100 text-white ">Sales Management</h3>
           </Navbar>
           <Nav vertical>
             {navItems.map(({ to, name, exact, Icon }, index) => (
@@ -141,7 +139,9 @@ class Sidebar extends React.Component {
                   exact={exact}
                 >
                   <Icon className={bem.e('nav-item-icon')} />
-                  <span className="">{name}</span>
+                  <span className="" style={{ fontSize: '20px' }}>
+                    {name}
+                  </span>
                 </BSNavLink>
               </NavItem>
             ))}
