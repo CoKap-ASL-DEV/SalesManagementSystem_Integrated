@@ -29,7 +29,7 @@ export default () => {
   const classes = useStyles();
 
   return (
-    <Page className="sales-information-list" title="매출 리스트">
+    <Page className="sales-information-list" title="구매 리스트">
       <Grid className="pt-5" container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>

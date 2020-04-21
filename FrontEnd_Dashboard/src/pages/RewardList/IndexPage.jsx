@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { Tabs } from 'antd';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +17,7 @@ import FixedTable from './TableFixed';
  * 베타알라닌: 부스터. 얼굴 따갑 부작용(일시적). 근지구력 운동에 도움. 1세트가 1~4분인 경우.(크레아틴이랑 먹으면 좋음)
  * 타우린: 운동수행, 지방연소, 근지구력 등. 5g.
  */
-
+const { TabPane } = Tabs;
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -29,11 +32,22 @@ export default () => {
   const classes = useStyles();
 
   return (
-    <Page className="sales-information-list" title="매출 리스트">
+    <Page className="sales-information-list" title="보상 내역">
       <Grid className="pt-5" container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <FixedTable />
+            <Tabs
+              defaultActiveKey="1"
+              size="large"
+              style={{ marginBottom: 32 }}
+            >
+              <TabPane tab="처분보상" key="1">
+                처분보상 내용 Content of tab 1
+              </TabPane>
+              <TabPane tab="실시보상" key="2">
+                실시보상 내용Content of tab 2
+              </TabPane>
+            </Tabs>
           </Paper>
         </Grid>
       </Grid>

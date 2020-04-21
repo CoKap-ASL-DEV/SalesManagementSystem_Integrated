@@ -5,6 +5,7 @@ import {
   MdEventSeat,
   MdNoteAdd,
   MdList,
+  MdMonetizationOn,
   // MdAccountCircle,
   // MdArrowDropDownCircle,
   // MdBorderAll,
@@ -87,12 +88,25 @@ const sidebarBackground = {
 // ];
 
 const navItems = [
-  { to: '/sale-list', name: '판매 리스트', exact: false, Icon: MdList },
+  {
+    to: '/patent-info',
+    name: '특허기본 정보',
+    exact: false,
+    Icon: MdNoteAdd,
+  },
   {
     to: '/sales-inform-input',
     name: '판매정보 추가',
     exact: false,
     Icon: MdNoteAdd,
+  },
+  { to: '/sale-list', name: '매출 리스트', exact: false, Icon: MdList },
+  { to: '/purchase-list', name: '구매 리스트', exact: false, Icon: MdList },
+  {
+    to: '/reward-list',
+    name: '보상 내역',
+    exact: false,
+    Icon: MdMonetizationOn,
   },
   { to: '/origin', name: '기존페이지', exact: false, Icon: MdEventSeat },
 ];
