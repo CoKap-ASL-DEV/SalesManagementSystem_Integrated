@@ -41,7 +41,8 @@
     "react-sizeme": "^2.6.12",
     "reactstrap": "^8.4.1",
     "read-excel-file": "^4.0.5",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-react": "^0.87.3",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.17.0",
