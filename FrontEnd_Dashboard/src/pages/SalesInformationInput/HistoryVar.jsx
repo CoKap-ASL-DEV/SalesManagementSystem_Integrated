@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, List } from 'semantic-ui-react';
+import { Badge } from 'antd';
 import { Query } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import 'antd/dist/antd.css';
@@ -67,12 +68,22 @@ const HistItems = props => {
           }}
         >
           {' '}
-          Add
+          적용하기
         </Button>
       </List.Content>
       <List.Content>
-        등록일 : {props.item.IssueDate},<p />
-        등록번호 :{props.item.PoNumber}
+        <span
+          style={{
+            fontSize: '16px',
+            lineHeight: '30px',
+          }}
+        >
+          <Badge status="processing" />
+          주문일 : {props.item.IssueDate}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Badge status="processing" />
+          구매번호 : {props.item.PoNumber}
+        </span>
       </List.Content>
     </List.Item>
   );
@@ -92,17 +103,21 @@ class GetData extends Component {
           if (error) return <p>Error :(</p>;
           const dtSrc = getDataSrc(data);
           return (
-            <List divided verticalAlign="middle">
-              {dtSrc.map(item => {
-                return (
-                  <HistItems
-                    key={item.id}
-                    item={item}
-                    setParam={ParamtoStates}
-                  />
-                );
-              })}
-            </List>
+            <div>
+              <h3 style={{ paddingBottom: '8px' }}>과거 입력데이터 목록</h3>
+
+              <List divided verticalAlign="middle">
+                {dtSrc.map(item => {
+                  return (
+                    <HistItems
+                      key={item.id}
+                      item={item}
+                      setParam={ParamtoStates}
+                    />
+                  );
+                })}
+              </List>
+            </div>
           );
         }}
       </Query>

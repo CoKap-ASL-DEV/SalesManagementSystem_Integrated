@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "../../FrontEnd/build")));
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../../FrontEnd/build", "index.html"));
 });
 
@@ -19,7 +19,7 @@ const resolvers = mergeResolvers([FormDataSchema.resolvers]);
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 server.applyMiddleware({ app });
@@ -33,14 +33,14 @@ createConnection({
   database: "acofjdzg",
   synchronize: true,
   logging: false,
-  entities: [require("./entities/FormData")]
+  entities: [require("./entities/FormData")],
 })
   .then((/*res*/) => {
     app.listen({ port: 2000 }),
-      url => {
+      (url) => {
         console.log(`🚀  Server ready at ${url}`);
       };
   })
-  .catch(err => {
+  .catch((err) => {
     console.log("Could nott connect to the database", err);
   });

@@ -104,12 +104,12 @@ class ProductForm extends Component {
 
     return (
       <div>
-        <Segment>
-          <Header as="h3" />
+        <Segment style={{ paddingTop: '25px' }}>
+          <Header as="h3">PO From BAUR</Header>
           <FormPoNumber
             PoNumber={PoNumber}
             // params={fstore}
-            title="PO From BAUR"
+            title=""
             label="PO#"
             placeholder=" "
             IssueDate={IssueDate}
@@ -117,60 +117,10 @@ class ProductForm extends Component {
             IssueDatehandler={OnIssueDateChange}
             shrink={TextShrink}
           />
-          <Divider section />
-          <Header as="h3" />
-          <FormSellPrice
-            SellPrice_Mver={SellPrice_Mver}
-            SellPrice_Sver={SellPrice_Sver}
-            SellPrice_SAver={SellPrice_SAver}
-            SellPrice_MPack={SellPrice_MPack}
-            Mverhandler={OnSellPriceMverChange}
-            Sverhandler={OnSellPriceSverChange}
-            SAverhandler={OnSellPriceSAverChange}
-            MPackhandler={OnSellPriceMPackChange}
-            shrink={TextShrink}
-            title="판매가"
-            placeholder="$"
-            readonly="false"
-          />
-          <Divider section />
-          <Header as="h3" />
-          <FormRatioInput
-            PurchaseRatio={PurchaseRatio}
-            TechRatio={TechRatio}
-            KEPCORatio={KEPCORatio}
-            MokpoRatio={MokpoRatio}
-            RewardRatio={RewardRatio}
-            PurchaseRatiohandler={OnPurchaseRatioChange}
-            TechRatiohandler={OnTechRatioChange}
-            KEPCORatiohandler={OnKEPCORatioChange}
-            MokpoRatiohandler={OnMokpoRatioChange}
-            RewardRatiohandler={OnRewardRatioChange}
-            shrink={TextShrink}
-            title="비   율"
-            placeholder="%"
-            readonly="false"
-          />
-
-          <Divider section />
-          <Header as="h3" />
-          <FormBuyPrice
-            BuyPrice_Mver={BuyPrice_Mver}
-            BuyPrice_Sver={BuyPrice_Sver}
-            BuyPrice_SAver={BuyPrice_SAver}
-            BuyPrice_MPack={BuyPrice_MPack}
-            Mverhandler={OnBuyPriceMverChange}
-            Sverhandler={OnBuyPriceSverChange}
-            SAverhandler={OnBuyPriceSAverChange}
-            MPackhandler={OnBuyPriceMPackChange}
-            shrink={TextShrink}
-            title="구매가"
-            placeholder="$"
-            readonly="true"
-          />
-
-          <Divider section />
-          <Header as="h3" />
+          {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+          <Header as="h3" style={{ margin: '1.1rem 0 0.4rem' }}>
+            주문수량
+          </Header>
           <FormOrderNum
             OrderNum_Mver={OrderNum_Mver}
             OrderNum_Sver={OrderNum_Sver}
@@ -182,17 +132,18 @@ class ProductForm extends Component {
             MPackhandler={OnOrderNumMPackChange}
             shrink={TextShrink}
             params={fstore}
-            title="주문수량"
+            title=""
             placeholder="ea"
             readonly="false"
           />
-
-          <Divider section />
-          <Header as="h3" />
+          {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+          <Header as="h3" style={{ margin: '1.1rem 0 0.4rem' }}>
+            환 율
+          </Header>
           <FormWonDollarRatio
             WonDollarRatio={WonDollarRatio}
             params={fstore}
-            title="환  율"
+            title=""
             label="￦/$ Ratio"
             placeholder="￦"
             WonDollarRatiohandler={OnWonDollarRatioChange}
@@ -201,7 +152,75 @@ class ProductForm extends Component {
             shrink={TextShrink}
           />
 
-          <Divider section />
+          <Divider style={{ margin: '1.8rem 0' }} />
+          <div style={{}}>
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} //color: '#a6a6a6'
+            >
+              판매가
+            </Header>
+            <FormSellPrice
+              SellPrice_Mver={SellPrice_Mver}
+              SellPrice_Sver={SellPrice_Sver}
+              SellPrice_SAver={SellPrice_SAver}
+              SellPrice_MPack={SellPrice_MPack}
+              Mverhandler={OnSellPriceMverChange}
+              Sverhandler={OnSellPriceSverChange}
+              SAverhandler={OnSellPriceSAverChange}
+              MPackhandler={OnSellPriceMPackChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="$"
+              readonly="false"
+            />
+            {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} // color: '#a6a6a6'
+            >
+              비 율
+            </Header>
+            <FormRatioInput
+              PurchaseRatio={PurchaseRatio}
+              TechRatio={TechRatio}
+              KEPCORatio={KEPCORatio}
+              MokpoRatio={MokpoRatio}
+              RewardRatio={RewardRatio}
+              PurchaseRatiohandler={OnPurchaseRatioChange}
+              TechRatiohandler={OnTechRatioChange}
+              KEPCORatiohandler={OnKEPCORatioChange}
+              MokpoRatiohandler={OnMokpoRatioChange}
+              RewardRatiohandler={OnRewardRatioChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="%"
+              readonly="false"
+            />
+
+            {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} //color: '#a6a6a6'
+            >
+              구매가
+            </Header>
+            <FormBuyPrice
+              BuyPrice_Mver={BuyPrice_Mver}
+              BuyPrice_Sver={BuyPrice_Sver}
+              BuyPrice_SAver={BuyPrice_SAver}
+              BuyPrice_MPack={BuyPrice_MPack}
+              Mverhandler={OnBuyPriceMverChange}
+              Sverhandler={OnBuyPriceSverChange}
+              SAverhandler={OnBuyPriceSAverChange}
+              MPackhandler={OnBuyPriceMPackChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="$"
+              readonly="true"
+            />
+          </div>
+          <Divider style={{ margin: '1.8rem 0' }} />
 
           <SubmitButton
             inputStates={inputDataStates}

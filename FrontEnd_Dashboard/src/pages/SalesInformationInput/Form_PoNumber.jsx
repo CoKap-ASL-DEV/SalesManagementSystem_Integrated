@@ -12,17 +12,17 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'center',
-    height: 20,
+    height: 40,
 
     // backgroundColor:"#eeeeee"
   },
   margin: {
-    margin: theme.spacing(0.5),
+    margin: theme.spacing(0.0), //0.5
     //  marginTop: theme.spacing(3)
   },
 
   subjectText: {
-    flexBasis: 150,
+    flexBasis: 0, //150
   },
 
   textField: {
@@ -51,7 +51,6 @@ export default function OutlinedInputAdornments(props) {
         className={classes.textField}
         onChange={props.IssueDatehandler}
       />
-      {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}

@@ -9,15 +9,15 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'center',
-    height: 20,
+    height: 40,
     //backgroundColor:"#eeeeee"
   },
   margin: {
-    margin: theme.spacing(0.5),
+    margin: theme.spacing(0.0),
     //  marginTop: theme.spacing(3)
   },
   subjectText: {
-    flexBasis: 150,
+    flexBasis: 0,
   },
 
   textField: {
@@ -55,6 +55,13 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
       <TextField
         InputLabelProps={{ shrink: props.shrink }}
         id="Form_OrderNum_Sver"
@@ -72,6 +79,13 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
 
       <TextField
         InputLabelProps={{ shrink: props.shrink }}
@@ -90,6 +104,12 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
 
       <TextField
         InputLabelProps={{ shrink: props.shrink }}
