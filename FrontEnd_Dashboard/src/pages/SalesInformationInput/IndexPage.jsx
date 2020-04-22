@@ -21,7 +21,7 @@ export default () => {
   const classes = useStyles();
 
   return (
-    <Page className="sales-information-list" title="판매 정보 리스트">
+    <Page className="sales-information-list" title="판매정보 입력">
       <Grid className="pt-5" container spacing={3}>
         <Grid item xs={8}>
           <Paper className={classes.paper}>

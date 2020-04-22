@@ -16,6 +16,7 @@ const SalesInformationList = React.lazy(() =>
 );
 const PurchaseList = React.lazy(() => import('pages/PurchaseList/IndexPage'));
 const RewardList = React.lazy(() => import('pages/RewardList/IndexPage'));
+const PatentInfo = React.lazy(() => import('pages/PatentInfo/IndexPage'));
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 
 const RootRedirect = () => <Redirect to="/sale-list" />;
@@ -65,11 +66,7 @@ class App extends React.Component {
                   component={SalesInformationInput}
                 />
                 <Route exact path="/reward-list" component={RewardList} />
-                <Route
-                  exact
-                  path="/patent-info"
-                  component={SalesInformationList}
-                />
+                <Route exact path="/patent-info" component={PatentInfo} />
                 <Route exact path="/not-found" component={NotFoundPage} />
                 <Route exact component={NotFoundRedirect} />
               </Switch>

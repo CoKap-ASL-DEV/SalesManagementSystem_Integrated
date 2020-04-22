@@ -6,6 +6,7 @@ import {
   MdNoteAdd,
   MdList,
   MdMonetizationOn,
+  MdPeople,
   // MdAccountCircle,
   // MdArrowDropDownCircle,
   // MdBorderAll,
@@ -16,6 +17,7 @@ import {
   // MdGroupWork,
   // MdKeyboardArrowDown,
   // MdNotificationsActive,
+
   // MdPages,
   // MdRadioButtonChecked,
   // MdSend,
@@ -90,13 +92,13 @@ const sidebarBackground = {
 const navItems = [
   {
     to: '/patent-info',
-    name: '특허기본 정보',
+    name: '특허 기본정보',
     exact: false,
-    Icon: MdNoteAdd,
+    Icon: MdPeople,
   },
   {
     to: '/sales-inform-input',
-    name: '판매정보 추가',
+    name: '판매정보 입력',
     exact: false,
     Icon: MdNoteAdd,
   },
