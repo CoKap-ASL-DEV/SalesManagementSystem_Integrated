@@ -66,7 +66,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[5] }}
         id="Form_WonDollarRatio"
         type="number"
         className={classes.textField}

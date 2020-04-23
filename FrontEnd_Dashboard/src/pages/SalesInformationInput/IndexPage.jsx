@@ -22,14 +22,14 @@ export default () => {
 
   return (
     <Page className="sales-information-list" title="판매정보 입력">
-      <Grid className="pt-5" container spacing={3}>
-        <Grid item xs={8}>
+      <Grid className="pt-5" container spacing={4}>
+        <Grid item xs={7}>
           <Paper className={classes.paper}>
             <ProductForm />
           </Paper>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <Paper className={classes.paper}>
             <HistoryVar />
           </Paper>

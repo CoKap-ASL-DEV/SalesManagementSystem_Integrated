@@ -31,46 +31,47 @@ export default class FormInputStore {
   @observable TextShrink = false;
 
   @action
-  OnPoNumberChange = e => {
+  OnPoNumberChange = (e) => {
     this.PoNumber = e.target.value;
   };
   OnIssueDateChange = (date, dateString) => {
     this.IssueDate = dateString; //2019-09-05 형식
   };
 
-  OnSellPriceMverChange = e => {
+  OnSellPriceMverChange = (e) => {
+    this.TextShrink = true;
     this.SellPrice_Mver = e.target.value;
     this.BuyPrice_Mver = this.SellPrice_Mver * this.PurchaseRatio * 0.01;
   };
-  OnSellPriceSverChange = e => {
+  OnSellPriceSverChange = (e) => {
     this.SellPrice_Sver = e.target.value;
     this.BuyPrice_Sver = this.SellPrice_Sver * this.PurchaseRatio * 0.01;
   };
-  OnSellPriceSAverChange = e => {
+  OnSellPriceSAverChange = (e) => {
     this.SellPrice_SAver = e.target.value;
     this.BuyPrice_SAver = this.SellPrice_SAver * this.PurchaseRatio * 0.01;
   };
-  OnSellPriceMPackChange = e => {
+  OnSellPriceMPackChange = (e) => {
     this.SellPrice_MPack = e.target.value;
     this.BuyPrice_MPack = this.SellPrice_MPack * this.PurchaseRatio * 0.01;
   };
 
-  OnOrderNumMverChange = e => {
+  OnOrderNumMverChange = (e) => {
     this.OrderNum_Mver = e.target.value;
   };
 
-  OnOrderNumSverChange = e => {
+  OnOrderNumSverChange = (e) => {
     this.OrderNum_Sver = e.target.value;
   };
-  OnOrderNumSAverChange = e => {
+  OnOrderNumSAverChange = (e) => {
     this.OrderNum_SAver = e.target.value;
   };
 
-  OnOrderNumMPackChange = e => {
+  OnOrderNumMPackChange = (e) => {
     this.OrderNum_MPack = e.target.value;
   };
 
-  OnWonDollarRatioChange = e => {
+  OnWonDollarRatioChange = (e) => {
     this.WonDollarRatio = e.target.value;
     console.log(this.WonDollarRatio);
   };
@@ -80,20 +81,20 @@ export default class FormInputStore {
     //console.log(this.WDRDate);
   };
 
-  OnBuyPriceMverChange = e => {
+  OnBuyPriceMverChange = (e) => {
     this.BuyPrice_Mver = e.target.value;
   };
-  OnBuyPriceSverChange = e => {
+  OnBuyPriceSverChange = (e) => {
     this.BuyPrice_Sver = e.target.value;
   };
-  OnBuyPriceSAverChange = e => {
+  OnBuyPriceSAverChange = (e) => {
     this.BuyPrice_SAver = e.target.value;
   };
-  OnBuyPriceMPackChange = e => {
+  OnBuyPriceMPackChange = (e) => {
     this.BuyPrice_MPack = e.target.value;
   };
 
-  OnPurchaseRatioChange = e => {
+  OnPurchaseRatioChange = (e) => {
     this.PurchaseRatio = e.target.value;
     this.BuyPrice_Mver = this.SellPrice_Mver * this.PurchaseRatio * 0.01;
     this.BuyPrice_Sver = this.SellPrice_Sver * this.PurchaseRatio * 0.01;
@@ -101,23 +102,24 @@ export default class FormInputStore {
     this.BuyPrice_MPack = this.SellPrice_MPack * this.PurchaseRatio * 0.01;
   };
 
-  OnTechRatioChange = e => {
+  OnTechRatioChange = (e) => {
+    this.TextShrink = true;
     this.TechRatio = e.target.value;
   };
 
-  OnKEPCORatioChange = e => {
+  OnKEPCORatioChange = (e) => {
     this.KEPCORatio = e.target.value;
   };
 
-  OnMokpoRatioChange = e => {
+  OnMokpoRatioChange = (e) => {
     this.MokpoRatio = e.target.value;
   };
 
-  OnRewardRatioChange = e => {
+  OnRewardRatioChange = (e) => {
     this.RewardRatio = e.target.value;
   };
 
-  initializeStates = e => {
+  initializeStates = (e) => {
     this.IssueDate = null;
     this.PoNumber = "";
 
@@ -146,7 +148,7 @@ export default class FormInputStore {
     this.RewardRatio = 0;
     //    console.log('Hello,onClick')
   };
-  ParamtoStates = params => {
+  ParamtoStates = (params) => {
     this.TextShrink = true;
     this.IssueDate = params.IssueDate;
     this.PoNumber = params.PoNumber;

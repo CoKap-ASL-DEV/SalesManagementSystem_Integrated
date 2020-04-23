@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
   textField: {
     flexBasis: 150,
-    height: 40,
+    height: 36,
   },
 }));
 
@@ -39,7 +39,8 @@ export default function OutlinedInputAdornments(props) {
       </h3>
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
         id="Form_BuyPrice_Mver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -63,7 +64,8 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
         id="Form_BuyPrice_Sver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -87,7 +89,8 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
         id="Form_BuyPrice_SAver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -111,7 +114,8 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
         id="Form_BuyPrice_MPack"
         type="number"
         className={clsx(classes.margin, classes.textField)}

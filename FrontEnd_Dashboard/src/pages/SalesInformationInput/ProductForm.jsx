@@ -4,9 +4,11 @@ import { observer, inject } from 'mobx-react';
 
 import FormPoNumber from './Form_PoNumber';
 import FormBuyPrice from './Form_BuyPrice';
+import FormExecBuyPrice from './Form_ExecBuyPrice';
 import FormSellPrice from './Form_SellPrice';
 import FormWonDollarRatio from './Form_WonDollarRatio';
 import FormRatioInput from './Form_RatioInput';
+import FormPatentRatioInput from './Form_PatentRatioInput';
 import FormOrderNum from './Form_OrderNum';
 import SubmitButton from './SubmitButton';
 
@@ -38,11 +40,21 @@ class ProductForm extends Component {
       BuyPrice_SAver,
       BuyPrice_MPack,
 
+      ExecBuyPrice_Mver,
+      ExecBuyPrice_Sver,
+      ExecBuyPrice_SAver,
+      ExecBuyPrice_MPack,
+
       PurchaseRatio,
+      ExecPurchaseRatio,
       TechRatio,
       KEPCORatio,
       MokpoRatio,
       RewardRatio,
+      KSMRatio,
+      KDSRatio,
+      JSSRatio,
+      KBSRatio,
 
       OnPoNumberChange,
       OnIssueDateChange,
@@ -65,11 +77,21 @@ class ProductForm extends Component {
       OnBuyPriceSAverChange,
       OnBuyPriceMPackChange,
 
+      OnExecBuyPriceMverChange,
+      OnExecBuyPriceSverChange,
+      OnExecBuyPriceSAverChange,
+      OnExecBuyPriceMPackChange,
+
       OnPurchaseRatioChange,
       OnTechRatioChange,
+      OnRewardRatioChange,
+
       OnKEPCORatioChange,
       OnMokpoRatioChange,
-      OnRewardRatioChange,
+      OnKSMRatioChange,
+      OnKDSRatioChange,
+      OnJSSRatioChange,
+      OnKBSRatioChange,
 
       initializeStates,
       TextShrink,
@@ -104,6 +126,7 @@ class ProductForm extends Component {
 
     return (
       <div>
+        {console.log(TextShrink)}
         <Segment style={{ paddingTop: '25px' }}>
           <Header as="h3">PO From BAUR</Header>
           <FormPoNumber
@@ -151,14 +174,66 @@ class ProductForm extends Component {
             WDRDates={WDRDate}
             shrink={TextShrink}
           />
-
-          <Divider style={{ margin: '1.8rem 0' }} />
+          <Divider style={{ margin: '1.0rem 0.5rem 0rem  0.5rem' }} />
+          <SubmitButton
+            inputStates={inputDataStates}
+            resetStates={initializeStates}
+          />
+        </Segment>
+        <Segment style={{ paddingTop: '0px' }}>
           <div style={{}}>
+            {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} // color: '#a6a6a6'
+            >
+              적용비율
+            </Header>
+            <FormRatioInput
+              PurchaseRatio={PurchaseRatio}
+              ExecPurchaseRatio={ExecPurchaseRatio}
+              TechRatio={TechRatio}
+              RewardRatio={RewardRatio}
+              PurchaseRatiohandler={OnPurchaseRatioChange}
+              TechRatiohandler={OnTechRatioChange}
+              KEPCORatiohandler={OnKEPCORatioChange}
+              MokpoRatiohandler={OnMokpoRatioChange}
+              RewardRatiohandler={OnRewardRatioChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="%"
+              readonly="false"
+            />
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} // color: '#a6a6a6'
+            >
+              지분비율
+            </Header>
+            <FormPatentRatioInput
+              KEPCORatio={KEPCORatio}
+              MokpoRatio={MokpoRatio}
+              KSMRatio={KSMRatio}
+              KDSRatio={KDSRatio}
+              JSSRatio={JSSRatio}
+              KBSRatio={KBSRatio}
+              KEPCORatiohandler={OnKEPCORatioChange}
+              MokpoRatiohandler={OnMokpoRatioChange}
+              KSMRatiohandler={OnKSMRatioChange}
+              KDSRatiohandler={OnKDSRatioChange}
+              JSSRatiohandler={OnJSSRatioChange}
+              KBSRatiohandler={OnKBSRatioChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="%"
+              readonly="false"
+            />
+
             <Header
               as="h3"
               style={{ margin: '1.1rem 0 0.4rem' }} //color: '#a6a6a6'
             >
-              판매가
+              판매단가(USD)
             </Header>
             <FormSellPrice
               SellPrice_Mver={SellPrice_Mver}
@@ -174,36 +249,13 @@ class ProductForm extends Component {
               placeholder="$"
               readonly="false"
             />
-            {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
-            <Header
-              as="h3"
-              style={{ margin: '1.1rem 0 0.4rem' }} // color: '#a6a6a6'
-            >
-              비 율
-            </Header>
-            <FormRatioInput
-              PurchaseRatio={PurchaseRatio}
-              TechRatio={TechRatio}
-              KEPCORatio={KEPCORatio}
-              MokpoRatio={MokpoRatio}
-              RewardRatio={RewardRatio}
-              PurchaseRatiohandler={OnPurchaseRatioChange}
-              TechRatiohandler={OnTechRatioChange}
-              KEPCORatiohandler={OnKEPCORatioChange}
-              MokpoRatiohandler={OnMokpoRatioChange}
-              RewardRatiohandler={OnRewardRatioChange}
-              shrink={TextShrink}
-              title=""
-              placeholder="%"
-              readonly="false"
-            />
 
             {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
             <Header
               as="h3"
               style={{ margin: '1.1rem 0 0.4rem' }} //color: '#a6a6a6'
             >
-              구매가
+              구매단가(USD)
             </Header>
             <FormBuyPrice
               BuyPrice_Mver={BuyPrice_Mver}
@@ -219,13 +271,28 @@ class ProductForm extends Component {
               placeholder="$"
               readonly="true"
             />
-          </div>
-          <Divider style={{ margin: '1.8rem 0' }} />
 
-          <SubmitButton
-            inputStates={inputDataStates}
-            resetStates={initializeStates}
-          />
+            <Header
+              as="h3"
+              style={{ margin: '1.1rem 0 0.4rem' }} //color: '#a6a6a6'
+            >
+              실시구매단가(USD)
+            </Header>
+            <FormExecBuyPrice
+              ExecBuyPrice_Mver={ExecBuyPrice_Mver}
+              ExecBuyPrice_Sver={ExecBuyPrice_Sver}
+              ExecBuyPrice_SAver={ExecBuyPrice_SAver}
+              ExecBuyPrice_MPack={ExecBuyPrice_MPack}
+              Mverhandler={OnExecBuyPriceMverChange}
+              Sverhandler={OnExecBuyPriceSverChange}
+              SAverhandler={OnExecBuyPriceSAverChange}
+              MPackhandler={OnExecBuyPriceMPackChange}
+              shrink={TextShrink}
+              title=""
+              placeholder="$"
+              readonly="true"
+            />
+          </div>
         </Segment>
       </div>
     );

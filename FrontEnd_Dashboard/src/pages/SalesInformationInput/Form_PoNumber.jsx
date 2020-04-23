@@ -59,7 +59,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[0] }}
         id="Form_PoNumber"
         className={classes.textField}
         variant="outlined"

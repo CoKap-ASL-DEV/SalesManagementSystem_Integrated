@@ -14,14 +14,14 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(0),
-    //   marginTop: theme.spacing(3)
+    //  marginTop: theme.spacing(3)
   },
   subjectText: {
     flexBasis: 0,
   },
 
   textField: {
-    flexBasis: 120,
+    flexBasis: 150,
     height: 36,
   },
 }));
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 export default function OutlinedInputAdornments(props) {
   const classes = useStyles();
 
+  //const {params} = props.params;
   const readprops = props.readonly === 'true';
 
   return (
@@ -39,39 +40,14 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         InputLabelProps={{ shrink: true }}
-        // InputLabelProps={{ shrink: props.shrink }}
-        id="Form_PurchaseRatio"
+        //InputLabelProps={{ shrink: props.shrink }}
+        id="Form_ExecBuyPrice_Mver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="구매비율"
-        value={props.PurchaseRatio ? props.PurchaseRatio : ''}
-        onChange={props.PurchaseRatiohandler}
-        InputProps={{
-          className: classes.textField,
-          endAdornment: (
-            <InputAdornment position="end">{props.placeholder}</InputAdornment>
-          ),
-          readOnly: readprops,
-        }}
-      />
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-
-      {'\u00A0'}
-      {'\u00A0'}
-      <TextField
-        InputLabelProps={{ shrink: true }}
-        // InputLabelProps={{ shrink: props.shrink }}
-        id="Form_ExecPurchaseRatio"
-        type="number"
-        className={clsx(classes.margin, classes.textField)}
-        variant="outlined"
-        label="실시구매비율"
-        value={props.ExecPurchaseRatio ? props.ExecPurchaseRatio : ''}
-        onChange={props.ExecPurchaseRatiohandler}
+        label="M-ver."
+        value={props.ExecBuyPrice_Mver ? props.ExecBuyPrice_Mver : ''}
+        onChange={props.Mverhandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (
@@ -90,13 +66,13 @@ export default function OutlinedInputAdornments(props) {
       <TextField
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
-        id="Form_TechRatio"
+        id="Form_ExecBuyPrice_Sver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="기술요율"
-        value={props.TechRatio ? props.TechRatio : ''}
-        onChange={props.TechRatiohandler}
+        label="S-ver"
+        value={props.ExecBuyPrice_Sver ? props.ExecBuyPrice_Sver : ''}
+        onChange={props.Sverhandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (
@@ -105,7 +81,6 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
-
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
@@ -116,13 +91,38 @@ export default function OutlinedInputAdornments(props) {
       <TextField
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
-        id="Form_RewardRatio"
+        id="Form_ExecBuyPrice_SAver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="보상비율"
-        value={props.RewardRatio ? props.RewardRatio : ''}
-        onChange={props.RewardRatiohandler}
+        label="SA-ver"
+        value={props.ExecBuyPrice_SAver ? props.ExecBuyPrice_SAver : ''}
+        onChange={props.SAverhandler}
+        InputProps={{
+          className: classes.textField,
+          endAdornment: (
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
+          ),
+          readOnly: readprops,
+        }}
+      />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
+      <TextField
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
+        id="Form_ExecBuyPrice_MPack"
+        type="number"
+        className={clsx(classes.margin, classes.textField)}
+        variant="outlined"
+        label="M-pack"
+        value={props.ExecBuyPrice_MPack ? props.ExecBuyPrice_MPack : ''}
+        onChange={props.MPackhandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (

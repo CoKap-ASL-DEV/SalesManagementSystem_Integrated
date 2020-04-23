@@ -39,39 +39,14 @@ export default function OutlinedInputAdornments(props) {
 
       <TextField
         InputLabelProps={{ shrink: true }}
-        // InputLabelProps={{ shrink: props.shrink }}
-        id="Form_PurchaseRatio"
+        //InputLabelProps={{ shrink: props.shrink }}
+        id="Form_KEPCORatio"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="구매비율"
-        value={props.PurchaseRatio ? props.PurchaseRatio : ''}
-        onChange={props.PurchaseRatiohandler}
-        InputProps={{
-          className: classes.textField,
-          endAdornment: (
-            <InputAdornment position="end">{props.placeholder}</InputAdornment>
-          ),
-          readOnly: readprops,
-        }}
-      />
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-
-      {'\u00A0'}
-      {'\u00A0'}
-      <TextField
-        InputLabelProps={{ shrink: true }}
-        // InputLabelProps={{ shrink: props.shrink }}
-        id="Form_ExecPurchaseRatio"
-        type="number"
-        className={clsx(classes.margin, classes.textField)}
-        variant="outlined"
-        label="실시구매비율"
-        value={props.ExecPurchaseRatio ? props.ExecPurchaseRatio : ''}
-        onChange={props.ExecPurchaseRatiohandler}
+        label="한전지분율"
+        value={props.KEPCORatio ? props.KEPCORatio : ''}
+        onChange={props.KEPCORatiohandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (
@@ -90,13 +65,13 @@ export default function OutlinedInputAdornments(props) {
       <TextField
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
-        id="Form_TechRatio"
+        id="Form_MokpoRatio"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="기술요율"
-        value={props.TechRatio ? props.TechRatio : ''}
-        onChange={props.TechRatiohandler}
+        label="목포해양대지분율"
+        value={props.MokpoRatio ? props.MokpoRatio : ''}
+        onChange={props.MokpoRatiohandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (
@@ -105,7 +80,16 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
-
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
@@ -116,13 +100,13 @@ export default function OutlinedInputAdornments(props) {
       <TextField
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
-        id="Form_RewardRatio"
+        id="Form_KSMRatio"
         type="number"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
-        label="보상비율"
-        value={props.RewardRatio ? props.RewardRatio : ''}
-        onChange={props.RewardRatiohandler}
+        label="김성민"
+        value={props.KSMRatio ? props.KSMRatio : ''}
+        onChange={props.KSMRatiohandler}
         InputProps={{
           className: classes.textField,
           endAdornment: (
@@ -131,6 +115,89 @@ export default function OutlinedInputAdornments(props) {
           readOnly: readprops,
         }}
       />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
+      <TextField
+        InputLabelProps={{ shrink: true }}
+        // InputLabelProps={{ shrink: props.shrink }}
+        id="Form_KDSRatio"
+        type="number"
+        className={clsx(classes.margin, classes.textField)}
+        variant="outlined"
+        label="김동섭"
+        value={props.KDSRatio ? props.KDSRatio : ''}
+        onChange={props.KDSRatiohandler}
+        InputProps={{
+          className: classes.textField,
+          endAdornment: (
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
+          ),
+          readOnly: readprops,
+        }}
+      />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
+      <TextField
+        InputLabelProps={{ shrink: true }}
+        // InputLabelProps={{ shrink: props.shrink }}
+        id="Form_JSSRatioRatio"
+        type="number"
+        className={clsx(classes.margin, classes.textField)}
+        variant="outlined"
+        label="전시식"
+        value={props.JSSRatio ? props.JSSRatio : ''}
+        onChange={props.JSSRatiohandler}
+        InputProps={{
+          className: classes.textField,
+          endAdornment: (
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
+          ),
+          readOnly: readprops,
+        }}
+      />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
+      <TextField
+        InputLabelProps={{ shrink: true }}
+        //InputLabelProps={{ shrink: props.shrink }}
+        id="Form_KBSRatio"
+        type="number"
+        className={clsx(classes.margin, classes.textField)}
+        variant="outlined"
+        label="김병석"
+        value={props.KBSRatio ? props.KBSRatio : ''}
+        onChange={props.KBSRatiohandler}
+        InputProps={{
+          className: classes.textField,
+          endAdornment: (
+            <InputAdornment position="end">{props.placeholder}</InputAdornment>
+          ),
+          readOnly: readprops,
+        }}
+      />
+
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+
+      {'\u00A0'}
+      {'\u00A0'}
     </div>
   );
 }

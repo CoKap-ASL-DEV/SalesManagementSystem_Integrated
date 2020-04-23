@@ -39,7 +39,7 @@ export default function OutlinedInputAdornments(props) {
       </h3>
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[1] }}
         id="Form_OrderNum_Mver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -63,7 +63,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[2] }}
         id="Form_OrderNum_Sver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -88,7 +88,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[3] }}
         id="Form_OrderNum_SAver"
         type="number"
         className={clsx(classes.margin, classes.textField)}
@@ -112,7 +112,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
 
       <TextField
-        InputLabelProps={{ shrink: props.shrink }}
+        InputLabelProps={{ shrink: props.shrink[4] }}
         id="Form_OrderNum_MPack"
         type="number"
         className={clsx(classes.margin, classes.textField)}

@@ -60,7 +60,12 @@ const getDataSrc = data =>
 const HistItems = props => {
   return (
     <List.Item>
-      <List.Content floated="right">
+      <List.Content
+        floated="right"
+        style={{
+          paddingRight: '20px',
+        }}
+      >
         <Button
           onClick={() => {
             props.setParam(props.item);
@@ -76,11 +81,13 @@ const HistItems = props => {
           style={{
             fontSize: '16px',
             lineHeight: '30px',
+            paddingLeft: '40px',
           }}
         >
           <Badge status="processing" />
           주문일 : {props.item.IssueDate}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Badge status="processing" />
           구매번호 : {props.item.PoNumber}
         </span>
