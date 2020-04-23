@@ -192,25 +192,27 @@ export default class FormInputStore {
     this.WDRDate = null;
     this.WonDollarRatio = 0;
 
-    this.BuyPrice_Mver = 0;
-    this.BuyPrice_Sver = 0;
-    this.BuyPrice_SAver = 0;
-    this.BuyPrice_MPack = 0;
-
-    this.SellPrice_Mver = 0;
-    this.SellPrice_Sver = 0;
-    this.SellPrice_SAver = 0;
-    this.SellPrice_MPack = 0;
-
-    this.ExecBuyPrice_Mver = 0;
-    this.ExecBuyPrice_Sver = 0;
-    this.ExecBuyPrice_SAver = 0;
-    this.ExecBuyPrice_MPack = 0;
-
     this.PurchaseRatio = 70;
     this.ExecPurchaseRatio = 80;
     this.TechRatio = 20;
     this.RewardRatio = 60;
+
+    this.SellPrice_Mver = 12400;
+    this.SellPrice_Sver = 6200;
+    this.SellPrice_SAver = 6200;
+    this.SellPrice_MPack = 22000;
+
+    this.BuyPrice_Mver = this.SellPrice_Mver * this.PurchaseRatio * 0.01;
+    this.BuyPrice_Sver = this.SellPrice_Sver * this.PurchaseRatio * 0.01;
+    this.BuyPrice_SAver = this.SellPrice_SAver * this.PurchaseRatio * 0.01;
+    this.BuyPrice_MPack = this.SellPrice_MPack * this.PurchaseRatio * 0.01;
+
+    this.ExecBuyPrice_Mver = this.BuyPrice_Mver * this.ExecPurchaseRatio * 0.01;
+    this.ExecBuyPrice_Sver = this.BuyPrice_Sver * this.ExecPurchaseRatio * 0.01;
+    this.ExecBuyPrice_SAver =
+      this.BuyPrice_SAver * this.ExecPurchaseRatio * 0.01;
+    this.ExecBuyPrice_MPack =
+      this.BuyPrice_MPack * this.ExecPurchaseRatio * 0.01;
 
     this.KEPCORatio = 80;
     this.MokpoRatio = 20;

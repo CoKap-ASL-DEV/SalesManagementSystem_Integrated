@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 const GET_TABLE = gql`
   query {
@@ -21,11 +21,16 @@ const GET_TABLE = gql`
       WonDollarRatio
 
       PurchaseRatio
-
+      ExecPurchaseRatio
       TechRatio
+      RewardRatio
+
       KEPCORatio
       MokpoRatio
-      RewardRatio
+      KSMRatio
+      KDSRatio
+      JSSRatio
+      KBSRatio
     }
   }
 `;

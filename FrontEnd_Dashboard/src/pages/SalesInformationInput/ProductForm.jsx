@@ -47,6 +47,7 @@ class ProductForm extends Component {
 
       PurchaseRatio,
       ExecPurchaseRatio,
+
       TechRatio,
       KEPCORatio,
       MokpoRatio,
@@ -115,10 +116,16 @@ class ProductForm extends Component {
       WonDollarRatio,
 
       PurchaseRatio,
+      ExecPurchaseRatio,
       TechRatio,
+      RewardRatio,
+
       KEPCORatio,
       MokpoRatio,
-      RewardRatio,
+      KSMRatio,
+      KDSRatio,
+      JSSRatio,
+      KBSRatio,
     };
 
     //console.log(fstore.Sver);

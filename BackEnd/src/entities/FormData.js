@@ -1,7 +1,7 @@
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "FormData", //postgresql DB에 여기에서 지정한 이름을 소문자로 바꾸고 대문자로 시작하는 첫번째 글자앞에서 언더바 넣은(form_data)이름으로 테이블이 생성된다.
+  name: "FormInputData", //postgresql DB에 여기에서 지정한 이름을 소문자로 바꾸고 대문자로 시작하는 첫번째 글자앞에서 언더바 넣은(form_data)이름으로 테이블이 생성된다.
   columns: {
     id: {
       primary: true,
@@ -78,16 +78,27 @@ module.exports = new EntitySchema({
       type: "numeric",
     },
 
-    /////////////비율/////////////
+    /////////////적용비율/////////////
 
     // 구매가 비율
     PurchaseRatio: {
+      type: "numeric",
+    },
+    // 실시구매가 비율
+    ExecPurchaseRatio: {
       type: "numeric",
     },
     // 기술요율
     TechRatio: {
       type: "numeric",
     },
+
+    // 보상요율
+    RewardRatio: {
+      type: "numeric",
+    },
+
+    /////////////지분비율/////////////
     // 한전지분율
     KEPCORatio: {
       type: "numeric",
@@ -96,8 +107,20 @@ module.exports = new EntitySchema({
     MokpoRatio: {
       type: "numeric",
     },
-    // 보상요율
-    RewardRatio: {
+    // 김성민 비율
+    KSMRatio: {
+      type: "numeric",
+    },
+    // 김동섭 비율
+    KDSRatio: {
+      type: "numeric",
+    },
+    // 전시식 비율
+    JSSRatio: {
+      type: "numeric",
+    },
+    // 김병석 비율
+    KBSRatio: {
       type: "numeric",
     },
   },

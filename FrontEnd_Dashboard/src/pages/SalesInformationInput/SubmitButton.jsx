@@ -45,10 +45,16 @@ export default function SubmitButton2(props) {
     WonDollarRatio,
 
     PurchaseRatio,
+    ExecPurchaseRatio,
     TechRatio,
+    RewardRatio,
+
     KEPCORatio,
     MokpoRatio,
-    RewardRatio,
+    KSMRatio,
+    KDSRatio,
+    JSSRatio,
+    KBSRatio,
   } = props.inputStates;
 
   return (
@@ -74,10 +80,15 @@ export default function SubmitButton2(props) {
                 OrderNum_MPack: parseFloat(OrderNum_MPack),
                 WonDollarRatio: parseFloat(WonDollarRatio),
                 PurchaseRatio: parseFloat(PurchaseRatio),
+                ExecPurchaseRatio: parseFloat(ExecPurchaseRatio),
                 TechRatio: parseFloat(TechRatio),
+                RewardRatio: parseFloat(RewardRatio),
                 KEPCORatio: parseFloat(KEPCORatio),
                 MokpoRatio: parseFloat(MokpoRatio),
-                RewardRatio: parseFloat(RewardRatio),
+                KSMRatio: parseFloat(KSMRatio),
+                KDSRatio: parseFloat(KDSRatio),
+                JSSRatio: parseFloat(JSSRatio),
+                KBSRatio: parseFloat(KBSRatio),
                 CreatedDate: currentDate,
                 IssueDate: IssueDate,
                 PoNumber: PoNumber,

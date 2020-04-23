@@ -26,10 +26,16 @@ const getDataSrc = data =>
       SellPrice_MPack,
 
       PurchaseRatio,
+      ExecPurchaseRatio,
       TechRatio,
+      RewardRatio,
+
       KEPCORatio,
       MokpoRatio,
-      RewardRatio,
+      KSMRatio,
+      KDSRatio,
+      JSSRatio,
+      KBSRatio,
     }) => {
       return {
         id,
@@ -49,10 +55,16 @@ const getDataSrc = data =>
         SellPrice_MPack: SellPrice_MPack,
 
         PurchaseRatio: PurchaseRatio,
+        ExecPurchaseRatio: ExecPurchaseRatio,
         TechRatio: TechRatio,
+        RewardRatio: RewardRatio,
+
         KEPCORatio: KEPCORatio,
         MokpoRatio: MokpoRatio,
-        RewardRatio: RewardRatio,
+        KSMRatio: KSMRatio,
+        KDSRatio: KDSRatio,
+        JSSRatio: JSSRatio,
+        KBSRatio: KBSRatio,
       };
     },
   );

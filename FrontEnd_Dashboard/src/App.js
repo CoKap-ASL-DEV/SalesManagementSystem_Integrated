@@ -7,7 +7,6 @@ import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
-const OriginPage = React.lazy(() => import('pages/Origin/OriginPage'));
 const SalesInformationInput = React.lazy(() =>
   import('pages/SalesInformationInput/IndexPage'),
 );
@@ -53,7 +52,7 @@ class App extends React.Component {
             <React.Suspense fallback={<PageSpinner />}>
               <Switch>
                 <Route exact path="/" component={RootRedirect} />
-                <Route exact path="/origin" component={OriginPage} />
+
                 <Route
                   exact
                   path="/sale-list"

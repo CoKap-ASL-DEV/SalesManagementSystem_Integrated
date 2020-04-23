@@ -110,7 +110,6 @@ const navItems = [
     exact: false,
     Icon: MdMonetizationOn,
   },
-  { to: '/origin', name: '기존페이지', exact: false, Icon: MdEventSeat },
 ];
 
 const bem = bn.create('sidebar');
