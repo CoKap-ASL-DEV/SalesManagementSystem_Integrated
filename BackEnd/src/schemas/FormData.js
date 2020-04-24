@@ -2,29 +2,33 @@ const { getRepository } = require("typeorm");
 const FormData = require("../entities/FormData");
 
 const FormDataArguments_Str = [
-    "CreatedDate",
-    "IssueDate",
-    "PoNumber",
-    "WDRDate",
-  ];
-  
-  const FormDataArguments_Flt = [
-    //"SeqNum",
-    "SellPrice_Mver",
-    "SellPrice_Sver",
-    "SellPrice_SAver",
-    "SellPrice_MPack",
-    "OrderNum_Mver",
-    "OrderNum_Sver",
-    "OrderNum_SAver",
-    "OrderNum_MPack",
-    "WonDollarRatio",
-    "PurchaseRatio",
-    "TechRatio",
-    "KEPCORatio",
-    "MokpoRatio",
-    "RewardRatio"
+  "CreatedDate",
+  "IssueDate",
+  "PoNumber",
+  "WDRDate",
+];
 
+const FormDataArguments_Flt = [
+  //"SeqNum",
+  "SellPrice_Mver",
+  "SellPrice_Sver",
+  "SellPrice_SAver",
+  "SellPrice_MPack",
+  "OrderNum_Mver",
+  "OrderNum_Sver",
+  "OrderNum_SAver",
+  "OrderNum_MPack",
+  "WonDollarRatio",
+  "PurchaseRatio",
+  "ExecPurchaseRatio",
+  "TechRatio",
+  "RewardRatio",
+  "KEPCORatio",
+  "MokpoRatio",
+  "KSMRatio",
+  "KDSRatio",
+  "JSSRatio",
+  "KBSRatio",
 ];
 const FormDataArguments = [...FormDataArguments_Flt, ...FormDataArguments_Str];
 // TODO: what is not null and what is nullable
@@ -32,8 +36,8 @@ const schemaObject = {
   typedef: `
         type FormData {
             id: ID!
-            ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
-            ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+            ${FormDataArguments_Flt.map((d) => d + ": Float").join("\n")}
+            ${FormDataArguments_Str.map((d) => d + ": String").join("\n")}
         }
         type Query {
             formDatas: [FormData]
@@ -41,31 +45,34 @@ const schemaObject = {
         }
         type Mutation {
             addFormData(
-                ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
-                ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+                ${FormDataArguments_Flt.map((d) => d + ": Float").join("\n")}
+                ${FormDataArguments_Str.map((d) => d + ": String").join("\n")}
             ): FormData
             editFormData(
                 id: ID!
-                ${FormDataArguments_Flt.map(d => d + ": Float").join("\n")}
-                ${FormDataArguments_Str.map(d => d + ": String").join("\n")}
+                ${FormDataArguments_Flt.map((d) => d + ": Float").join("\n")}
+                ${FormDataArguments_Str.map((d) => d + ": String").join("\n")}
             ): FormData
             deleteFormData(id: ID!): Boolean
         }
     `,
   resolvers: {
     Query: {
-        formDatas: () => {
+      formDatas: () => {
         return getRepository(FormData).find();
       },
       formData: (_, { id }) => {
         return getRepository(FormData).findOne(id);
-      }
+      },
     },
     Mutation: {
-      addFormData: (_, {...FormDataArguments }) => {
-        const formData = Object.assign({
-          ...FormDataArguments
-        },FormData);  //assign 파라미터를 반대로 하니 데이터는 업데이트 되는데 id가 자동생성 안됨
+      addFormData: (_, { ...FormDataArguments }) => {
+        const formData = Object.assign(
+          {
+            ...FormDataArguments,
+          },
+          FormData
+        ); //assign 파라미터를 반대로 하니 데이터는 업데이트 되는데 id가 자동생성 안됨
 
         return getRepository(FormData).save(formData);
       },
@@ -87,9 +94,9 @@ const schemaObject = {
           console.log(err);
           return false;
         }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 module.exports = schemaObject;

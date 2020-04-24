@@ -1,0 +1,89 @@
+.data-management-page {
+  .data-select-selector {
+    select:hover {
+      outline: -webkit-focus-ring-color auto 1px;
+    }
+  }
+
+  .nav-link.active {
+    color: #000000;
+    background: #ffffff;
+  }
+
+  .tab-body {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border-left: 1px solid rgba(0, 0, 0, 0.125);
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+
+  .pls-vertical-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .pls-border-right {
+    border-right: solid white 5px;
+  }
+
+  .upload-file-table {
+    td {
+      vertical-align: middle;
+    }
+
+    label {
+      margin-bottom: 0px;
+    }
+
+    .btn {
+      height: 30px;
+      line-height: 1;
+    }
+
+    @mixin signal-light($color) {
+      vertical-align: middle;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      display: inline-block;
+      background-color: $color;
+    }
+
+    .signal-none {
+      @include signal-light(#ddd);
+    }
+
+    .signal-red {
+      @include signal-light(#f00);
+    }
+
+    .signal-green {
+      @include signal-light(#0f0);
+    }
+  }
+
+  .custom-file:hover {
+
+    input,
+    label {
+      outline: -webkit-focus-ring-color auto 1px;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+  }
+}
+
+.data-management-page-modal {
+  .used-file {
+    background-color: #9ef4b1;
+  }
+
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+}
