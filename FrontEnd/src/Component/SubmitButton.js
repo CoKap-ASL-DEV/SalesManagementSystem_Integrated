@@ -18,7 +18,7 @@ const date = new Date();
 const currentDate =
   String(date.getFullYear()) +
   "-" +
-  String(date.getMonth()) +
+  String(date.getMonth() + 1) +
   "-" +
   String(date.getDate());
 //const year = String(date.getFullYear());
