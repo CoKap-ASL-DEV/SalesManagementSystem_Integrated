@@ -5,11 +5,8 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-<<<<<<< HEAD
 import { createUploadLink } from 'apollo-upload-client';
-=======
 import 'mobx-react-lite/batchingForReactDom';
->>>>>>> 3ce6b9d9f55c951ad0d85e9069fd74cda3e1ddae
 
 import RootStore from 'stores/root';
 
