@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Upload from './Form_Upload';
 //import { sizing } from '@material-ui/system';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker } from 'antd';
@@ -10,7 +11,7 @@ import moment from 'moment';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
+    //flexWrap: 'wrap',
     alignContent: 'center',
     height: 40,
 
@@ -73,6 +74,13 @@ export default function OutlinedInputAdornments(props) {
           ),
         }}
       />
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      {'\u00A0'}
+      <Upload />
     </div>
   );
 }
