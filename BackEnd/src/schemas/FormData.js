@@ -1,5 +1,7 @@
 const { getRepository } = require("typeorm");
 const FormData = require("../entities/FormData");
+const { createWriteStream, existsSync, mkdirSync } = require("fs");
+const path = require("path");
 
 const FormDataArguments_Str = [
   "CreatedDate",
@@ -54,6 +56,7 @@ const schemaObject = {
                 ${FormDataArguments_Str.map((d) => d + ": String").join("\n")}
             ): FormData
             deleteFormData(id: ID!): Boolean
+            uploadFile(file: Upload!): Boolean
         }
     `,
   resolvers: {
@@ -94,6 +97,18 @@ const schemaObject = {
           console.log(err);
           return false;
         }
+      },
+      uploadFile: async (_, { file }) => {
+        const { createReadStream, filename } = await file;
+        await new Promise((res) =>
+          createReadStream()
+            .pipe(createWriteStream(path.join(__dirname, "/attach", filename)))
+            .on("close", res)
+        );
+
+        //files.push(filename);
+
+        return true;
       },
     },
   },

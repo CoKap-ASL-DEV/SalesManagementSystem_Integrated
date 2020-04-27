@@ -80,7 +80,7 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
-      <Upload />
+      <Upload setFileObj={props.setFileObj} />
     </div>
   );
 }

@@ -45,6 +45,8 @@ export default class FormInputStore {
 
   @observable TextShrink = new Array(6).fill(false);
 
+  @observable FilePath = null; //new Object();
+
   @action
   OnPoNumberChange = e => {
     this.TextShrink[0] = e.target.value ? true : false;
@@ -268,5 +270,9 @@ export default class FormInputStore {
     this.KBSRatio = params.KBSRatio;
 
     //    console.log('Hello,onClick')
+  };
+
+  setFilePath = f => {
+    this.FilePath = f;
   };
 }

@@ -95,7 +95,10 @@ class ProductForm extends Component {
       OnKBSRatioChange,
 
       initializeStates,
+
+      setFilePath,
       TextShrink,
+      FilePath,
     } = fstore;
 
     const inputDataStates = {
@@ -126,6 +129,7 @@ class ProductForm extends Component {
       KDSRatio,
       JSSRatio,
       KBSRatio,
+      FilePath,
     };
 
     //console.log(fstore.Sver);
@@ -138,6 +142,7 @@ class ProductForm extends Component {
           <Header as="h3">PO From BAUR</Header>
           <FormPoNumber
             PoNumber={PoNumber}
+            setFileObj={setFilePath}
             // params={fstore}
             title=""
             label="PO#"

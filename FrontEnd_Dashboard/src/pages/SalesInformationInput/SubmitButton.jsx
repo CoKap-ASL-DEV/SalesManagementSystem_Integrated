@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Mutation } from '@apollo/react-components';
 
 import SUBMIT_FORM_QUERY from '../../services/submit_form';
+import UPLOAD_FILE_QUERY from '../../services/upload_file';
 import GET_TABLE from '../../services/get_table';
 
 const useStyles = makeStyles(theme => ({
@@ -56,50 +57,55 @@ export default function SubmitButton2(props) {
     KDSRatio,
     JSSRatio,
     KBSRatio,
+    FilePath,
   } = props.inputStates;
 
   return (
     ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
     /// data : mutation return값
 
-    <Mutation
-      mutation={SUBMIT_FORM_QUERY}
-      refetchQueries={[{ query: GET_TABLE }]}
-    >
-      {(addFormData, { data }) => (
+    // <Mutation
+    //   mutation={SUBMIT_FORM_QUERY}
+    //   refetchQueries={[{ query: GET_TABLE }]}
+    // >
+    //   {(addFormData, { data }) => (
+    <Mutation mutation={UPLOAD_FILE_QUERY}>
+      {(uploadFile, { udata }) => (
         <Button
           onClick={() => {
-            addFormData({
-              variables: {
-                SellPrice_Mver: parseFloat(SellPrice_Mver),
-                SellPrice_Sver: parseFloat(SellPrice_Sver),
-                SellPrice_SAver: parseFloat(SellPrice_SAver),
-                SellPrice_MPack: parseFloat(SellPrice_MPack),
-                OrderNum_Mver: parseFloat(OrderNum_Mver),
-                OrderNum_Sver: parseFloat(OrderNum_Sver),
-                OrderNum_SAver: parseFloat(OrderNum_SAver),
-                OrderNum_MPack: parseFloat(OrderNum_MPack),
-                WonDollarRatio: parseFloat(WonDollarRatio),
-                PurchaseRatio: parseFloat(PurchaseRatio),
-                ExecPurchaseRatio: parseFloat(ExecPurchaseRatio),
-                TechRatio: parseFloat(TechRatio),
-                RewardRatio: parseFloat(RewardRatio),
-                KEPCORatio: parseFloat(KEPCORatio),
-                MokpoRatio: parseFloat(MokpoRatio),
-                KSMRatio: parseFloat(KSMRatio),
-                KDSRatio: parseFloat(KDSRatio),
-                JSSRatio: parseFloat(JSSRatio),
-                KBSRatio: parseFloat(KBSRatio),
-                CreatedDate: currentDate,
-                IssueDate: IssueDate,
-                PoNumber: PoNumber,
-                WDRDate: WDRDate,
-              },
-            });
-            console.log(typeof props.inputStates.OrderNum_MPack);
-            props.resetStates();
+            // addFormData({
+            //   variables: {
+            //     SellPrice_Mver: parseFloat(SellPrice_Mver),
+            //     SellPrice_Sver: parseFloat(SellPrice_Sver),
+            //     SellPrice_SAver: parseFloat(SellPrice_SAver),
+            //     SellPrice_MPack: parseFloat(SellPrice_MPack),
+            //     OrderNum_Mver: parseFloat(OrderNum_Mver),
+            //     OrderNum_Sver: parseFloat(OrderNum_Sver),
+            //     OrderNum_SAver: parseFloat(OrderNum_SAver),
+            //     OrderNum_MPack: parseFloat(OrderNum_MPack),
+            //     WonDollarRatio: parseFloat(WonDollarRatio),
+            //     PurchaseRatio: parseFloat(PurchaseRatio),
+            //     ExecPurchaseRatio: parseFloat(ExecPurchaseRatio),
+            //     TechRatio: parseFloat(TechRatio),
+            //     RewardRatio: parseFloat(RewardRatio),
+            //     KEPCORatio: parseFloat(KEPCORatio),
+            //     MokpoRatio: parseFloat(MokpoRatio),
+            //     KSMRatio: parseFloat(KSMRatio),
+            //     KDSRatio: parseFloat(KDSRatio),
+            //     JSSRatio: parseFloat(JSSRatio),
+            //     KBSRatio: parseFloat(KBSRatio),
+            //     CreatedDate: currentDate,
+            //     IssueDate: IssueDate,
+            //     PoNumber: PoNumber,
+            //     WDRDate: WDRDate,
+            //   },
+            // });
+            // console.log(typeof props.inputStates.OrderNum_MPack);
+            // props.resetStates();
 
             //console.log(data);
+
+            uploadFile({ variables: { file: FilePath } });
           }}
           //onClick={this.props.onSubmithandler}
           variant="outlined"
@@ -111,5 +117,7 @@ export default function SubmitButton2(props) {
         </Button>
       )}
     </Mutation>
+    //       )}
+    //     </Mutation>
   );
 }
