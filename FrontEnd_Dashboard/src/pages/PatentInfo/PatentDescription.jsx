@@ -68,47 +68,49 @@ const PatentDescription = () => {
       <div>
         <Span>Patent Info</Span>
         <TableStyle>
-          <Tr>
-            <Td>특허명</Td>
-            <Td>
-              초저주파 탄델타의 측정 데이터를 이용한 전력 케이블의 상태진단 및
-              잔존수명 측정장치 및 그 방법
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>특허번호</Td>
-            <Td>10-1466623</Td>
-          </Tr>
-          <Tr>
-            <Td>등록일</Td>
-            <Td>2014년 11월 24일</Td>
-          </Tr>
-          <Tr>
-            <Td>유효기간</Td>
-            <Td>2033년 11월 23일</Td>
-          </Tr>
-          <Tr>
-            <Td>지분분할</Td>
-            <Td>
-              <Badge status="processing" text="한전 : 80%" />
-              <br />
-              <Badge status="processing" text="목포해양대 : 20%" />
-            </Td>
-          </Tr>
-          <Tr>
-            <Td>특허권자</Td>
-            <Td colSpan={3}>
-              {' '}
-              <Badge status="processing" text="김성민 : 35%" />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Badge status="processing" text="김동섭 : 35%" />
-              <br />
-              <Badge status="processing" text="전시식 : 5%" />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Badge status="processing" text="김병석 : 5%" />
-              <br />
-            </Td>
-          </Tr>
+          <tbody>
+            <Tr>
+              <Td>특허명</Td>
+              <Td>
+                초저주파 탄델타의 측정 데이터를 이용한 전력 케이블의 상태진단 및
+                잔존수명 측정장치 및 그 방법
+              </Td>
+            </Tr>
+            <Tr>
+              <Td>특허번호</Td>
+              <Td>10-1466623</Td>
+            </Tr>
+            <Tr>
+              <Td>등록일</Td>
+              <Td>2014년 11월 24일</Td>
+            </Tr>
+            <Tr>
+              <Td>유효기간</Td>
+              <Td>2033년 11월 23일</Td>
+            </Tr>
+            <Tr>
+              <Td>지분분할</Td>
+              <Td>
+                <Badge status="processing" text="한전 : 80%" />
+                <br />
+                <Badge status="processing" text="목포해양대 : 20%" />
+              </Td>
+            </Tr>
+            <Tr>
+              <Td>특허권자</Td>
+              <Td colSpan={3}>
+                {' '}
+                <Badge status="processing" text="김성민 : 35%" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Badge status="processing" text="김동섭 : 35%" />
+                <br />
+                <Badge status="processing" text="전시식 : 5%" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Badge status="processing" text="김병석 : 5%" />
+                <br />
+              </Td>
+            </Tr>
+          </tbody>
         </TableStyle>
       </div>
       <br />
@@ -116,34 +118,36 @@ const PatentDescription = () => {
       <div>
         <Span>Product Info</Span>
         <TableStyle>
-          <Tr>
-            <Td>상 품 명</Td>
-            <Td>STATEX MASTER</Td>
-            <Td>STATEX SLAVE</Td>
-            <Td>STATEX STAND-ALONE</Td>
-            <Td>MASTER PACKAGE</Td>
-          </Tr>
-          <Tr>
-            <Td>현지상품명</Td>
-            <Td>STATEX Pro</Td>
-            <Td>STATEX Pro Zusatz</Td>
-            <Td>STATEX Core</Td>
-            <Td>STATEX Pro</Td>
-          </Tr>
-          <Tr>
-            <Td>판매단가(USD)</Td>
-            <Td>12,400.00</Td>
-            <Td>6,200.00</Td>
-            <Td>6,200.00</Td>
-            <Td>22,000.00</Td>
-          </Tr>
-          <Tr>
-            <Td>구매단가(USD)</Td>
-            <Td>8680.00</Td>
-            <Td>4,340.00</Td>
-            <Td>4,340.00</Td>
-            <Td>15,400.00</Td>
-          </Tr>
+          <tbody>
+            <Tr>
+              <Td>상 품 명</Td>
+              <Td>STATEX MASTER</Td>
+              <Td>STATEX SLAVE</Td>
+              <Td>STATEX STAND-ALONE</Td>
+              <Td>MASTER PACKAGE</Td>
+            </Tr>
+            <Tr>
+              <Td>현지상품명</Td>
+              <Td>STATEX Pro</Td>
+              <Td>STATEX Pro Zusatz</Td>
+              <Td>STATEX Core</Td>
+              <Td>STATEX Pro</Td>
+            </Tr>
+            <Tr>
+              <Td>판매단가(USD)</Td>
+              <Td>12,400.00</Td>
+              <Td>6,200.00</Td>
+              <Td>6,200.00</Td>
+              <Td>22,000.00</Td>
+            </Tr>
+            <Tr>
+              <Td>구매단가(USD)</Td>
+              <Td>8680.00</Td>
+              <Td>4,340.00</Td>
+              <Td>4,340.00</Td>
+              <Td>15,400.00</Td>
+            </Tr>
+          </tbody>
         </TableStyle>
         <br />
         <br />
