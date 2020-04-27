@@ -5,6 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import 'mobx-react-lite/batchingForReactDom';
 
 import RootStore from 'stores/root';
 

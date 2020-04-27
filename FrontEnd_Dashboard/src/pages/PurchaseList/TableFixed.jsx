@@ -66,7 +66,6 @@ const columns = [
           const aD = new Date(a.IssueDate);
           const bD = new Date(b.IssueDate);
 
-          console.log(aD > bD)
           return aD > bD ? -1 : aD < bD ? 1 : 0;
         },
         defaultSortOrder: 'ascend',
