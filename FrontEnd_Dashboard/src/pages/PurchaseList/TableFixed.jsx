@@ -62,12 +62,7 @@ const columns = [
         align: 'center',
 
         onFilter: (value, record) => record.IssueDate.indexOf(value) === 0,
-        sorter: (a, b) => {
-          const aD = new Date(a.IssueDate);
-          const bD = new Date(b.IssueDate);
-
-          return aD > bD ? -1 : aD < bD ? 1 : 0;
-        },
+        sorter: (a, b) => new Date(b.IssueDate) - new Date(a.IssueDate),
         defaultSortOrder: 'ascend',
       },
     ],
