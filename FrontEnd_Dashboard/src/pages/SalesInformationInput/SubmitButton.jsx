@@ -9,6 +9,7 @@ import GET_TABLE from '../../services/get_table';
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
+    marginLeft: 0,
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
