@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
+import { Divider } from 'antd';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,10 +20,13 @@ const useStyles = makeStyles(theme => ({
   subjectText: {
     flexBasis: 0,
   },
-
   textField: {
     flexBasis: 120,
     height: 36,
+  },
+  divider: {
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.23)',
   },
 }));
 
@@ -83,18 +87,8 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
+      <Divider className={classes.divider} type="vertical" />
       {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-      {'\u00A0'}
-
       {'\u00A0'}
       {'\u00A0'}
       <TextField
