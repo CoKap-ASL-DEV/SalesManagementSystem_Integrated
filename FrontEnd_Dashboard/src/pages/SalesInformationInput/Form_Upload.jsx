@@ -44,10 +44,13 @@ class Form_Upload extends Component {
         nextState.selectedFileList = [info.file];
         break;
       case 'done':
-        nextState.selectedFile = info.file;
-        console.log(info.file);
+        this.setState({ selectedFile: info.file });
+        //console.log(info.file);
         nextState.selectedFileList = [info.file];
-        // this.props.setFileObj(this.state.selectedFile);
+        console.log('aaaa');
+        console.log(info.file);
+        console.log('aaaa');
+        this.props.setFileObj(info.file);
         break;
 
       default:

@@ -94,15 +94,24 @@ const schemaObject = {
 
           return true;
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           return false;
         }
       },
       uploadFile: async (_, { file }) => {
-        const { createReadStream, filename } = await file;
+        const { createReadStream, filename } = await file.originFileObj;
+
+        // console.log(createReadStream);
+        // console.log("zzzzzzzzzzzzzzzzz");
+        // console.log(filename);
+        // console.log("zzzzzzzzzzzzzzzzz");
         await new Promise((res) =>
           createReadStream()
-            .pipe(createWriteStream(path.join(__dirname, "/attach", filename)))
+            .pipe(
+              createWriteStream(
+                path.join(__dirname, "../../attachment/", filename)
+              )
+            )
             .on("close", res)
         );
 

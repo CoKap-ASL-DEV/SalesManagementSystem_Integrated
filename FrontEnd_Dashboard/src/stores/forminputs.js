@@ -272,7 +272,14 @@ export default class FormInputStore {
     //    console.log('Hello,onClick')
   };
 
-  setFilePath = f => {
-    this.FilePath = f;
+  setFilePath = fp => {
+    console.log('ccc');
+    console.log(fp);
+    console.log('ccc');
+    this.FilePath = fp;
+
+    console.log('zzz');
+    console.log(this.FilePath);
+    console.log('zzz');
   };
 }

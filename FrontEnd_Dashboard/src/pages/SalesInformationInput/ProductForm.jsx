@@ -137,7 +137,6 @@ class ProductForm extends Component {
 
     return (
       <div>
-        {console.log(TextShrink)}
         <Segment style={{ paddingTop: '25px' }}>
           <Header as="h3">PO From BAUR</Header>
           <FormPoNumber

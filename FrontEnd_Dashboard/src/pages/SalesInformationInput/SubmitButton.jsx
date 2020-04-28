@@ -70,7 +70,7 @@ export default function SubmitButton2(props) {
     // >
     //   {(addFormData, { data }) => (
     <Mutation mutation={UPLOAD_FILE_QUERY}>
-      {(uploadFile, { udata }) => (
+      {(uploadFile, { data }) => (
         <Button
           onClick={() => {
             // addFormData({
@@ -104,7 +104,9 @@ export default function SubmitButton2(props) {
             // props.resetStates();
 
             //console.log(data);
-
+            console.log('ddd');
+            console.log(FilePath);
+            console.log('ddd');
             uploadFile({ variables: { file: FilePath } });
           }}
           //onClick={this.props.onSubmithandler}
