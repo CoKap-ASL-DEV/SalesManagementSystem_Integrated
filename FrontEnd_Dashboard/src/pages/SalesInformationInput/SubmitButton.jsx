@@ -32,6 +32,7 @@ export default function SubmitButton2(props) {
   const {
     IssueDate,
     PoNumber,
+    FileName,
 
     SellPrice_Mver,
     SellPrice_Sver,
@@ -64,62 +65,62 @@ export default function SubmitButton2(props) {
     ///addFromData: mutation 함수처럼 호출 가능하게(서버측 이름과 맞출필요 없음),
     /// data : mutation return값
 
-    // <Mutation
-    //   mutation={SUBMIT_FORM_QUERY}
-    //   refetchQueries={[{ query: GET_TABLE }]}
-    // >
-    //   {(addFormData, { data }) => (
-    <Mutation mutation={UPLOAD_FILE_QUERY}>
-      {(uploadFile, { data }) => (
-        <Button
-          onClick={() => {
-            // addFormData({
-            //   variables: {
-            //     SellPrice_Mver: parseFloat(SellPrice_Mver),
-            //     SellPrice_Sver: parseFloat(SellPrice_Sver),
-            //     SellPrice_SAver: parseFloat(SellPrice_SAver),
-            //     SellPrice_MPack: parseFloat(SellPrice_MPack),
-            //     OrderNum_Mver: parseFloat(OrderNum_Mver),
-            //     OrderNum_Sver: parseFloat(OrderNum_Sver),
-            //     OrderNum_SAver: parseFloat(OrderNum_SAver),
-            //     OrderNum_MPack: parseFloat(OrderNum_MPack),
-            //     WonDollarRatio: parseFloat(WonDollarRatio),
-            //     PurchaseRatio: parseFloat(PurchaseRatio),
-            //     ExecPurchaseRatio: parseFloat(ExecPurchaseRatio),
-            //     TechRatio: parseFloat(TechRatio),
-            //     RewardRatio: parseFloat(RewardRatio),
-            //     KEPCORatio: parseFloat(KEPCORatio),
-            //     MokpoRatio: parseFloat(MokpoRatio),
-            //     KSMRatio: parseFloat(KSMRatio),
-            //     KDSRatio: parseFloat(KDSRatio),
-            //     JSSRatio: parseFloat(JSSRatio),
-            //     KBSRatio: parseFloat(KBSRatio),
-            //     CreatedDate: currentDate,
-            //     IssueDate: IssueDate,
-            //     PoNumber: PoNumber,
-            //     WDRDate: WDRDate,
-            //   },
-            // });
-            // console.log(typeof props.inputStates.OrderNum_MPack);
-            // props.resetStates();
+    <Mutation
+      mutation={SUBMIT_FORM_QUERY}
+      refetchQueries={[{ query: GET_TABLE }]}
+    >
+      {(addFormData, { data }) => (
+        <Mutation mutation={UPLOAD_FILE_QUERY}>
+          {(uploadFile, { data }) => (
+            <Button
+              onClick={() => {
+                addFormData({
+                  variables: {
+                    SellPrice_Mver: parseFloat(SellPrice_Mver),
+                    SellPrice_Sver: parseFloat(SellPrice_Sver),
+                    SellPrice_SAver: parseFloat(SellPrice_SAver),
+                    SellPrice_MPack: parseFloat(SellPrice_MPack),
+                    OrderNum_Mver: parseFloat(OrderNum_Mver),
+                    OrderNum_Sver: parseFloat(OrderNum_Sver),
+                    OrderNum_SAver: parseFloat(OrderNum_SAver),
+                    OrderNum_MPack: parseFloat(OrderNum_MPack),
+                    WonDollarRatio: parseFloat(WonDollarRatio),
+                    PurchaseRatio: parseFloat(PurchaseRatio),
+                    ExecPurchaseRatio: parseFloat(ExecPurchaseRatio),
+                    TechRatio: parseFloat(TechRatio),
+                    RewardRatio: parseFloat(RewardRatio),
+                    KEPCORatio: parseFloat(KEPCORatio),
+                    MokpoRatio: parseFloat(MokpoRatio),
+                    KSMRatio: parseFloat(KSMRatio),
+                    KDSRatio: parseFloat(KDSRatio),
+                    JSSRatio: parseFloat(JSSRatio),
+                    KBSRatio: parseFloat(KBSRatio),
+                    CreatedDate: currentDate,
+                    IssueDate: IssueDate,
+                    PoNumber: PoNumber,
+                    FileName: FilePath.lastModified + '_' + FilePath.name,
+                    WDRDate: WDRDate,
+                  },
+                });
+                console.log(typeof props.inputStates.OrderNum_MPack);
+                props.resetStates();
 
-            //console.log(data);
-            console.log('ddd');
-            console.log(FilePath);
-            console.log('ddd');
-            uploadFile({ variables: { file: FilePath } });
-          }}
-          //onClick={this.props.onSubmithandler}
-          variant="outlined"
-          size="medium"
-          color="primary"
-          className={classes.margin}
-        >
-          Submit
-        </Button>
+                console.log(data);
+                console.log(FilePath);
+                console.log('ddd');
+                uploadFile({ variables: { file: FilePath } });
+              }}
+              //onClick={this.props.onSubmithandler}
+              variant="outlined"
+              size="medium"
+              color="primary"
+              className={classes.margin}
+            >
+              Submit
+            </Button>
+          )}
+        </Mutation>
       )}
     </Mutation>
-    //       )}
-    //     </Mutation>
   );
 }

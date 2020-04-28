@@ -21,7 +21,7 @@ class ProductForm extends Component {
     const {
       IssueDate,
       PoNumber,
-
+      FileName,
       SellPrice_Mver,
       SellPrice_Sver,
       SellPrice_SAver,
@@ -104,6 +104,7 @@ class ProductForm extends Component {
     const inputDataStates = {
       IssueDate,
       PoNumber,
+      FileName,
 
       SellPrice_Mver,
       SellPrice_Sver,

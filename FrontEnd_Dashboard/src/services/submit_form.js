@@ -25,6 +25,7 @@ const SUBMIT_FORM = gql`
     $CreatedDate: String
     $IssueDate: String
     $PoNumber: String
+    $FileName: String
     $WDRDate: String
   ) {
     addFormData(
@@ -50,6 +51,7 @@ const SUBMIT_FORM = gql`
       CreatedDate: $CreatedDate
       IssueDate: $IssueDate
       PoNumber: $PoNumber
+      FileName: $FileName
       WDRDate: $WDRDate
     ) {
       SellPrice_MPack

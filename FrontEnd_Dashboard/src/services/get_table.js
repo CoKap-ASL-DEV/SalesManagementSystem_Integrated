@@ -5,6 +5,7 @@ const GET_TABLE = gql`
     formDatas {
       id
       PoNumber
+      FileName
       IssueDate
       WDRDate
       WonDollarRatio

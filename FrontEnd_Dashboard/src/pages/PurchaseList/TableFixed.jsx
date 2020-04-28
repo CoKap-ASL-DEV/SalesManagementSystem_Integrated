@@ -37,7 +37,13 @@ const columns = [
     width: colWidth - 100,
     align: 'center',
     render: (text, record) => (
-      <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
+      <a
+        href={'http://localhost:2000/attachment/' + record.FileName}
+        download
+        target="_blank"
+      >
+        <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
+      </a>
     ),
   },
   {
@@ -241,6 +247,7 @@ const getDataSrc = data =>
     ({
       id,
       PoNumber,
+      FileName,
       IssueDate,
       WDRDate,
       WonDollarRatio,
@@ -282,6 +289,7 @@ const getDataSrc = data =>
         key: id,
         SeqNum: id,
         PoNumber: PoNumber,
+        FileName: FileName,
         IssueDate: IssueDate,
         WDRDate: WDRDate,
         WonDollarRatio: WonDollarRatio,

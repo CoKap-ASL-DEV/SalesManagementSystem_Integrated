@@ -1,7 +1,7 @@
 const EntitySchema = require("typeorm").EntitySchema;
 
 module.exports = new EntitySchema({
-  name: "FormInputData", //postgresql DB에 여기에서 지정한 이름을 소문자로 바꾸고 대문자로 시작하는 첫번째 글자앞에서 언더바 넣은(form_data)이름으로 테이블이 생성된다.
+  name: "FormDatas", //postgresql DB에 여기에서 지정한 이름을 소문자로 바꾸고 대문자로 시작하는 첫번째 글자앞에서 언더바 넣은(form_data)이름으로 테이블이 생성된다.
   columns: {
     id: {
       primary: true,
@@ -26,6 +26,10 @@ module.exports = new EntitySchema({
     },
     // BAUR 구매 주문서 번호
     PoNumber: {
+      type: "text",
+      nullable: true,
+    },
+    FileName: {
       type: "text",
       nullable: true,
     },
