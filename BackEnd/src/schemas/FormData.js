@@ -99,17 +99,38 @@ const schemaObject = {
         }
       },
       uploadFile: async (_, { file }) => {
+        ///file 형태
+        // {
+        //   uid: 'rc-upload-1588039042693-2',
+        //   lastModified: 1586304591996,
+        //   lastModifiedDate: '2020-04-08T00:09:51.996Z',
+        //   name: 'Foods_(cropped).jpg',
+        //   size: 1014440,
+        //   type: 'image/jpeg',
+        //   percent: 0,
+        //   originFileObj: Promise {
+        //     {
+        //       filename: 'Foods_(cropped).jpg',
+        //       mimetype: 'image/jpeg',
+        //       encoding: '7bit',
+        //       createReadStream: [Function: createReadStream]
+        //     }
+        //   },
+        //   status: 'done',
+        //   response: 'ok'
+        // }
+        const lastModified = file.lastModified;
         const { createReadStream, filename } = await file.originFileObj;
 
-        // console.log(createReadStream);
-        // console.log("zzzzzzzzzzzzzzzzz");
-        // console.log(filename);
-        // console.log("zzzzzzzzzzzzzzzzz");
         await new Promise((res) =>
           createReadStream()
             .pipe(
               createWriteStream(
-                path.join(__dirname, "../../attachment/", filename)
+                path.join(
+                  __dirname,
+                  "../attachment/",
+                  lastModified + "_" + filename
+                )
               )
             )
             .on("close", res)
