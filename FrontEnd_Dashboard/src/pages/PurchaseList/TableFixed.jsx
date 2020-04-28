@@ -37,12 +37,22 @@ const columns = [
     width: colWidth - 100,
     align: 'center',
     render: (text, record) => (
+      // <form
+      //   action={`http://localhost:2000/attachment/${record.FileName}`}
+      //   method="GET"
+      //   contentType="application/pdf"
+      //   //        encType="multipart/form-data"
+      //   responseType="blob"
+      // >
       <a
         href={'http://localhost:2000/attachment/' + record.FileName}
         download
         target="_blank"
       >
+        {/* <button type="submit"> */}
         <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
+        {/* </button> */}
+        {/* </form> */}
       </a>
     ),
   },
