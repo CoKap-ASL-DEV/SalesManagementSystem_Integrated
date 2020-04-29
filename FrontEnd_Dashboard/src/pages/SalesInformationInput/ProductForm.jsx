@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 
 import FormPoNumber from './Form_PoNumber';
 import FormBuyPrice from './Form_BuyPrice';
+import FormType from './Form_Type';
 import FormExecBuyPrice from './Form_ExecBuyPrice';
 import FormSellPrice from './Form_SellPrice';
 import FormWonDollarRatio from './Form_WonDollarRatio';
@@ -97,8 +98,10 @@ class ProductForm extends Component {
       initializeStates,
 
       setFilePath,
+      setRewardType,
       TextShrink,
       FilePath,
+      RewardType,
     } = fstore;
 
     const inputDataStates = {
@@ -131,9 +134,10 @@ class ProductForm extends Component {
       JSSRatio,
       KBSRatio,
       FilePath,
+      RewardType,
     };
 
-    //console.log(fstore.Sver);
+    //console.log(RewardType);
     //console.log(formvar.SellPrice_Sver);
 
     return (
@@ -143,6 +147,7 @@ class ProductForm extends Component {
           <FormPoNumber
             PoNumber={PoNumber}
             setFileObj={setFilePath}
+            FilePath={FilePath}
             // params={fstore}
             title=""
             label="PO#"
@@ -172,6 +177,7 @@ class ProductForm extends Component {
             readonly="false"
           />
           {/* <Divider style={{ margin: '0.8rem 0' }} /> */}
+
           <Header as="h3" style={{ margin: '1.1rem 0 0.4rem' }}>
             환 율
           </Header>
@@ -186,6 +192,13 @@ class ProductForm extends Component {
             WDRDates={WDRDate}
             shrink={TextShrink}
           />
+
+          {/* <span >style={{ position: 'relative', top : '-100px' left: '400px' }} */}
+          <Header as="h3" style={{ margin: '1.1rem 0 0.4rem' }}>
+            유 형
+          </Header>
+          <FormType RewardType={RewardType} typeSetter={setRewardType} />
+
           <Divider style={{ margin: '1.0rem 0.5rem 0rem  0.5rem' }} />
           <SubmitButton
             inputStates={inputDataStates}

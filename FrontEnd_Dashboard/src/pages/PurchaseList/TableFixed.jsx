@@ -258,6 +258,7 @@ const getDataSrc = data =>
       id,
       PoNumber,
       FileName,
+      RewardType,
       IssueDate,
       WDRDate,
       WonDollarRatio,
@@ -329,6 +330,9 @@ const GetData = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
       const dtSrc = getDataSrc(data);
+
+      console.log(data);
+
       return (
         <Table
           columns={columns}

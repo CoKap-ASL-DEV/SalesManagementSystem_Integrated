@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'center',
-    height: 40,
+    height: 28,
 
     // backgroundColor:"#eeeeee"
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
   textField: {
     flexBasis: 150,
-    height: 40,
+    height: 38,
     // paddingTop: 0,
     // paddingBottom: 0,
     //textAlignVertical: 'top',

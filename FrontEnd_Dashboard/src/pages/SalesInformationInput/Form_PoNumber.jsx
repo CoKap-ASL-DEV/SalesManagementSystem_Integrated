@@ -8,12 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 //import { height } from "@material-ui/system";
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     //flexWrap: 'wrap',
     alignContent: 'center',
-    height: 40,
+    height: 33,
 
     // backgroundColor:"#eeeeee"
   },
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
   textField: {
     flexBasis: 150,
-    height: 40,
+    height: 38,
   },
 }));
 
@@ -74,13 +75,14 @@ export default function OutlinedInputAdornments(props) {
           ),
         }}
       />
+
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
-      <Upload setFileObj={props.setFileObj} />
+      <Upload FilePath={props.FilePath} setFileObj={props.setFileObj} />
     </div>
   );
 }

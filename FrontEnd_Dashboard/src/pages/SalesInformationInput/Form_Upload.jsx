@@ -31,41 +31,59 @@ const dummyRequest = ({ file, onSuccess }) => {
 //       console.log(err);
 //     });
 // };
-
+let temp = [];
 class Form_Upload extends Component {
   state = {
     selectedFile: null,
     selectedFileList: [],
+    selectedFileLists: [],
   };
+
   onChange = info => {
     const nextState = {};
+
     switch (info.file.status) {
       case 'uploading':
         nextState.selectedFileList = [info.file];
+        this.props.setFileObj(info.file);
         break;
       case 'done':
-        this.setState({ selectedFile: info.file });
-        //console.log(info.file);
+        //this.setState({ selectedFile: info.file });
+
         nextState.selectedFileList = [info.file];
         console.log('aaaa');
         console.log(info.file);
         console.log('aaaa');
-        this.props.setFileObj(info.file);
+
+        console.log('bbb');
+        console.log(this.props.FilePath);
+        console.log('bbb');
+
         break;
 
       default:
         // error or removed
         nextState.selectedFile = null;
         nextState.selectedFileList = [];
+        nextState.IsShown = true;
     }
     this.setState(() => nextState);
   };
 
   render() {
+    if (this.props.FilePath == null) {
+      temp = [];
+    } else {
+      temp.push(this.props.FilePath);
+    }
     return (
       <div>
         <Upload
-          fileList={this.state.selectedFileList}
+          //          showUploadList={this.state.IsShown}
+
+          //showUploadList={shown}
+          //fileList={this.state.selectedFileList}
+          fileList={temp}
           customRequest={dummyRequest}
           onChange={this.onChange}
         >

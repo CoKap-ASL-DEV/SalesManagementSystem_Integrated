@@ -6,6 +6,7 @@ const GET_TABLE = gql`
       id
       PoNumber
       FileName
+      RewardType
       IssueDate
       WDRDate
       WonDollarRatio

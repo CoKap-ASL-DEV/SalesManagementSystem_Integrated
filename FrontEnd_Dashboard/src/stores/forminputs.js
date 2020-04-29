@@ -4,6 +4,8 @@ export default class FormInputStore {
   @observable IssueDate = null;
   @observable PoNumber = null;
 
+  @observable RewardType = 0;
+
   @observable SellPrice_Mver = 12400;
   @observable SellPrice_Sver = 6200;
   @observable SellPrice_SAver = 6200;
@@ -185,6 +187,8 @@ export default class FormInputStore {
   initializeStates = e => {
     this.IssueDate = null;
     this.PoNumber = '';
+    this.FilePath = null;
+    this.RewardType = 0;
 
     this.OrderNum_Mver = 0;
     this.OrderNum_Sver = 0;
@@ -281,5 +285,9 @@ export default class FormInputStore {
     console.log('zzz');
     console.log(this.FilePath);
     console.log('zzz');
+  };
+
+  setRewardType = type => {
+    this.RewardType = type;
   };
 }

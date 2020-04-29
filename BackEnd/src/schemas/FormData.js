@@ -9,6 +9,7 @@ const FormDataArguments_Str = [
   "PoNumber",
   "FileName",
   "WDRDate",
+  "RewardType",
 ];
 
 const FormDataArguments_Flt = [

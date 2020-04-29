@@ -9,7 +9,7 @@ import GET_TABLE from '../../services/get_table';
 
 const useStyles = makeStyles(theme => ({
   margin: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0.8),
     marginLeft: 0,
   },
   extendedIcon: {
@@ -59,6 +59,7 @@ export default function SubmitButton2(props) {
     JSSRatio,
     KBSRatio,
     FilePath,
+    RewardType,
   } = props.inputStates;
 
   return (
@@ -100,6 +101,7 @@ export default function SubmitButton2(props) {
                     PoNumber: PoNumber,
                     FileName: FilePath.lastModified + '_' + FilePath.name,
                     WDRDate: WDRDate,
+                    RewardType: RewardType,
                   },
                 });
                 console.log(typeof props.inputStates.OrderNum_MPack);

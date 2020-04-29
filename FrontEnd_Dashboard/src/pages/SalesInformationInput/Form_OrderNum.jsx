@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     alignContent: 'center',
-    height: 40,
+    height: 33,
     //backgroundColor:"#eeeeee"
   },
   margin: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
   textField: {
     flexBasis: 150,
-    height: 40,
+    height: 38,
   },
 }));
 
