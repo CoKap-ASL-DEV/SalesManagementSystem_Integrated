@@ -9,146 +9,64 @@ import GET_TALBE_QUERY from '../../services/get_table';
 import DelBtn from './DeleteTableDataButton';
 import { Query } from 'react-apollo';
 
-const colWidth = 160;
+const colWidth = 200;
 
 const columns = [
   {
     title: '순번',
 
-    width: colWidth - 60,
+    width: colWidth - 120,
     dataIndex: 'SeqNum',
     key: 'SeqNum',
-    // fixed: 'left',
-    align: 'center',
-  },
-  {
-    title: 'operation',
-    dataIndex: 'operation',
-    // fixed: 'left',
-    width: colWidth - 60,
-    align: 'center',
-    render: (text, record) => <DelBtn delId={record.SeqNum} />,
-  },
 
-  {
-    title: 'file',
-    dataIndex: 'file',
-    // fixed: 'left',
-    width: colWidth - 100,
     align: 'center',
-    render: (text, record) => (
-      <a
-        href={'http://localhost:2000/attachment/' + record.FileName}
-        download
-        target="_blank"
-      >
-        {/* <button type="submit"> */}
-        <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
-        {/* </button> */}
-        {/* </form> */}
-      </a>
-    ),
   },
+  // {
+  //   title: 'operation',
+  //   dataIndex: 'operation',
+  //   fixed: 'left',
+  //   width: colWidth - 100,
+  //   align: 'center',
+  //   render: (text, record) => <DelBtn delId={record.SeqNum} />,
+  // },
+
+  // {
+  //   title: 'file',
+  //   dataIndex: 'file',
+  //   fixed: 'left',
+  //   width: colWidth - 100,
+  //   align: 'center',
+  //   render: (text, record) => (
+  //     <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
+  //   ),
+  // },
   {
     title: '구매 Order from BAUR',
-    // fixed: 'left',
+
     align: 'center',
     width: colWidth - 50,
 
     children: [
       {
-        title: '주문번호',
+        title: 'PO #',
         dataIndex: 'PoNumber',
         key: 'PoNumber',
         width: colWidth - 50,
         align: 'center',
       },
       {
-        title: '주문일자',
+        title: 'Issue Date',
         dataIndex: 'IssueDate',
         key: 'IssueDate',
         width: colWidth - 50,
         align: 'center',
 
         onFilter: (value, record) => record.IssueDate.indexOf(value) === 0,
-        sorter: (a, b) => new Date(b.IssueDate) - new Date(a.IssueDate),
-        defaultSortOrder: 'ascend',
+        sorter: (a, b) => a.IssueDate.length - b.IssueDate.length,
+        sortDirections: ['descend'],
       },
     ],
   },
-  {
-    title: '유형',
-
-    width: colWidth - 100,
-    dataIndex: 'RewardType',
-    key: 'RewardType',
-    // fixed: 'left',
-    align: 'center',
-  },
-  // {
-  //   title: '적용환율',
-  //   align: 'center',
-
-  //   children: [
-  //     {
-  //       title: '기준일',
-  //       dataIndex: 'WDRDate',
-  //       key: 'WDRDate',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '매매기준율',
-  //       dataIndex: 'WonDollarRatio',
-  //       key: 'WonDollarRatio',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  {
-    title: '주문수량',
-    align: 'center',
-    children: [
-      {
-        title: 'M-Ver.',
-        dataIndex: 'OrderNum_Mver',
-        key: 'OrderNum_Mver',
-        width: colWidth - 50,
-        align: 'center',
-      },
-      {
-        title: 'S-Ver.',
-        dataIndex: 'OrderNum_Sver',
-        key: 'OrderNum_Sver',
-        width: colWidth - 50,
-        align: 'center',
-      },
-      {
-        title: 'SA-Ver.',
-        dataIndex: 'OrderNum_SAver',
-        key: 'OrderNum_SAver',
-        width: colWidth - 50,
-        align: 'center',
-      },
-      {
-        title: 'M Package',
-        dataIndex: 'OrderNum_MPack',
-        key: 'OrderNum_MPack',
-        width: colWidth - 50,
-        align: 'center',
-      },
-      {
-        title: '총수량',
-        dataIndex: 'TotalNum',
-        key: 'TotalNum',
-        width: colWidth - 50,
-        align: 'center',
-      },
-    ],
-  },
-
   {
     title: '총 판매가',
     align: 'center',
@@ -169,21 +87,112 @@ const columns = [
       },
     ],
   },
+  {
+    title: '총 구매가',
+    align: 'center',
+    children: [
+      {
+        title: 'US$',
+        dataIndex: 'TotalBuyPrice_Dlr',
+        key: 'TotalBuyPrice_Dlr',
+        width: colWidth,
+        align: 'center',
+      },
+      {
+        title: '원화',
+        dataIndex: 'TotalBuyPrice_Won',
+        key: 'TotalBuyPrice_Won',
+        width: colWidth,
+        align: 'center',
+      },
+    ],
+  },
+  {
+    title: '차액(판매가 -구매가)',
+    align: 'center',
+    children: [
+      {
+        title: 'US$',
+        dataIndex: 'Difference_Dlr',
+        key: 'Difference_Dlr',
+        width: colWidth,
+        align: 'center',
+      },
+      {
+        title: '원화',
+        dataIndex: 'Difference_Won',
+        key: 'Difference_Won',
+        width: colWidth,
+        align: 'center',
+      },
+    ],
+  },
   // {
-  //   title: '총 구매가',
+  //   title: '기술료',
+  //   width: colWidth - 50,
+  //   dataIndex: 'TotalTechFare',
+  //   key: 'TotalTechFare',
+
+  //   align: 'center',
+  // },
+  {
+    title: '적용환율',
+    align: 'center',
+
+    children: [
+      {
+        title: '기준일',
+        dataIndex: 'WDRDate',
+        key: 'WDRDate',
+        width: colWidth,
+        align: 'center',
+      },
+      {
+        title: '매매기준(KW/USD)',
+        dataIndex: 'WonDollarRatio',
+        key: 'WonDollarRatio',
+        width: colWidth,
+        align: 'center',
+      },
+    ],
+  },
+
+  // {
+  //   title: '주문수량',
   //   align: 'center',
   //   children: [
   //     {
-  //       title: 'US$',
-  //       dataIndex: 'TotalBuyPrice_Dlr',
-  //       key: 'TotalBuyPrice_Dlr',
+  //       title: 'M-Ver.',
+  //       dataIndex: 'OrderNum_Mver',
+  //       key: 'OrderNum_Mver',
   //       width: colWidth,
   //       align: 'center',
   //     },
   //     {
-  //       title: '원화',
-  //       dataIndex: 'TotalBuyPrice_Won',
-  //       key: 'TotalBuyPrice_Won',
+  //       title: 'S-Ver.',
+  //       dataIndex: 'OrderNum_Sver',
+  //       key: 'OrderNum_Sver',
+  //       width: colWidth,
+  //       align: 'center',
+  //     },
+  //     {
+  //       title: 'SA-Ver.',
+  //       dataIndex: 'OrderNum_SAver',
+  //       key: 'OrderNum_SAver',
+  //       width: colWidth,
+  //       align: 'center',
+  //     },
+  //     {
+  //       title: 'M Package',
+  //       dataIndex: 'OrderNum_MPack',
+  //       key: 'OrderNum_MPack',
+  //       width: colWidth,
+  //       align: 'center',
+  //     },
+  //     {
+  //       title: '총수량',
+  //       dataIndex: 'TotalNum',
+  //       key: 'TotalNum',
   //       width: colWidth,
   //       align: 'center',
   //     },
@@ -260,29 +269,32 @@ const getDataSrc = data =>
       id,
       PoNumber,
       IssueDate,
-      FileName,
-      // WDRDate,
-      RewardType,
+      WDRDate,
       WonDollarRatio,
       OrderNum_Mver,
       OrderNum_Sver,
       OrderNum_SAver,
       OrderNum_MPack,
 
-      SellPrice_Mver,
-      SellPrice_Sver,
-      SellPrice_SAver,
-      SellPrice_MPack,
+      // SellPrice_Mver,
+      // SellPrice_Sver,
+      // SellPrice_SAver,
+      // SellPrice_MPack,
 
       // PurchaseRatio,
       // TechRatio,
       // KEPCORatio,
       // MokpoRatio,
       // RewardRatio,
-
       TotalNum,
       TotalSellPrice_Dlr,
       TotalSellPrice_Won,
+      TotalBuyPrice_Dlr,
+      TotalBuyPrice_Won,
+      TotalTechFare,
+      Difference_Dlr,
+      Difference_Won,
+      RewardType,
     }) => {
       // const TotalNum =
       //   OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
@@ -291,7 +303,6 @@ const getDataSrc = data =>
       //   SellPrice_Sver * OrderNum_Sver +
       //   SellPrice_SAver * OrderNum_SAver +
       //   SellPrice_MPack * OrderNum_MPack;
-
       // const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
       // const TotalBuyPrice_Dlr = TotalSellPrice_Dlr * PurchaseRatio;
       // const TotalBuyPrice_Won = TotalSellPrice_Won * PurchaseRatio;
@@ -308,10 +319,8 @@ const getDataSrc = data =>
         SeqNum: id,
         PoNumber: PoNumber,
         IssueDate: IssueDate,
-        RewardType: RewardType,
-        FileName: FileName,
-        // WDRDate: WDRDate,
-        // WonDollarRatio: WonDollarRatio,
+        WDRDate: WDRDate,
+        WonDollarRatio: WonDollarRatio,
         OrderNum_Mver: OrderNum_Mver,
         OrderNum_Sver: OrderNum_Sver,
         OrderNum_SAver: OrderNum_SAver,
@@ -319,11 +328,14 @@ const getDataSrc = data =>
         TotalNum: TotalNum,
         TotalSellPrice_Dlr: TotalSellPrice_Dlr,
         TotalSellPrice_Won: TotalSellPrice_Won,
-        // TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
-        // TotalBuyPrice_Won: TotalBuyPrice_Won,
+        TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
+        TotalBuyPrice_Won: TotalBuyPrice_Won,
+        Difference_Dlr: Difference_Dlr,
+        Difference_Won: Difference_Won,
         // TechFare_KEPCO: TechFare_KEPCO,
         // TechFare_Mokpo: TechFare_Mokpo,
-        // TotalTechFare: TotalTechFare,
+        TotalTechFare: TotalTechFare,
+        RewardType: RewardType,
         // PatentReward: PatentReward,
         // NetIncome_PowerPlus: NetIncome_PowerPlus,
         // NetIncome_KEPCO: NetIncome_KEPCO,
@@ -338,11 +350,13 @@ const GetData = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
       const dtSrc = getDataSrc(data);
+
+      const dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
       return (
         <Table
           columns={columns}
-          dataSource={dtSrc}
-          // scroll={{ x: 1200 }}
+          dataSource={dtFiltered}
+          // scroll={{ x: 3600 }}
           size="small"
           bordered
           // expandedRowRender={record => <p>{record.PoNumber}</p>}

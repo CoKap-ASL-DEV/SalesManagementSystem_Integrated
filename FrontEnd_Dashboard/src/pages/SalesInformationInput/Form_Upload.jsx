@@ -66,7 +66,6 @@ class Form_Upload extends Component {
         // error or removed
         nextState.selectedFile = null;
         nextState.selectedFileList = [];
-
         this.props.setFileList(null);
     }
     this.setState(() => nextState);

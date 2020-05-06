@@ -231,7 +231,7 @@ class ProductForm extends Component {
               shrink={TextShrink}
               title=""
               placeholder="%"
-              readonly="false"
+              readonly="true"
             />
             <Header
               as="h3"
@@ -255,7 +255,7 @@ class ProductForm extends Component {
               shrink={TextShrink}
               title=""
               placeholder="%"
-              readonly="false"
+              readonly="true"
             />
 
             <Header
@@ -276,7 +276,7 @@ class ProductForm extends Component {
               shrink={TextShrink}
               title=""
               placeholder="$"
-              readonly="false"
+              readonly="true"
             />
 
             {/* <Divider style={{ margin: '0.8rem 0' }} /> */}

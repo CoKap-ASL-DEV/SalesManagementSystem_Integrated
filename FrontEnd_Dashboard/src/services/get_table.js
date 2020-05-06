@@ -33,6 +33,15 @@ const GET_TABLE = gql`
       KDSRatio
       JSSRatio
       KBSRatio
+
+      TotalSellPrice_Dlr
+      TotalSellPrice_Won
+      TotalBuyPrice_Dlr
+      TotalBuyPrice_Won
+      TotalNum
+      TotalTechFare
+      Difference_Dlr
+      Difference_Won
     }
   }
 `;

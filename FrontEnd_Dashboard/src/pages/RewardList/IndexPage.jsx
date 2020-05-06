@@ -8,7 +8,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Page from 'components/Page';
 
-import FixedTable from './TableFixed';
+import SellFixedTable from './SellTableFixed';
+import SellDescription from './SellDescription';
+import ExecFixedTable from './ExecTableFixed';
+import ExecDescription from './ExecDescription';
 /**
  * 아르기닌: 짧고 굵은 운동
  * 시트룰린: 얇고 긴 운동
@@ -42,10 +45,12 @@ export default () => {
               style={{ marginBottom: 32 }}
             >
               <TabPane tab="처분보상" key="1">
-                처분보상 내용 Content of tab 1
+                <SellFixedTable />
+                <SellDescription />
               </TabPane>
               <TabPane tab="실시보상" key="2">
-                실시보상 내용Content of tab 2
+                <ExecFixedTable />
+                <ExecDescription />
               </TabPane>
             </Tabs>
           </Paper>

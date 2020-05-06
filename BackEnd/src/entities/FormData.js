@@ -130,5 +130,30 @@ module.exports = new EntitySchema({
     KBSRatio: {
       type: "numeric",
     },
+
+    TotalSellPrice_Dlr: {
+      type: "numeric",
+    },
+    TotalSellPrice_Won: {
+      type: "numeric",
+    },
+    TotalBuyPrice_Dlr: {
+      type: "numeric",
+    },
+    TotalBuyPrice_Won: {
+      type: "numeric",
+    },
+    TotalNum: {
+      type: "numeric",
+    },
+    TotalTechFare: {
+      type: "numeric",
+    },
+    Difference_Dlr: {
+      type: "numeric",
+    },
+    Difference_Won: {
+      type: "numeric",
+    },
   },
 });

@@ -190,6 +190,7 @@ export default class FormInputStore {
     this.PoNumber = '';
     this.FilePath = null;
     this.RewardType = 0;
+    this.SelectedFile = null;
 
     this.OrderNum_Mver = 0;
     this.OrderNum_Sver = 0;
@@ -249,8 +250,11 @@ export default class FormInputStore {
     this.WonDollarRatio = params.WonDollarRatio;
 
     this.BuyPrice_Mver = params.SellPrice_Mver * params.PurchaseRatio * 0.01;
+
     this.BuyPrice_Sver = params.SellPrice_Sver * params.PurchaseRatio * 0.01;
+
     this.BuyPrice_SAver = params.SellPrice_SAver * params.PurchaseRatio * 0.01;
+
     this.BuyPrice_MPack = params.SellPrice_MPack * params.PurchaseRatio * 0.01;
 
     this.ExecBuyPrice_Mver =

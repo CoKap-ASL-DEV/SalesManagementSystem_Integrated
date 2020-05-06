@@ -75,6 +75,36 @@ export default function SubmitButton2(props) {
           {(uploadFile, { data }) => (
             <Button
               onClick={() => {
+                const TotalSellPrice_Dlr =
+                  parseFloat(SellPrice_Mver) * parseFloat(OrderNum_Mver) +
+                  parseFloat(SellPrice_Sver) * parseFloat(OrderNum_Sver) +
+                  parseFloat(SellPrice_SAver) * parseFloat(OrderNum_SAver) +
+                  parseFloat(SellPrice_MPack) * parseFloat(OrderNum_MPack);
+
+                const TotalSellPrice_Won =
+                  parseFloat(TotalSellPrice_Dlr) * parseFloat(WonDollarRatio);
+
+                const TotalBuyPrice_Won =
+                  RewardType === '처분'
+                    ? parseFloat(TotalSellPrice_Won) *
+                      parseFloat(PurchaseRatio) *
+                      0.01
+                    : parseFloat(TotalSellPrice_Won) *
+                      parseFloat(ExecPurchaseRatio) *
+                      parseFloat(PurchaseRatio) *
+                      0.01 *
+                      0.01;
+
+                const TotalBuyPrice_Dlr =
+                  RewardType === '처분'
+                    ? parseFloat(TotalSellPrice_Dlr) *
+                      parseFloat(PurchaseRatio) *
+                      0.01
+                    : parseFloat(TotalSellPrice_Dlr) *
+                      parseFloat(ExecPurchaseRatio) *
+                      parseFloat(PurchaseRatio) *
+                      0.01 *
+                      0.01;
                 addFormData({
                   variables: {
                     SellPrice_Mver: parseFloat(SellPrice_Mver),
@@ -102,6 +132,50 @@ export default function SubmitButton2(props) {
                     FileName: FilePath.lastModified + '_' + FilePath.name,
                     WDRDate: WDRDate,
                     RewardType: RewardType,
+                    TotalSellPrice_Dlr: TotalSellPrice_Dlr,
+                    // parseFloat(SellPrice_Mver) * parseFloat(OrderNum_Mver) +
+                    // parseFloat(SellPrice_Sver) * parseFloat(OrderNum_Sver) +
+                    // parseFloat(SellPrice_SAver) * parseFloat(OrderNum_SAver) +
+                    // parseFloat(SellPrice_MPack) * parseFloat(OrderNum_MPack),
+
+                    TotalSellPrice_Won: TotalSellPrice_Won,
+                    // parseFloat(TotalSellPrice_Dlr) *
+                    // parseFloat(WonDollarRatio),
+                    TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
+                    // RewardType === '처분'
+                    //   ? parseFloat(TotalSellPrice_Dlr) *
+                    //     parseFloat(PurchaseRatio) *
+                    //     0.01
+                    //   : parseFloat(TotalSellPrice_Dlr) *
+                    //     parseFloat(ExecPurchaseRatio) *
+                    //     parseFloat(PurchaseRatio) *
+                    //     0.01 *
+                    //     0.01,
+                    TotalBuyPrice_Won: TotalBuyPrice_Won,
+                    // RewardType === '처분'
+                    //   ? parseFloat(TotalSellPrice_Won) *
+                    //     parseFloat(PurchaseRatio) *
+                    //     0.01
+                    //   : parseFloat(TotalSellPrice_Won) *
+                    //     parseFloat(ExecPurchaseRatio) *
+                    //     parseFloat(PurchaseRatio) *
+                    //     0.01 *
+                    //     0.01,
+                    TotalNum:
+                      parseFloat(OrderNum_Mver) +
+                      parseFloat(OrderNum_Sver) +
+                      parseFloat(OrderNum_SAver) +
+                      parseFloat(OrderNum_MPack),
+                    TotalTechFare:
+                      parseFloat(TotalBuyPrice_Won) *
+                      parseFloat(TechRatio) *
+                      0.01,
+                    Difference_Dlr:
+                      parseFloat(TotalSellPrice_Dlr) -
+                      parseFloat(TotalBuyPrice_Dlr),
+                    Difference_Won:
+                      parseFloat(TotalSellPrice_Won) -
+                      parseFloat(TotalBuyPrice_Won),
                   },
                 });
                 console.log(typeof props.inputStates.OrderNum_MPack);

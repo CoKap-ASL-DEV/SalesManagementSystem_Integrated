@@ -28,6 +28,14 @@ const SUBMIT_FORM = gql`
     $FileName: String
     $RewardType: String
     $WDRDate: String
+    $TotalSellPrice_Dlr: Float
+    $TotalSellPrice_Won: Float
+    $TotalBuyPrice_Dlr: Float
+    $TotalBuyPrice_Won: Float
+    $TotalNum: Float
+    $TotalTechFare: Float
+    $Difference_Dlr: Float
+    $Difference_Won: Float
   ) {
     addFormData(
       SellPrice_Mver: $SellPrice_Mver
@@ -55,6 +63,15 @@ const SUBMIT_FORM = gql`
       FileName: $FileName
       RewardType: $RewardType
       WDRDate: $WDRDate
+
+      TotalSellPrice_Dlr: $TotalSellPrice_Dlr
+      TotalSellPrice_Won: $TotalSellPrice_Won
+      TotalBuyPrice_Dlr: $TotalBuyPrice_Dlr
+      TotalBuyPrice_Won: $TotalBuyPrice_Won
+      TotalNum: $TotalNum
+      TotalTechFare: $TotalTechFare
+      Difference_Dlr: $Difference_Dlr
+      Difference_Won: $Difference_Won
     ) {
       SellPrice_MPack
     }
