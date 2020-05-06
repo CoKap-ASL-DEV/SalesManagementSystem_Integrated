@@ -82,7 +82,12 @@ export default function OutlinedInputAdornments(props) {
       {'\u00A0'}
       {'\u00A0'}
       {'\u00A0'}
-      <Upload FilePath={props.FilePath} setFileObj={props.setFileObj} />
+      <Upload
+        FilePath={props.FilePath}
+        setFileObj={props.setFileObj}
+        FileList={props.SelectedFile}
+        setFileList={props.setFileList}
+      />
     </div>
   );
 }

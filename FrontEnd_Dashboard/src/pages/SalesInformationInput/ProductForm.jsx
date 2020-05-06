@@ -98,9 +98,11 @@ class ProductForm extends Component {
       initializeStates,
 
       setFilePath,
+      setFileList,
       setRewardType,
       TextShrink,
       FilePath,
+      SelectedFile,
       RewardType,
     } = fstore;
 
@@ -148,6 +150,8 @@ class ProductForm extends Component {
             PoNumber={PoNumber}
             setFileObj={setFilePath}
             FilePath={FilePath}
+            setFileList={setFileList}
+            SelectedFile={SelectedFile}
             // params={fstore}
             title=""
             label="PO#"

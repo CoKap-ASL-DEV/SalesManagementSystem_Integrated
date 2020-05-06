@@ -48,6 +48,7 @@ export default class FormInputStore {
   @observable TextShrink = new Array(6).fill(false);
 
   @observable FilePath = null; //new Object();
+  @observable SelectedFile = null; //new Object();
 
   @action
   OnPoNumberChange = e => {
@@ -285,6 +286,10 @@ export default class FormInputStore {
     console.log('zzz');
     console.log(this.FilePath);
     console.log('zzz');
+  };
+
+  setFileList = fl => {
+    this.SelectedFile = fl;
   };
 
   setRewardType = type => {
