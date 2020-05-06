@@ -1,16 +1,33 @@
 import React from 'react';
-import { Table, Popconfirm } from 'antd';
-import { AiFillFilePdf } from 'react-icons/ai';
-import { FilePdfOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
 
 import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
-
-import DelBtn from './DeleteTableDataButton';
 import { Query } from 'react-apollo';
+import styled from 'styled-components';
 
 const colWidth = 200;
 
+const TableStyle = styled.table`
+   {
+    width: 100%;
+  }
+`;
+const Tr = styled.tr`
+   {
+    //border: 1px solid;
+  }
+`;
+const Td = styled.td`
+   {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: normal;
+    font-size: 15px;
+    max-width: 300px;
+    padding: 7px 24px;
+    line-height: 0.3;
+  }
+`;
 const columns = [
   {
     title: '순번',
@@ -344,7 +361,7 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = () => (
+const GetData = props => (
   <Query query={GET_TALBE_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -357,21 +374,149 @@ const GetData = () => (
           columns={columns}
           dataSource={dtFiltered}
           // scroll={{ x: 3600 }}
-          size="small"
+          //size="small"
           bordered
-          // expandedRowRender={record => <p>{record.PoNumber}</p>}
+          footer={() => {
+            let totalSellDlr = 0;
+            let totalSellWon = 0;
+            let totalBuyDlr = 0;
+            let totalBuyWon = 0;
 
-          //mountnode
+            let diffDlr = 0;
+            let diffWon = 0;
+            dtFiltered.forEach(
+              ({
+                TotalSellPrice_Dlr,
+                TotalSellPrice_Won,
+                TotalBuyPrice_Dlr,
+                TotalBuyPrice_Won,
+
+                Difference_Dlr,
+                Difference_Won,
+              }) => {
+                totalSellDlr += TotalSellPrice_Dlr;
+                totalSellWon += TotalSellPrice_Won;
+                totalBuyDlr += TotalBuyPrice_Dlr;
+                totalBuyWon += TotalBuyPrice_Won;
+
+                diffDlr = Difference_Dlr;
+                diffWon = Difference_Won;
+              },
+            );
+            props.setDiffTotal(diffWon);
+            return (
+              <>
+                <TableStyle>
+                  <Tr>
+                    <Td
+                      style={{
+                        fontSize: '22px',
+                        //border: 'solid 1px',
+                        width: '53px',
+
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '123px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        //fontSize: '18px',
+                        width: '125px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      누계
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {totalSellDlr}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {totalSellWon}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {totalBuyDlr}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {totalBuyWon}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {diffDlr}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {diffWon}
+                    </Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        //border: 'solid 1px',
+                        width: '142px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                  </Tr>
+                </TableStyle>
+              </>
+            );
+          }}
         />
       );
     }}
   </Query>
 );
 
-const FixedTable = () => {
+const FixedTable = props => {
   return (
     <div>
-      <GetData />
+      <GetData setDiffTotal={props.setDiffTotal} />
     </div>
   );
 };

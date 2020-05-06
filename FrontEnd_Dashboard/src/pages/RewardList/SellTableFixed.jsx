@@ -1,14 +1,31 @@
 import React from 'react';
-import { Table, Popconfirm } from 'antd';
-import { AiFillFilePdf } from 'react-icons/ai';
-import { FilePdfOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
 
 import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
-
-import DelBtn from './DeleteTableDataButton';
-
 import { Query } from 'react-apollo';
+import styled from 'styled-components';
+
+const TableStyle = styled.table`
+   {
+    width: 100%;
+  }
+`;
+const Tr = styled.tr`
+   {
+    //border: 1px solid;
+  }
+`;
+const Td = styled.td`
+   {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: normal;
+    font-size: 15px;
+    max-width: 300px;
+    padding: 7px 24px;
+    line-height: 0.3;
+  }
+`;
 
 const colWidth = 200;
 
@@ -22,25 +39,7 @@ const columns = [
 
     align: 'center',
   },
-  // {
-  //   title: 'operation',
-  //   dataIndex: 'operation',
-  //   fixed: 'left',
-  //   width: colWidth - 100,
-  //   align: 'center',
-  //   render: (text, record) => <DelBtn delId={record.SeqNum} />,
-  // },
 
-  // {
-  //   title: 'file',
-  //   dataIndex: 'file',
-  //   fixed: 'left',
-  //   width: colWidth - 100,
-  //   align: 'center',
-  //   render: (text, record) => (
-  //     <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
-  //   ),
-  // },
   {
     title: '구매 Order from BAUR',
 
@@ -117,132 +116,6 @@ const columns = [
       },
     ],
   },
-
-  // {
-  //   title: '주문수량',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: 'M-Ver.',
-  //       dataIndex: 'OrderNum_Mver',
-  //       key: 'OrderNum_Mver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'S-Ver.',
-  //       dataIndex: 'OrderNum_Sver',
-  //       key: 'OrderNum_Sver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'SA-Ver.',
-  //       dataIndex: 'OrderNum_SAver',
-  //       key: 'OrderNum_SAver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'M Package',
-  //       dataIndex: 'OrderNum_MPack',
-  //       key: 'OrderNum_MPack',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '총수량',
-  //       dataIndex: 'TotalNum',
-  //       key: 'TotalNum',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '총 판매가',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: 'US$',
-  //       dataIndex: 'TotalSellPrice_Dlr',
-  //       key: 'TotalSellPrice_Dlr',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '원화',
-  //       dataIndex: 'TotalSellPrice_Won',
-  //       key: 'TotalSellPrice_Won',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '기술료 납입',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'TechFare_KEPCO',
-  //       key: 'TechFare_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '목포해양대',
-  //       dataIndex: 'TechFare_Mokpo',
-  //       key: 'TechFare_Mokpo',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'TotalTechFare',
-  //       key: 'TotalTechFare',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '특허처분보상\n60%',
-  //   align: 'center',
-  //   width: colWidth,
-  //   dataIndex: 'PatentReward',
-  //   key: 'PatentReward',
-  // },
-  // {
-  //   title: '순수익',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '파워플러스',
-  //       dataIndex: 'NetIncome_PowerPlus',
-  //       key: 'NetIncome_PowerPlus',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'NetIncome_KEPCO',
-  //       key: 'NetIncome_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'Total_NetIncome',
-  //       key: 'Total_NetIncome',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
 ];
 
 const getDataSrc = data =>
@@ -258,16 +131,6 @@ const getDataSrc = data =>
       OrderNum_SAver,
       OrderNum_MPack,
 
-      // SellPrice_Mver,
-      // SellPrice_Sver,
-      // SellPrice_SAver,
-      // SellPrice_MPack,
-
-      // PurchaseRatio,
-      // TechRatio,
-      // KEPCORatio,
-      // MokpoRatio,
-      // RewardRatio,
       TotalNum,
       TotalSellPrice_Dlr,
       TotalSellPrice_Won,
@@ -276,24 +139,6 @@ const getDataSrc = data =>
       TotalTechFare,
       RewardType,
     }) => {
-      // const TotalNum =
-      //   OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
-      // const TotalSellPrice_Dlr =
-      //   SellPrice_Mver * OrderNum_Mver +
-      //   SellPrice_Sver * OrderNum_Sver +
-      //   SellPrice_SAver * OrderNum_SAver +
-      //   SellPrice_MPack * OrderNum_MPack;
-      // const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
-      // const TotalBuyPrice_Dlr = TotalSellPrice_Dlr * PurchaseRatio;
-      // const TotalBuyPrice_Won = TotalSellPrice_Won * PurchaseRatio;
-      // const TechFare_KEPCO = TotalBuyPrice_Won * TechRatio * KEPCORatio;
-      // const TechFare_Mokpo = TotalBuyPrice_Won * TechRatio * MokpoRatio;
-      // const TotalTechFare = TechFare_KEPCO * TechFare_Mokpo;
-      // const PatentReward = TechFare_KEPCO * RewardRatio;
-      // const NetIncome_PowerPlus = TotalBuyPrice_Won - TechFare_KEPCO;
-      // const NetIncome_KEPCO = TotalSellPrice_Won - TotalBuyPrice_Won;
-      // const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
-
       return {
         key: id,
         SeqNum: id,
@@ -310,19 +155,14 @@ const getDataSrc = data =>
         TotalSellPrice_Won: TotalSellPrice_Won,
         TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
         TotalBuyPrice_Won: TotalBuyPrice_Won,
-        // TechFare_KEPCO: TechFare_KEPCO,
-        // TechFare_Mokpo: TechFare_Mokpo,
+
         TotalTechFare: TotalTechFare,
         RewardType: RewardType,
-        // PatentReward: PatentReward,
-        // NetIncome_PowerPlus: NetIncome_PowerPlus,
-        // NetIncome_KEPCO: NetIncome_KEPCO,
-        // Total_NetIncome: Total_NetIncome,
       };
     },
   );
 
-const GetData = () => (
+const GetData = props => (
   <Query query={GET_TALBE_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -331,25 +171,103 @@ const GetData = () => (
 
       const dtFiltered = dtSrc.filter(dt => dt.RewardType === '처분');
       return (
-        <Table
-          columns={columns}
-          dataSource={dtFiltered}
-          // scroll={{ x: 3600 }}
-          size="small"
-          bordered
-          // expandedRowRender={record => <p>{record.PoNumber}</p>}
+        <>
+          <Table
+            columns={columns}
+            dataSource={dtFiltered}
+            // scroll={{ x: 3600 }}
+            //size="small"
+            //pagination={false}
+            bordered
+            footer={() => {
+              let totalBuyDlr = 0;
+              let totalBuyWon = 0;
+              let totalTech = 0;
+              dtFiltered.forEach(
+                ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
+                  totalBuyDlr += TotalBuyPrice_Dlr;
+                  totalBuyWon += TotalBuyPrice_Won;
+                  totalTech += TotalTechFare;
+                },
+              );
+              props.setTechTotal(totalTech);
+              return (
+                <>
+                  <TableStyle>
+                    <Tr>
+                      <Td
+                        style={{
+                          fontSize: '22px',
+                          //border: 'solid 1px',
+                          width: '80px',
+                          textAlign: 'center',
+                        }}
+                      ></Td>
+                      <Td
+                        style={{
+                          //border: 'solid 1px',
+                          width: '185px',
+                          textAlign: 'center',
+                        }}
+                      ></Td>
+                      <Td
+                        style={{
+                          //border: 'solid 1px',
+                          //fontSize: '18px',
+                          width: '184px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        누계
+                      </Td>
+                      <Td
+                        style={{
+                          //border: 'solid 1px',
+                          width: '245px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {totalBuyDlr}
+                      </Td>
+                      <Td
+                        style={{
+                          //border: 'solid 1px',
+                          width: '245px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {totalBuyWon}
+                      </Td>
+                      <Td
+                        style={{
+                          //border: 'solid 1px',
+                          width: '188px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {totalTech}
+                      </Td>
+                      <Td></Td>
+                      <Td></Td>
+                    </Tr>
+                  </TableStyle>
+                </>
+              );
+            }}
+            // expandedRowRender={record => <p>{record.PoNumber}</p>}
 
-          //mountnode
-        />
+            //mountnode
+          />
+        </>
       );
     }}
   </Query>
 );
 
-const FixedTable = () => {
+const FixedTable = props => {
   return (
     <div>
-      <GetData />
+      <GetData setTechTotal={props.setTechTotal} />
     </div>
   );
 };
