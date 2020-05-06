@@ -1,8 +1,8 @@
 import React from 'react';
-import { Table, Popconfirm } from 'antd';
-import { AiFillFilePdf } from 'react-icons/ai';
-import { FilePdfOutlined } from '@ant-design/icons';
+import { Table } from 'antd';
 
+import { FilePdfOutlined } from '@ant-design/icons';
+import numberwithCommas from '../../utils/numberWithCommas';
 import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
 
@@ -92,27 +92,6 @@ const columns = [
     // fixed: 'left',
     align: 'center',
   },
-  // {
-  //   title: '적용환율',
-  //   align: 'center',
-
-  //   children: [
-  //     {
-  //       title: '기준일',
-  //       dataIndex: 'WDRDate',
-  //       key: 'WDRDate',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '매매기준율',
-  //       dataIndex: 'WonDollarRatio',
-  //       key: 'WonDollarRatio',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
 
   {
     title: '구매수량',
@@ -156,26 +135,6 @@ const columns = [
     ],
   },
 
-  // {
-  //   title: '총 판매가',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: 'US$',
-  //       dataIndex: 'TotalSellPrice_Dlr',
-  //       key: 'TotalSellPrice_Dlr',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '원화',
-  //       dataIndex: 'TotalSellPrice_Won',
-  //       key: 'TotalSellPrice_Won',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
   {
     title: '총 구매가',
     align: 'center',
@@ -196,69 +155,6 @@ const columns = [
       },
     ],
   },
-
-  // {
-  //   title: '기술료 납입',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'TechFare_KEPCO',
-  //       key: 'TechFare_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '목포해양대',
-  //       dataIndex: 'TechFare_Mokpo',
-  //       key: 'TechFare_Mokpo',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'TotalTechFare',
-  //       key: 'TotalTechFare',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '특허처분보상\n60%',
-  //   align: 'center',
-  //   width: colWidth,
-  //   dataIndex: 'PatentReward',
-  //   key: 'PatentReward',
-  // },
-  // {
-  //   title: '순수익',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '파워플러스',
-  //       dataIndex: 'NetIncome_PowerPlus',
-  //       key: 'NetIncome_PowerPlus',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'NetIncome_KEPCO',
-  //       key: 'NetIncome_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'Total_NetIncome',
-  //       key: 'Total_NetIncome',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
 ];
 
 const getDataSrc = data =>
@@ -276,56 +172,11 @@ const getDataSrc = data =>
       OrderNum_SAver,
       OrderNum_MPack,
 
-      SellPrice_Mver,
-      SellPrice_Sver,
-      SellPrice_SAver,
-      SellPrice_MPack,
-
-      PurchaseRatio,
-      ExecPurchaseRatio,
-      // TechRatio,
-      // KEPCORatio,
-      // MokpoRatio,
-      // RewardRatio,
       TotalNum,
-      TotalSellPrice_Dlr,
-      TotalSellPrice_Won,
+
       TotalBuyPrice_Dlr,
       TotalBuyPrice_Won,
     }) => {
-      // const TotalNum =
-      //   OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
-      // const TotalSellPrice_Dlr =
-      //   SellPrice_Mver * OrderNum_Mver +
-      //   SellPrice_Sver * OrderNum_Sver +
-      //   SellPrice_SAver * OrderNum_SAver +
-      //   SellPrice_MPack * OrderNum_MPack;
-
-      // const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
-      // const TotalBuyPrice_Dlr =
-      //   RewardType === '처분'
-      //     ? TotalSellPrice_Dlr * PurchaseRatio * 0.01
-      //     : TotalSellPrice_Dlr *
-      //       ExecPurchaseRatio *
-      //       PurchaseRatio *
-      //       0.01 *
-      //       0.01;
-      // const TotalBuyPrice_Won =
-      //   RewardType === '처분'
-      //     ? TotalSellPrice_Won * PurchaseRatio * 0.01
-      //     : TotalSellPrice_Won *
-      //       ExecPurchaseRatio *
-      //       PurchaseRatio *
-      //       0.01 *
-      //       0.01;
-      // const TechFare_KEPCO = TotalBuyPrice_Won * TechRatio * KEPCORatio;
-      // const TechFare_Mokpo = TotalBuyPrice_Won * TechRatio * MokpoRatio;
-      // const TotalTechFare = TechFare_KEPCO * TechFare_Mokpo;
-      // const PatentReward = TechFare_KEPCO * RewardRatio;
-      // const NetIncome_PowerPlus = TotalBuyPrice_Won - TechFare_KEPCO;
-      // const NetIncome_KEPCO = TotalSellPrice_Won - TotalBuyPrice_Won;
-      // const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
-
       return {
         key: id,
         SeqNum: id,
@@ -340,17 +191,9 @@ const getDataSrc = data =>
         OrderNum_SAver: OrderNum_SAver,
         OrderNum_MPack: OrderNum_MPack,
         TotalNum: TotalNum,
-        // TotalSellPrice_Dlr: TotalSellPrice_Dlr,
-        // TotalSellPrice_Won: TotalSellPrice_Won,
-        TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
-        TotalBuyPrice_Won: TotalBuyPrice_Won,
-        // TechFare_KEPCO: TechFare_KEPCO,
-        // TechFare_Mokpo: TechFare_Mokpo,
-        // TotalTechFare: TotalTechFare,
-        // PatentReward: PatentReward,
-        // NetIncome_PowerPlus: NetIncome_PowerPlus,
-        // NetIncome_KEPCO: NetIncome_KEPCO,
-        // Total_NetIncome: Total_NetIncome,
+
+        TotalBuyPrice_Dlr: numberwithCommas(TotalBuyPrice_Dlr),
+        TotalBuyPrice_Won: numberwithCommas(TotalBuyPrice_Won),
       };
     },
   );
@@ -372,8 +215,6 @@ const GetData = () => (
           size="small"
           bordered
           // expandedRowRender={record => <p>{record.PoNumber}</p>}
-
-          //mountnode
         />
       );
     }}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Descriptions, Badge } from 'antd';
+
 import 'antd/dist/antd.css';
-import { rgbToHex } from '@material-ui/core';
+
 import styled from 'styled-components';
-import { observer, inject } from 'mobx-react';
+import { inject } from 'mobx-react';
+import numberwithCommas from '../../utils/numberWithCommas';
 
 const TableStyle = styled.table`
    {
@@ -67,7 +68,7 @@ class ExecDescription extends Component {
             </Tr>
             <Tr>
               <Td style={{ width: '400px' }}>산출보상금</Td>
-              <Td>{totalReward}</Td>
+              <Td>{numberwithCommas(totalReward)}</Td>
             </Tr>
           </tbody>
         </TableStyle>
@@ -90,10 +91,10 @@ class ExecDescription extends Component {
             </Tr>
             <Tr>
               <Td style={{ width: '400px' }}>보상금(KW)</Td>
-              <Td>{KSMReward}</Td>
-              <Td>{KDSReward}</Td>
-              <Td>{JSSReward}</Td>
-              <Td>{KBSReward}</Td>
+              <Td>{numberwithCommas(KSMReward)}</Td>
+              <Td>{numberwithCommas(KDSReward)}</Td>
+              <Td>{numberwithCommas(JSSReward)}</Td>
+              <Td>{numberwithCommas(KBSReward)}</Td>
             </Tr>
           </tbody>
         </TableStyle>

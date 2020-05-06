@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-
+import numberwithCommas from '../utils/numberWithCommas';
 export default class FormInputStore {
   @observable IssueDate = null;
   @observable PoNumber = null;

@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import 'antd/dist/antd.css';
 
 import styled from 'styled-components';
-
+import numberwithCommas from '../../utils/numberWithCommas';
 const TableStyle = styled.table`
    {
     border: 1px solid;
@@ -66,13 +66,31 @@ class SellDescription extends Component {
       KBSRatio,
     };
 
-    const kepcoTechFare = this.props.techTotal * KEPCORatio * 0.01;
-    const mokpoTechFare = this.props.techTotal * MokpoRatio * 0.01;
-    const SellRewardTotal = kepcoTechFare * RewardRatio * 0.01;
-    const KSMSellReward = SellRewardTotal * KSMRatio * 0.01;
-    const KDSSellReward = SellRewardTotal * KDSRatio * 0.01;
-    const JSSSellReward = SellRewardTotal * JSSRatio * 0.01;
-    const KBSSellReward = SellRewardTotal * KBSRatio * 0.01;
+    const kepcoTechFare = numberwithCommas(
+      this.props.techTotal * KEPCORatio * 0.01,
+    );
+    const kepcoTechFareFlt = parseFloat(kepcoTechFare.replace(/\,/gi, ''));
+
+    const mokpoTechFare = numberwithCommas(
+      this.props.techTotal * MokpoRatio * 0.01,
+    );
+    const SellRewardTotal = numberwithCommas(
+      kepcoTechFareFlt * RewardRatio * 0.01,
+    );
+
+    const SellRewardTotalFlt = parseFloat(SellRewardTotal.replace(/\,/gi, ''));
+    const KSMSellReward = numberwithCommas(
+      SellRewardTotalFlt * KSMRatio * 0.01,
+    );
+    const KDSSellReward = numberwithCommas(
+      SellRewardTotalFlt * KDSRatio * 0.01,
+    );
+    const JSSSellReward = numberwithCommas(
+      SellRewardTotalFlt * JSSRatio * 0.01,
+    );
+    const KBSSellReward = numberwithCommas(
+      SellRewardTotalFlt * KBSRatio * 0.01,
+    );
 
     return (
       <div>
@@ -99,8 +117,8 @@ class SellDescription extends Component {
             </Tr>
             <Tr>
               <Td style={{ width: '400px' }}>지분율</Td>
-              <Td>{KEPCORatio}</Td>
-              <Td>{MokpoRatio}</Td>
+              <Td>{KEPCORatio}%</Td>
+              <Td>{MokpoRatio}%</Td>
             </Tr>
             <Tr>
               <Td style={{ width: '400px' }}>분할금(KW)</Td>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Descriptions, Badge } from 'antd';
+import { Badge } from 'antd';
 import 'antd/dist/antd.css';
-import { rgbToHex } from '@material-ui/core';
-import styled from 'styled-components';
-import { observer, inject } from 'mobx-react';
 
+import styled from 'styled-components';
+import { inject } from 'mobx-react';
+import numberwithCommas from '../../utils/numberWithCommas';
 const TableStyle = styled.table`
    {
     border: 1px solid;
@@ -157,17 +157,25 @@ class PatentDescription extends Component {
               </Tr>
               <Tr>
                 <Td>판매단가(USD)</Td>
-                <Td>{SellPrice_Mver}</Td>
-                <Td>{SellPrice_Sver}</Td>
-                <Td>{SellPrice_SAver}</Td>
-                <Td>{SellPrice_MPack}</Td>
+                <Td>{numberwithCommas(SellPrice_Mver)}</Td>
+                <Td>{numberwithCommas(SellPrice_Sver)}</Td>
+                <Td>{numberwithCommas(SellPrice_SAver)}</Td>
+                <Td>{numberwithCommas(SellPrice_MPack)}</Td>
               </Tr>
               <Tr>
                 <Td>구매단가(USD)</Td>
-                <Td>{SellPrice_Mver * PurchaseRatio * 0.01}</Td>
-                <Td>{SellPrice_Sver * PurchaseRatio * 0.01}</Td>
-                <Td>{SellPrice_SAver * PurchaseRatio * 0.01}</Td>
-                <Td>{SellPrice_MPack * PurchaseRatio * 0.01}</Td>
+                <Td>
+                  {numberwithCommas(SellPrice_Mver * PurchaseRatio * 0.01)}
+                </Td>
+                <Td>
+                  {numberwithCommas(SellPrice_Sver * PurchaseRatio * 0.01)}
+                </Td>
+                <Td>
+                  {numberwithCommas(SellPrice_SAver * PurchaseRatio * 0.01)}
+                </Td>
+                <Td>
+                  {numberwithCommas(SellPrice_MPack * PurchaseRatio * 0.01)}
+                </Td>
               </Tr>
             </tbody>
           </TableStyle>

@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-
+import numberwithCommas from '../../utils/numberWithCommas';
 const TableStyle = styled.table`
    {
     width: 100%;
@@ -145,18 +145,18 @@ const getDataSrc = data =>
         PoNumber: PoNumber,
         IssueDate: IssueDate,
         WDRDate: WDRDate,
-        WonDollarRatio: WonDollarRatio,
+        WonDollarRatio: numberwithCommas(WonDollarRatio),
         OrderNum_Mver: OrderNum_Mver,
         OrderNum_Sver: OrderNum_Sver,
         OrderNum_SAver: OrderNum_SAver,
         OrderNum_MPack: OrderNum_MPack,
         TotalNum: TotalNum,
-        TotalSellPrice_Dlr: TotalSellPrice_Dlr,
-        TotalSellPrice_Won: TotalSellPrice_Won,
-        TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
-        TotalBuyPrice_Won: TotalBuyPrice_Won,
+        TotalSellPrice_Dlr: numberwithCommas(TotalSellPrice_Dlr),
+        TotalSellPrice_Won: numberwithCommas(TotalSellPrice_Won),
+        TotalBuyPrice_Dlr: numberwithCommas(TotalBuyPrice_Dlr),
+        TotalBuyPrice_Won: numberwithCommas(TotalBuyPrice_Won),
 
-        TotalTechFare: TotalTechFare,
+        TotalTechFare: numberwithCommas(TotalTechFare),
         RewardType: RewardType,
       };
     },
@@ -185,9 +185,13 @@ const GetData = props => (
               let totalTech = 0;
               dtFiltered.forEach(
                 ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
-                  totalBuyDlr += TotalBuyPrice_Dlr;
-                  totalBuyWon += TotalBuyPrice_Won;
-                  totalTech += TotalTechFare;
+                  totalBuyDlr += parseFloat(
+                    TotalBuyPrice_Dlr.replace(/\,/gi, ''),
+                  );
+                  totalBuyWon += parseFloat(
+                    TotalBuyPrice_Won.replace(/\,/gi, ''),
+                  );
+                  totalTech += parseFloat(TotalTechFare.replace(/\,/gi, ''));
                 },
               );
               props.setTechTotal(totalTech);
@@ -227,7 +231,7 @@ const GetData = props => (
                           textAlign: 'center',
                         }}
                       >
-                        {totalBuyDlr}
+                        {numberwithCommas(totalBuyDlr)}
                       </Td>
                       <Td
                         style={{
@@ -236,7 +240,7 @@ const GetData = props => (
                           textAlign: 'center',
                         }}
                       >
-                        {totalBuyWon}
+                        {numberwithCommas(totalBuyWon)}
                       </Td>
                       <Td
                         style={{
@@ -245,7 +249,7 @@ const GetData = props => (
                           textAlign: 'center',
                         }}
                       >
-                        {totalTech}
+                        {numberwithCommas(totalTech)}
                       </Td>
                       <Td></Td>
                       <Td></Td>

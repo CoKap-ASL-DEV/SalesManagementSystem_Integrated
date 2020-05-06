@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import numberwithCommas from '../../utils/numberWithCommas';
 
 const colWidth = 200;
 
@@ -38,25 +39,7 @@ const columns = [
 
     align: 'center',
   },
-  // {
-  //   title: 'operation',
-  //   dataIndex: 'operation',
-  //   fixed: 'left',
-  //   width: colWidth - 100,
-  //   align: 'center',
-  //   render: (text, record) => <DelBtn delId={record.SeqNum} />,
-  // },
 
-  // {
-  //   title: 'file',
-  //   dataIndex: 'file',
-  //   fixed: 'left',
-  //   width: colWidth - 100,
-  //   align: 'center',
-  //   render: (text, record) => (
-  //     <FilePdfOutlined style={{ fontSize: '20px', color: '#08c' }} />
-  //   ),
-  // },
   {
     title: '구매 Order from BAUR',
 
@@ -173,111 +156,6 @@ const columns = [
       },
     ],
   },
-
-  // {
-  //   title: '주문수량',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: 'M-Ver.',
-  //       dataIndex: 'OrderNum_Mver',
-  //       key: 'OrderNum_Mver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'S-Ver.',
-  //       dataIndex: 'OrderNum_Sver',
-  //       key: 'OrderNum_Sver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'SA-Ver.',
-  //       dataIndex: 'OrderNum_SAver',
-  //       key: 'OrderNum_SAver',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: 'M Package',
-  //       dataIndex: 'OrderNum_MPack',
-  //       key: 'OrderNum_MPack',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '총수량',
-  //       dataIndex: 'TotalNum',
-  //       key: 'TotalNum',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '기술료 납입',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'TechFare_KEPCO',
-  //       key: 'TechFare_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '목포해양대',
-  //       dataIndex: 'TechFare_Mokpo',
-  //       key: 'TechFare_Mokpo',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'TotalTechFare',
-  //       key: 'TotalTechFare',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
-
-  // {
-  //   title: '특허처분보상\n60%',
-  //   align: 'center',
-  //   width: colWidth,
-  //   dataIndex: 'PatentReward',
-  //   key: 'PatentReward',
-  // },
-  // {
-  //   title: '순수익',
-  //   align: 'center',
-  //   children: [
-  //     {
-  //       title: '파워플러스',
-  //       dataIndex: 'NetIncome_PowerPlus',
-  //       key: 'NetIncome_PowerPlus',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '한전',
-  //       dataIndex: 'NetIncome_KEPCO',
-  //       key: 'NetIncome_KEPCO',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //     {
-  //       title: '소계',
-  //       dataIndex: 'Total_NetIncome',
-  //       key: 'Total_NetIncome',
-  //       width: colWidth,
-  //       align: 'center',
-  //     },
-  //   ],
-  // },
 ];
 
 const getDataSrc = data =>
@@ -293,16 +171,6 @@ const getDataSrc = data =>
       OrderNum_SAver,
       OrderNum_MPack,
 
-      // SellPrice_Mver,
-      // SellPrice_Sver,
-      // SellPrice_SAver,
-      // SellPrice_MPack,
-
-      // PurchaseRatio,
-      // TechRatio,
-      // KEPCORatio,
-      // MokpoRatio,
-      // RewardRatio,
       TotalNum,
       TotalSellPrice_Dlr,
       TotalSellPrice_Won,
@@ -313,24 +181,6 @@ const getDataSrc = data =>
       Difference_Won,
       RewardType,
     }) => {
-      // const TotalNum =
-      //   OrderNum_Mver + OrderNum_Sver + OrderNum_SAver + OrderNum_MPack;
-      // const TotalSellPrice_Dlr =
-      //   SellPrice_Mver * OrderNum_Mver +
-      //   SellPrice_Sver * OrderNum_Sver +
-      //   SellPrice_SAver * OrderNum_SAver +
-      //   SellPrice_MPack * OrderNum_MPack;
-      // const TotalSellPrice_Won = TotalSellPrice_Dlr * WonDollarRatio;
-      // const TotalBuyPrice_Dlr = TotalSellPrice_Dlr * PurchaseRatio;
-      // const TotalBuyPrice_Won = TotalSellPrice_Won * PurchaseRatio;
-      // const TechFare_KEPCO = TotalBuyPrice_Won * TechRatio * KEPCORatio;
-      // const TechFare_Mokpo = TotalBuyPrice_Won * TechRatio * MokpoRatio;
-      // const TotalTechFare = TechFare_KEPCO * TechFare_Mokpo;
-      // const PatentReward = TechFare_KEPCO * RewardRatio;
-      // const NetIncome_PowerPlus = TotalBuyPrice_Won - TechFare_KEPCO;
-      // const NetIncome_KEPCO = TotalSellPrice_Won - TotalBuyPrice_Won;
-      // const Total_NetIncome = NetIncome_PowerPlus + NetIncome_KEPCO;
-
       return {
         key: id,
         SeqNum: id,
@@ -343,20 +193,15 @@ const getDataSrc = data =>
         OrderNum_SAver: OrderNum_SAver,
         OrderNum_MPack: OrderNum_MPack,
         TotalNum: TotalNum,
-        TotalSellPrice_Dlr: TotalSellPrice_Dlr,
-        TotalSellPrice_Won: TotalSellPrice_Won,
-        TotalBuyPrice_Dlr: TotalBuyPrice_Dlr,
-        TotalBuyPrice_Won: TotalBuyPrice_Won,
-        Difference_Dlr: Difference_Dlr,
-        Difference_Won: Difference_Won,
-        // TechFare_KEPCO: TechFare_KEPCO,
-        // TechFare_Mokpo: TechFare_Mokpo,
-        TotalTechFare: TotalTechFare,
+        TotalSellPrice_Dlr: numberwithCommas(TotalSellPrice_Dlr),
+        TotalSellPrice_Won: numberwithCommas(TotalSellPrice_Won),
+        TotalBuyPrice_Dlr: numberwithCommas(TotalBuyPrice_Dlr),
+        TotalBuyPrice_Won: numberwithCommas(TotalBuyPrice_Won),
+        Difference_Dlr: numberwithCommas(Difference_Dlr),
+        Difference_Won: numberwithCommas(Difference_Won),
+
+        TotalTechFare: numberwithCommas(TotalTechFare),
         RewardType: RewardType,
-        // PatentReward: PatentReward,
-        // NetIncome_PowerPlus: NetIncome_PowerPlus,
-        // NetIncome_KEPCO: NetIncome_KEPCO,
-        // Total_NetIncome: Total_NetIncome,
       };
     },
   );
@@ -369,6 +214,7 @@ const GetData = props => (
       const dtSrc = getDataSrc(data);
 
       const dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
+
       return (
         <Table
           columns={columns}
@@ -394,13 +240,21 @@ const GetData = props => (
                 Difference_Dlr,
                 Difference_Won,
               }) => {
-                totalSellDlr += TotalSellPrice_Dlr;
-                totalSellWon += TotalSellPrice_Won;
-                totalBuyDlr += TotalBuyPrice_Dlr;
-                totalBuyWon += TotalBuyPrice_Won;
+                totalSellDlr += parseFloat(
+                  TotalSellPrice_Dlr.replace(/\,/gi, ''),
+                );
+                totalSellWon += parseFloat(
+                  TotalSellPrice_Won.replace(/\,/gi, ''),
+                );
+                totalBuyDlr += parseFloat(
+                  TotalBuyPrice_Dlr.replace(/\,/gi, ''),
+                );
+                totalBuyWon += parseFloat(
+                  TotalBuyPrice_Won.replace(/\,/gi, ''),
+                );
 
-                diffDlr = Difference_Dlr;
-                diffWon = Difference_Won;
+                diffDlr = parseFloat(Difference_Dlr.replace(/\,/gi, ''));
+                diffWon = parseFloat(Difference_Won.replace(/\,/gi, ''));
               },
             );
             props.setDiffTotal(diffWon);
@@ -441,7 +295,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {totalSellDlr}
+                      {numberwithCommas(totalSellDlr)}
                     </Td>
                     <Td
                       style={{
@@ -450,7 +304,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {totalSellWon}
+                      {numberwithCommas(parseFloat(totalSellWon))}
                     </Td>
                     <Td
                       style={{
@@ -459,7 +313,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {totalBuyDlr}
+                      {numberwithCommas(parseFloat(totalBuyDlr))}
                     </Td>
                     <Td
                       style={{
@@ -468,7 +322,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {totalBuyWon}
+                      {numberwithCommas(parseFloat(totalBuyWon))}
                     </Td>
                     <Td
                       style={{
@@ -477,7 +331,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {diffDlr}
+                      {numberwithCommas(parseFloat(diffDlr))}
                     </Td>
                     <Td
                       style={{
@@ -486,7 +340,7 @@ const GetData = props => (
                         textAlign: 'center',
                       }}
                     >
-                      {diffWon}
+                      {numberwithCommas(parseFloat(diffWon))}
                     </Td>
                     <Td
                       style={{
