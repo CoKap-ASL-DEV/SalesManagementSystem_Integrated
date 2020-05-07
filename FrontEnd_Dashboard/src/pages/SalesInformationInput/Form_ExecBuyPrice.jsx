@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
+import numberWithCommas from '../../utils/numberWithCommas';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,11 +43,15 @@ export default function OutlinedInputAdornments(props) {
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
         id="Form_ExecBuyPrice_Mver"
-        type="number"
+        type="text"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="M-ver."
-        value={props.ExecBuyPrice_Mver ? props.ExecBuyPrice_Mver : ''}
+        value={
+          props.ExecBuyPrice_Mver
+            ? numberWithCommas(props.ExecBuyPrice_Mver)
+            : ''
+        }
         onChange={props.Mverhandler}
         InputProps={{
           className: classes.textField,
@@ -67,11 +72,15 @@ export default function OutlinedInputAdornments(props) {
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
         id="Form_ExecBuyPrice_Sver"
-        type="number"
+        type="text"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="S-ver"
-        value={props.ExecBuyPrice_Sver ? props.ExecBuyPrice_Sver : ''}
+        value={
+          props.ExecBuyPrice_Sver
+            ? numberWithCommas(props.ExecBuyPrice_Sver)
+            : ''
+        }
         onChange={props.Sverhandler}
         InputProps={{
           className: classes.textField,
@@ -92,11 +101,15 @@ export default function OutlinedInputAdornments(props) {
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
         id="Form_ExecBuyPrice_SAver"
-        type="number"
+        type="text"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="SA-ver"
-        value={props.ExecBuyPrice_SAver ? props.ExecBuyPrice_SAver : ''}
+        value={
+          props.ExecBuyPrice_SAver
+            ? numberWithCommas(props.ExecBuyPrice_SAver)
+            : ''
+        }
         onChange={props.SAverhandler}
         InputProps={{
           className: classes.textField,
@@ -117,11 +130,15 @@ export default function OutlinedInputAdornments(props) {
         InputLabelProps={{ shrink: true }}
         //InputLabelProps={{ shrink: props.shrink }}
         id="Form_ExecBuyPrice_MPack"
-        type="number"
+        type="text"
         className={clsx(classes.margin, classes.textField)}
         variant="outlined"
         label="M-pack"
-        value={props.ExecBuyPrice_MPack ? props.ExecBuyPrice_MPack : ''}
+        value={
+          props.ExecBuyPrice_MPack
+            ? numberWithCommas(props.ExecBuyPrice_MPack)
+            : ''
+        }
         onChange={props.MPackhandler}
         InputProps={{
           className: classes.textField,
