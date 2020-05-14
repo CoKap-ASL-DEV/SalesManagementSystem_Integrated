@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Upload, Button } from 'antd';
-import { Mutation } from '@apollo/react-components';
+// import { Mutation } from '@apollo/react-components';
 import { UploadOutlined } from '@ant-design/icons';
 
 //action: 'http://localhost:2000/graphql',

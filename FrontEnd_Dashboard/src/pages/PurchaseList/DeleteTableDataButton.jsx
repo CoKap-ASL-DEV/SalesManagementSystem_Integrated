@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Mutation } from '@apollo/react-components';
+// import { Mutation } from '@apollo/react-components';
+import { useMutation } from '@apollo/react-hooks';
 
 import DELETE_TABLE_QUERY from '../../services/delete_table';
 import { Popconfirm } from 'antd';
@@ -21,32 +22,29 @@ export default function DelButton(props) {
 
   const { delId } = props;
 
+  const [deleteFormData, { data }] = useMutation(DELETE_TABLE_QUERY, {
+    refetchQueries: [{ query: GET_TABLE }],
+  });
+
   return (
-    <Mutation
-      mutation={DELETE_TABLE_QUERY}
-      refetchQueries={[{ query: GET_TABLE }]}
+    <Popconfirm
+      title="Sure to delete?"
+      onConfirm={() => {
+        deleteFormData({
+          variables: {
+            id: parseInt(delId),
+          },
+        });
+      }}
     >
-      {(deleteFormData, { data }) => (
-        <Popconfirm
-          title="Sure to delete?"
-          onConfirm={() => {
-            deleteFormData({
-              variables: {
-                id: parseInt(delId),
-              },
-            });
-          }}
-        >
-          <Button
-            variant="outlined"
-            size="small"
-            color="primary"
-            className={classes.margin}
-          >
-            Del
-          </Button>
-        </Popconfirm>
-      )}
-    </Mutation>
+      <Button
+        variant="outlined"
+        size="small"
+        color="primary"
+        className={classes.margin}
+      >
+        Del
+      </Button>
+    </Popconfirm>
   );
 }

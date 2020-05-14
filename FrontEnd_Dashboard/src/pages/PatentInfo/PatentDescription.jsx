@@ -47,41 +47,41 @@ class PatentDescription extends Component {
       SellPrice_MPack,
 
       PurchaseRatio,
-      ExecPurchaseRatio,
+      // ExecPurchaseRatio,
 
       KEPCORatio,
       MokpoRatio,
-      RewardRatio,
+      // RewardRatio,
       KSMRatio,
       KDSRatio,
       JSSRatio,
       KBSRatio,
 
-      FilePath,
+      // FilePath,
 
-      RewardType,
+      // RewardType,
     } = fstore;
 
-    const inputDataStates = {
-      SellPrice_Mver,
-      SellPrice_Sver,
-      SellPrice_SAver,
-      SellPrice_MPack,
+    // const inputDataStates = {
+    //   SellPrice_Mver,
+    //   SellPrice_Sver,
+    //   SellPrice_SAver,
+    //   SellPrice_MPack,
 
-      PurchaseRatio,
-      ExecPurchaseRatio,
+    //   PurchaseRatio,
+    //   ExecPurchaseRatio,
 
-      RewardRatio,
+    //   RewardRatio,
 
-      KEPCORatio,
-      MokpoRatio,
-      KSMRatio,
-      KDSRatio,
-      JSSRatio,
-      KBSRatio,
-      FilePath,
-      RewardType,
-    };
+    //   KEPCORatio,
+    //   MokpoRatio,
+    //   KSMRatio,
+    //   KDSRatio,
+    //   JSSRatio,
+    //   KBSRatio,
+    //   FilePath,
+    //   RewardType,
+    // };
     return (
       <div>
         <div>
