@@ -7,7 +7,8 @@ import 'antd/dist/antd.css';
 import GET_TALBE_QUERY from '../../services/get_table';
 
 import DelBtn from './DeleteTableDataButton';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
 const colWidth = 160;
 
@@ -198,28 +199,24 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = () => (
-  <Query query={GET_TALBE_QUERY}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-      const dtSrc = getDataSrc(data);
+const GetData = () => {
+  const { error, loading, data } = useQuery(GET_TALBE_QUERY);
 
-      console.log(data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  const dtSrc = getDataSrc(data);
 
-      return (
-        <Table
-          columns={columns}
-          dataSource={dtSrc}
-          // scroll={{ x: 3600 }}
-          size="small"
-          bordered
-          // expandedRowRender={record => <p>{record.PoNumber}</p>}
-        />
-      );
-    }}
-  </Query>
-);
+  return (
+    <Table
+      columns={columns}
+      dataSource={dtSrc}
+      // scroll={{ x: 3600 }}
+      size="small"
+      bordered
+      // expandedRowRender={record => <p>{record.PoNumber}</p>}
+    />
+  );
+};
 
 const FixedTable = () => {
   return (

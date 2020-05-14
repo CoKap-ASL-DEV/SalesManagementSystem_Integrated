@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, List } from 'semantic-ui-react';
 import { Badge } from 'antd';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { inject, observer } from 'mobx-react';
 import 'antd/dist/antd.css';
 
@@ -108,41 +109,35 @@ const HistItems = props => {
   );
 };
 
-@inject('fstore')
-@observer
-class GetData extends Component {
-  render() {
-    const { fstore } = this.props;
+// @inject('fstore')
+// @observer
+// class GetData extends Component {
+const GetData = inject('fstore')(
+  observer(({ fstore }) => {
     const { ParamtoStates } = fstore;
 
-    return (
-      <Query query={GET_TALBE_QUERY}>
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error :(</p>;
-          const dtSrc = getDataSrc(data);
-          return (
-            <div>
-              <h3 style={{ paddingBottom: '8px' }}>과거 입력데이터 목록</h3>
+    const { error, loading, data } = useQuery(GET_TALBE_QUERY);
 
-              <List divided verticalAlign="middle">
-                {dtSrc.map(item => {
-                  return (
-                    <HistItems
-                      key={item.id}
-                      item={item}
-                      setParam={ParamtoStates}
-                    />
-                  );
-                })}
-              </List>
-            </div>
-          );
-        }}
-      </Query>
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
+    const dtSrc = getDataSrc(data);
+
+    return (
+      <div>
+        <h3 style={{ paddingBottom: '8px' }}>과거 입력데이터 목록</h3>
+
+        <List divided verticalAlign="middle">
+          {dtSrc.map(item => {
+            return (
+              <HistItems key={item.id} item={item} setParam={ParamtoStates} />
+            );
+          })}
+        </List>
+      </div>
     );
-  }
-}
+  }),
+);
 
 const ListFloated = () => {
   return (

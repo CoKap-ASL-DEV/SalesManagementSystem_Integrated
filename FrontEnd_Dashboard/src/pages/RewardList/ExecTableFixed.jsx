@@ -1,11 +1,13 @@
 import React from 'react';
 import { Table } from 'antd';
 
-import 'antd/dist/antd.css';
-import GET_TALBE_QUERY from '../../services/get_table';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import 'antd/dist/antd.css';
+
 import numberwithCommas from '../../utils/numberWithCommas';
+import GET_TALBE_QUERY from '../../services/get_table';
 
 const colWidth = 200;
 
@@ -206,166 +208,156 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = props => (
-  <Query query={GET_TALBE_QUERY}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-      const dtSrc = getDataSrc(data);
+const GetData = props => {
+  const { error, loading, data } = useQuery(GET_TALBE_QUERY);
 
-      const dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  const dtSrc = getDataSrc(data);
 
-      return (
-        <Table
-          columns={columns}
-          dataSource={dtFiltered}
-          // scroll={{ x: 3600 }}
-          //size="small"
-          bordered
-          footer={() => {
-            let totalSellDlr = 0;
-            let totalSellWon = 0;
-            let totalBuyDlr = 0;
-            let totalBuyWon = 0;
+  const dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
 
-            let diffDlr = 0;
-            let diffWon = 0;
-            dtFiltered.forEach(
-              ({
-                TotalSellPrice_Dlr,
-                TotalSellPrice_Won,
-                TotalBuyPrice_Dlr,
-                TotalBuyPrice_Won,
+  return (
+    <Table
+      columns={columns}
+      dataSource={dtFiltered}
+      // scroll={{ x: 3600 }}
+      //size="small"
+      bordered
+      footer={() => {
+        let totalSellDlr = 0;
+        let totalSellWon = 0;
+        let totalBuyDlr = 0;
+        let totalBuyWon = 0;
 
-                Difference_Dlr,
-                Difference_Won,
-              }) => {
-                totalSellDlr += parseFloat(
-                  TotalSellPrice_Dlr.replace(/\,/gi, ''),
-                );
-                totalSellWon += parseFloat(
-                  TotalSellPrice_Won.replace(/\,/gi, ''),
-                );
-                totalBuyDlr += parseFloat(
-                  TotalBuyPrice_Dlr.replace(/\,/gi, ''),
-                );
-                totalBuyWon += parseFloat(
-                  TotalBuyPrice_Won.replace(/\,/gi, ''),
-                );
+        let diffDlr = 0;
+        let diffWon = 0;
+        dtFiltered.forEach(
+          ({
+            TotalSellPrice_Dlr,
+            TotalSellPrice_Won,
+            TotalBuyPrice_Dlr,
+            TotalBuyPrice_Won,
 
-                diffDlr = parseFloat(Difference_Dlr.replace(/\,/gi, ''));
-                diffWon = parseFloat(Difference_Won.replace(/\,/gi, ''));
-              },
-            );
-            props.setDiffTotal(diffWon);
-            return (
-              <>
-                <TableStyle>
-                  <Tr>
-                    <Td
-                      style={{
-                        fontSize: '22px',
-                        //border: 'solid 1px',
-                        width: '53px',
+            Difference_Dlr,
+            Difference_Won,
+          }) => {
+            totalSellDlr += parseFloat(TotalSellPrice_Dlr.replace(/\,/gi, ''));
+            totalSellWon += parseFloat(TotalSellPrice_Won.replace(/\,/gi, ''));
+            totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
+            totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
 
-                        textAlign: 'center',
-                      }}
-                    ></Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '123px',
-                        textAlign: 'center',
-                      }}
-                    ></Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        //fontSize: '18px',
-                        width: '125px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      누계
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(totalSellDlr)}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(parseFloat(totalSellWon))}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(parseFloat(totalBuyDlr))}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(parseFloat(totalBuyWon))}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(parseFloat(diffDlr))}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {numberwithCommas(parseFloat(diffWon))}
-                    </Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '160px',
-                        textAlign: 'center',
-                      }}
-                    ></Td>
-                    <Td
-                      style={{
-                        //border: 'solid 1px',
-                        width: '142px',
-                        textAlign: 'center',
-                      }}
-                    ></Td>
-                  </Tr>
-                </TableStyle>
-              </>
-            );
-          }}
-        />
-      );
-    }}
-  </Query>
-);
+            diffDlr = parseFloat(Difference_Dlr.replace(/\,/gi, ''));
+            diffWon = parseFloat(Difference_Won.replace(/\,/gi, ''));
+          },
+        );
+        props.setDiffTotal(diffWon);
+        return (
+          <>
+            <TableStyle>
+              <Tr>
+                <Td
+                  style={{
+                    fontSize: '22px',
+                    //border: 'solid 1px',
+                    width: '53px',
+
+                    textAlign: 'center',
+                  }}
+                ></Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '123px',
+                    textAlign: 'center',
+                  }}
+                ></Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    //fontSize: '18px',
+                    width: '125px',
+                    textAlign: 'center',
+                  }}
+                >
+                  누계
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(totalSellDlr)}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(parseFloat(totalSellWon))}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(parseFloat(totalBuyDlr))}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(parseFloat(totalBuyWon))}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(parseFloat(diffDlr))}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {numberwithCommas(parseFloat(diffWon))}
+                </Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '160px',
+                    textAlign: 'center',
+                  }}
+                ></Td>
+                <Td
+                  style={{
+                    //border: 'solid 1px',
+                    width: '142px',
+                    textAlign: 'center',
+                  }}
+                ></Td>
+              </Tr>
+            </TableStyle>
+          </>
+        );
+      }}
+    />
+  );
+};
 
 const FixedTable = props => {
   return (

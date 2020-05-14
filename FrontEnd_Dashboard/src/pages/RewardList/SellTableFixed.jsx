@@ -1,11 +1,14 @@
 import React from 'react';
 import { Table } from 'antd';
 
-import 'antd/dist/antd.css';
-import GET_TALBE_QUERY from '../../services/get_table';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import 'antd/dist/antd.css';
+
+import GET_TALBE_QUERY from '../../services/get_table';
 import numberwithCommas from '../../utils/numberWithCommas';
+
 const TableStyle = styled.table`
    {
     width: 100%;
@@ -162,111 +165,105 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = props => (
-  <Query query={GET_TALBE_QUERY}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
-      const dtSrc = getDataSrc(data);
+const GetData = props => {
+  const { error, loading, data } = useQuery(GET_TALBE_QUERY);
 
-      const dtFiltered = dtSrc.filter(dt => dt.RewardType === '처분');
-      return (
-        <>
-          <Table
-            columns={columns}
-            dataSource={dtFiltered}
-            // scroll={{ x: 3600 }}
-            //size="small"
-            //pagination={false}
-            bordered
-            footer={() => {
-              let totalBuyDlr = 0;
-              let totalBuyWon = 0;
-              let totalTech = 0;
-              dtFiltered.forEach(
-                ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
-                  totalBuyDlr += parseFloat(
-                    TotalBuyPrice_Dlr.replace(/\,/gi, ''),
-                  );
-                  totalBuyWon += parseFloat(
-                    TotalBuyPrice_Won.replace(/\,/gi, ''),
-                  );
-                  totalTech += parseFloat(TotalTechFare.replace(/\,/gi, ''));
-                },
-              );
-              props.setTechTotal(totalTech);
-              return (
-                <>
-                  <TableStyle>
-                    <Tr>
-                      <Td
-                        style={{
-                          fontSize: '22px',
-                          //border: 'solid 1px',
-                          width: '80px',
-                          textAlign: 'center',
-                        }}
-                      ></Td>
-                      <Td
-                        style={{
-                          //border: 'solid 1px',
-                          width: '185px',
-                          textAlign: 'center',
-                        }}
-                      ></Td>
-                      <Td
-                        style={{
-                          //border: 'solid 1px',
-                          //fontSize: '18px',
-                          width: '184px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        누계
-                      </Td>
-                      <Td
-                        style={{
-                          //border: 'solid 1px',
-                          width: '245px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        {numberwithCommas(totalBuyDlr)}
-                      </Td>
-                      <Td
-                        style={{
-                          //border: 'solid 1px',
-                          width: '245px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        {numberwithCommas(totalBuyWon)}
-                      </Td>
-                      <Td
-                        style={{
-                          //border: 'solid 1px',
-                          width: '188px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        {numberwithCommas(totalTech)}
-                      </Td>
-                      <Td></Td>
-                      <Td></Td>
-                    </Tr>
-                  </TableStyle>
-                </>
-              );
-            }}
-            // expandedRowRender={record => <p>{record.PoNumber}</p>}
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  const dtSrc = getDataSrc(data);
 
-            //mountnode
-          />
-        </>
-      );
-    }}
-  </Query>
-);
+  const dtFiltered = dtSrc.filter(dt => dt.RewardType === '처분');
+  return (
+    <>
+      <Table
+        columns={columns}
+        dataSource={dtFiltered}
+        // scroll={{ x: 3600 }}
+        //size="small"
+        //pagination={false}
+        bordered
+        footer={() => {
+          let totalBuyDlr = 0;
+          let totalBuyWon = 0;
+          let totalTech = 0;
+          dtFiltered.forEach(
+            ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
+              totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
+              totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
+              totalTech += parseFloat(TotalTechFare.replace(/\,/gi, ''));
+            },
+          );
+          props.setTechTotal(totalTech);
+          return (
+            <>
+              <TableStyle>
+                <Tr>
+                  <Td
+                    style={{
+                      fontSize: '22px',
+                      //border: 'solid 1px',
+                      width: '80px',
+                      textAlign: 'center',
+                    }}
+                  ></Td>
+                  <Td
+                    style={{
+                      //border: 'solid 1px',
+                      width: '185px',
+                      textAlign: 'center',
+                    }}
+                  ></Td>
+                  <Td
+                    style={{
+                      //border: 'solid 1px',
+                      //fontSize: '18px',
+                      width: '184px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    누계
+                  </Td>
+                  <Td
+                    style={{
+                      //border: 'solid 1px',
+                      width: '245px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {numberwithCommas(totalBuyDlr)}
+                  </Td>
+                  <Td
+                    style={{
+                      //border: 'solid 1px',
+                      width: '245px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {numberwithCommas(totalBuyWon)}
+                  </Td>
+                  <Td
+                    style={{
+                      //border: 'solid 1px',
+                      width: '188px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {numberwithCommas(totalTech)}
+                  </Td>
+                  <Td></Td>
+                  <Td></Td>
+                </Tr>
+              </TableStyle>
+            </>
+          );
+        }}
+        // expandedRowRender={record => <p>{record.PoNumber}</p>}
+
+        //mountnode
+      />
+    </>
+  );
+};
 
 const FixedTable = props => {
   return (
