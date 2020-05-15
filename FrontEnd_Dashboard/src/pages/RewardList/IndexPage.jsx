@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Tabs } from 'antd';
 
@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
 
 export default () => {
   const classes = useStyles();
-  const [diffTotal, setDiffTotal] = useState(0);
 
   return (
     <Page className="sales-information-list" title="보상 내역">
