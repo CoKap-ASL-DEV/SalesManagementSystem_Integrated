@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { observer, inject } from 'mobx-react';
+import styled from 'styled-components';
 
 import 'antd/dist/antd.css';
 
-import styled from 'styled-components';
-import { inject } from 'mobx-react';
 import numberwithCommas from '../../utils/numberWithCommas';
 
 const TableStyle = styled.table`
@@ -37,21 +37,22 @@ const Span = styled.span`
     line-height: 3;
   }
 `;
-@inject('fstore')
-class ExecDescription extends Component {
-  render() {
-    const { fstore } = this.props;
+export default inject(
+  'fstore',
+  'rewardTotal',
+)(
+  observer(({ fstore, rewardTotal }) => {
     const { RewardRatio, KSMRatio, KDSRatio, JSSRatio, KBSRatio } = fstore;
+    const { diffTotal } = rewardTotal;
+    // const inputDataStates = {
+    //   RewardRatio,
 
-    const inputDataStates = {
-      RewardRatio,
-
-      KSMRatio,
-      KDSRatio,
-      JSSRatio,
-      KBSRatio,
-    };
-    const totalReward = this.props.diffTotal * RewardRatio * 0.01;
+    //   KSMRatio,
+    //   KDSRatio,
+    //   JSSRatio,
+    //   KBSRatio,
+    // };
+    const totalReward = diffTotal * RewardRatio * 0.01;
     const KSMReward = totalReward * KSMRatio * 0.01;
     const KDSReward = totalReward * KDSRatio * 0.01;
     const JSSReward = totalReward * JSSRatio * 0.01;
@@ -100,7 +101,5 @@ class ExecDescription extends Component {
         </TableStyle>
       </div>
     );
-  }
-}
-
-export default ExecDescription;
+  }),
+);

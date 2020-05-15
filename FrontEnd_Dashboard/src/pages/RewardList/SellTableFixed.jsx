@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
+import { inject, observer } from 'mobx-react';
 
-// import { Query } from 'react-apollo';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
@@ -165,112 +165,112 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = props => {
-  const { error, loading, data } = useQuery(GET_TALBE_QUERY);
+export default inject('rewardTotal')(
+  observer(({ rewardTotal }) => {
+    const { setTechTotal } = rewardTotal;
+    const { error, loading, data } = useQuery(GET_TALBE_QUERY);
+    const [dtFiltered, setDtFiltered] = useState([]);
+    const [totalBuyDlr, setTotalBuyDlr] = useState(0);
+    const [totalBuyWon, setTotalBuyWon] = useState(0);
+    const [totalTech, setTotalTech] = useState(0);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-  const dtSrc = getDataSrc(data);
+    useEffect(() => {
+      if (data) {
+        const dtSrc = getDataSrc(data);
 
-  const dtFiltered = dtSrc.filter(dt => dt.RewardType === '처분');
-  return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={dtFiltered}
-        // scroll={{ x: 3600 }}
-        //size="small"
-        //pagination={false}
-        bordered
-        footer={() => {
-          let totalBuyDlr = 0;
-          let totalBuyWon = 0;
-          let totalTech = 0;
-          dtFiltered.forEach(
-            ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
-              totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
-              totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
-              totalTech += parseFloat(TotalTechFare.replace(/\,/gi, ''));
-            },
-          );
-          props.setTechTotal(totalTech);
-          return (
-            <>
-              <TableStyle>
-                <Tr>
-                  <Td
-                    style={{
-                      fontSize: '22px',
-                      //border: 'solid 1px',
-                      width: '80px',
-                      textAlign: 'center',
-                    }}
-                  ></Td>
-                  <Td
-                    style={{
-                      //border: 'solid 1px',
-                      width: '185px',
-                      textAlign: 'center',
-                    }}
-                  ></Td>
-                  <Td
-                    style={{
-                      //border: 'solid 1px',
-                      //fontSize: '18px',
-                      width: '184px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    누계
-                  </Td>
-                  <Td
-                    style={{
-                      //border: 'solid 1px',
-                      width: '245px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {numberwithCommas(totalBuyDlr)}
-                  </Td>
-                  <Td
-                    style={{
-                      //border: 'solid 1px',
-                      width: '245px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {numberwithCommas(totalBuyWon)}
-                  </Td>
-                  <Td
-                    style={{
-                      //border: 'solid 1px',
-                      width: '188px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {numberwithCommas(totalTech)}
-                  </Td>
-                  <Td></Td>
-                  <Td></Td>
-                </Tr>
-              </TableStyle>
-            </>
-          );
-        }}
-        // expandedRowRender={record => <p>{record.PoNumber}</p>}
+        const _dtFiltered = dtSrc.filter(dt => dt.RewardType === '처분');
 
-        //mountnode
-      />
-    </>
-  );
-};
+        let _totalBuyDlr = 0;
+        let _totalBuyWon = 0;
+        let _totalTech = 0;
 
-const FixedTable = props => {
-  return (
-    <div>
-      <GetData setTechTotal={props.setTechTotal} />
-    </div>
-  );
-};
+        _dtFiltered.forEach(
+          ({ TotalBuyPrice_Dlr, TotalBuyPrice_Won, TotalTechFare }) => {
+            _totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
+            _totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
+            _totalTech += parseFloat(TotalTechFare.replace(/\,/gi, ''));
+          },
+        );
 
-export default FixedTable;
+        setDtFiltered(_dtFiltered);
+        setTotalBuyDlr(_totalBuyDlr);
+        setTotalBuyWon(_totalBuyWon);
+        setTotalTech(_totalTech);
+
+        setTechTotal(_totalTech);
+      }
+    }, [data, setTechTotal]);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
+    return (
+      <>
+        <Table
+          columns={columns}
+          dataSource={dtFiltered}
+          bordered
+          footer={() => {
+            return (
+              <>
+                <TableStyle>
+                  <tbody>
+                    <Tr>
+                      <Td
+                        style={{
+                          fontSize: '22px',
+                          width: '80px',
+                          textAlign: 'center',
+                        }}
+                      ></Td>
+                      <Td
+                        style={{
+                          width: '185px',
+                          textAlign: 'center',
+                        }}
+                      ></Td>
+                      <Td
+                        style={{
+                          width: '184px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        누계
+                      </Td>
+                      <Td
+                        style={{
+                          width: '245px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {numberwithCommas(totalBuyDlr)}
+                      </Td>
+                      <Td
+                        style={{
+                          width: '245px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {numberwithCommas(totalBuyWon)}
+                      </Td>
+                      <Td
+                        style={{
+                          width: '188px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {numberwithCommas(totalTech)}
+                      </Td>
+                      <Td></Td>
+                      <Td></Td>
+                    </Tr>
+                  </tbody>
+                </TableStyle>
+              </>
+            );
+          }}
+        />
+      </>
+    );
+  }),
+);

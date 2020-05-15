@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { inject, observer } from 'mobx-react';
 import { Table } from 'antd';
-
-// import { Query } from 'react-apollo';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+
 import 'antd/dist/antd.css';
 
 import numberwithCommas from '../../utils/numberWithCommas';
@@ -18,7 +18,6 @@ const TableStyle = styled.table`
 `;
 const Tr = styled.tr`
    {
-    //border: 1px solid;
   }
 `;
 const Td = styled.td`
@@ -129,14 +128,7 @@ const columns = [
       },
     ],
   },
-  // {
-  //   title: '기술료',
-  //   width: colWidth - 50,
-  //   dataIndex: 'TotalTechFare',
-  //   key: 'TotalTechFare',
 
-  //   align: 'center',
-  // },
   {
     title: '적용환율',
     align: 'center',
@@ -208,163 +200,161 @@ const getDataSrc = data =>
     },
   );
 
-const GetData = props => {
-  const { error, loading, data } = useQuery(GET_TALBE_QUERY);
+export default inject('rewardTotal')(
+  observer(({ rewardTotal }) => {
+    const { error, loading, data } = useQuery(GET_TALBE_QUERY);
+    const { setDiffTotal } = rewardTotal;
+    const [dtFiltered, setDtFiltered] = useState([]);
+    const [totalSellDlr, setTotalSellDlr] = useState(0);
+    const [totalSellWon, setTotalSellWon] = useState(0);
+    const [totalBuyDlr, setTotalBuyDlr] = useState(0);
+    const [totalBuyWon, setTotalBuyWon] = useState(0);
+    const [diffDlr, setDiffDlr] = useState(0);
+    const [diffWon, setDiffWon] = useState(0);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-  const dtSrc = getDataSrc(data);
+    useEffect(() => {
+      const dtSrc = getDataSrc(data);
+      const _dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
 
-  const dtFiltered = dtSrc.filter(dt => dt.RewardType === '실시');
+      let _totalSellDlr = 0;
+      let _totalSellWon = 0;
+      let _totalBuyDlr = 0;
+      let _totalBuyWon = 0;
+      let _diffDlr = 0;
+      let _diffWon = 0;
 
-  return (
-    <Table
-      columns={columns}
-      dataSource={dtFiltered}
-      // scroll={{ x: 3600 }}
-      //size="small"
-      bordered
-      footer={() => {
-        let totalSellDlr = 0;
-        let totalSellWon = 0;
-        let totalBuyDlr = 0;
-        let totalBuyWon = 0;
+      _dtFiltered.forEach(
+        ({
+          TotalSellPrice_Dlr,
+          TotalSellPrice_Won,
+          TotalBuyPrice_Dlr,
+          TotalBuyPrice_Won,
+          Difference_Dlr,
+          Difference_Won,
+        }) => {
+          _totalSellDlr += parseFloat(TotalSellPrice_Dlr.replace(/\,/gi, ''));
+          _totalSellWon += parseFloat(TotalSellPrice_Won.replace(/\,/gi, ''));
+          _totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
+          _totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
+          _diffDlr = parseFloat(Difference_Dlr.replace(/\,/gi, ''));
+          _diffWon = parseFloat(Difference_Won.replace(/\,/gi, ''));
+        },
+      );
 
-        let diffDlr = 0;
-        let diffWon = 0;
-        dtFiltered.forEach(
-          ({
-            TotalSellPrice_Dlr,
-            TotalSellPrice_Won,
-            TotalBuyPrice_Dlr,
-            TotalBuyPrice_Won,
+      setDtFiltered(_dtFiltered);
+      setTotalSellDlr(_totalSellDlr);
+      setTotalSellWon(_totalSellWon);
+      setTotalBuyDlr(_totalBuyDlr);
+      setTotalBuyWon(_totalBuyWon);
+      setDiffDlr(_diffDlr);
+      setDiffWon(_diffWon);
 
-            Difference_Dlr,
-            Difference_Won,
-          }) => {
-            totalSellDlr += parseFloat(TotalSellPrice_Dlr.replace(/\,/gi, ''));
-            totalSellWon += parseFloat(TotalSellPrice_Won.replace(/\,/gi, ''));
-            totalBuyDlr += parseFloat(TotalBuyPrice_Dlr.replace(/\,/gi, ''));
-            totalBuyWon += parseFloat(TotalBuyPrice_Won.replace(/\,/gi, ''));
+      setDiffTotal(_diffWon);
+    }, [data, setDiffTotal]);
 
-            diffDlr = parseFloat(Difference_Dlr.replace(/\,/gi, ''));
-            diffWon = parseFloat(Difference_Won.replace(/\,/gi, ''));
-          },
-        );
-        props.setDiffTotal(diffWon);
-        return (
-          <>
-            <TableStyle>
-              <Tr>
-                <Td
-                  style={{
-                    fontSize: '22px',
-                    //border: 'solid 1px',
-                    width: '53px',
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
 
-                    textAlign: 'center',
-                  }}
-                ></Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '123px',
-                    textAlign: 'center',
-                  }}
-                ></Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    //fontSize: '18px',
-                    width: '125px',
-                    textAlign: 'center',
-                  }}
-                >
-                  누계
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(totalSellDlr)}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(parseFloat(totalSellWon))}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(parseFloat(totalBuyDlr))}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(parseFloat(totalBuyWon))}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(parseFloat(diffDlr))}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {numberwithCommas(parseFloat(diffWon))}
-                </Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '160px',
-                    textAlign: 'center',
-                  }}
-                ></Td>
-                <Td
-                  style={{
-                    //border: 'solid 1px',
-                    width: '142px',
-                    textAlign: 'center',
-                  }}
-                ></Td>
-              </Tr>
-            </TableStyle>
-          </>
-        );
-      }}
-    />
-  );
-};
+    return (
+      <Table
+        columns={columns}
+        dataSource={dtFiltered}
+        bordered
+        footer={() => {
+          return (
+            <>
+              <TableStyle>
+                <tbody>
+                  <Tr>
+                    <Td
+                      style={{
+                        fontSize: '22px',
+                        width: '53px',
 
-const FixedTable = props => {
-  return (
-    <div>
-      <GetData setDiffTotal={props.setDiffTotal} />
-    </div>
-  );
-};
-
-export default FixedTable;
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        width: '123px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        width: '125px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      누계
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(totalSellDlr)}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(parseFloat(totalSellWon))}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(parseFloat(totalBuyDlr))}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(parseFloat(totalBuyWon))}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(parseFloat(diffDlr))}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {numberwithCommas(parseFloat(diffWon))}
+                    </Td>
+                    <Td
+                      style={{
+                        width: '160px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                    <Td
+                      style={{
+                        width: '142px',
+                        textAlign: 'center',
+                      }}
+                    ></Td>
+                  </Tr>
+                </tbody>
+              </TableStyle>
+            </>
+          );
+        }}
+      />
+    );
+  }),
+);

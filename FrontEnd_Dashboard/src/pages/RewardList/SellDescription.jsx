@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import 'antd/dist/antd.css';
 
@@ -35,13 +35,16 @@ const Span = styled.span`
     line-height: 3;
   }
 `;
-@inject('fstore')
-class SellDescription extends Component {
-  render() {
-    const { fstore } = this.props;
+
+export default inject(
+  'fstore',
+  'rewardTotal',
+)(
+  observer(({ fstore, rewardTotal }) => {
+    const { techTotal } = rewardTotal;
     const {
-      PurchaseRatio,
-      ExecPurchaseRatio,
+      // PurchaseRatio,
+      // ExecPurchaseRatio,
       TechRatio,
       KEPCORatio,
       MokpoRatio,
@@ -52,28 +55,32 @@ class SellDescription extends Component {
       KBSRatio,
     } = fstore;
 
-    const inputDataStates = {
-      PurchaseRatio,
-      ExecPurchaseRatio,
-      TechRatio,
-      RewardRatio,
+    // const inputDataStates = {
+    //   PurchaseRatio,
+    //   ExecPurchaseRatio,
+    //   TechRatio,
+    //   RewardRatio,
 
-      KEPCORatio,
-      MokpoRatio,
-      KSMRatio,
-      KDSRatio,
-      JSSRatio,
-      KBSRatio,
-    };
+    //   KEPCORatio,
+    //   MokpoRatio,
+    //   KSMRatio,
+    //   KDSRatio,
+    //   JSSRatio,
+    //   KBSRatio,
+    // };
 
-    const kepcoTechFare = numberwithCommas(
-      this.props.techTotal * KEPCORatio * 0.01,
-    );
+    const [kepcoTechFare, setKepcoTechFare] = useState('');
+    const [mokpoTechFare, setMokpoTechFare] = useState('');
+
+    useEffect(() => {
+      setKepcoTechFare(numberwithCommas(techTotal * KEPCORatio * 0.01));
+      setMokpoTechFare(numberwithCommas(techTotal * MokpoRatio * 0.01));
+    }, [techTotal, KEPCORatio, MokpoRatio]);
+
+    // const kepcoTechFare = numberwithCommas(techTotal * KEPCORatio * 0.01);
     const kepcoTechFareFlt = parseFloat(kepcoTechFare.replace(/\,/gi, ''));
 
-    const mokpoTechFare = numberwithCommas(
-      this.props.techTotal * MokpoRatio * 0.01,
-    );
+    // const mokpoTechFare = numberwithCommas(techTotal * MokpoRatio * 0.01);
     const SellRewardTotal = numberwithCommas(
       kepcoTechFareFlt * RewardRatio * 0.01,
     );
@@ -168,7 +175,5 @@ class SellDescription extends Component {
         </TableStyle>
       </div>
     );
-  }
-}
-
-export default SellDescription;
+  }),
+);
