@@ -3,6 +3,7 @@ const { ApolloServer } = require("apollo-server-express");
 const { mergeTypes, mergeResolvers } = require("merge-graphql-schemas");
 const { createConnection } = require("typeorm");
 const FormDataSchema = require("./schemas/FormData");
+const AuthSchema = require("./schemas/Auth");
 const path = require("path");
 
 const app = express();
@@ -14,9 +15,14 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../../FrontEnd/build", "index.html"));
 });
 
-const typeDefs = mergeTypes([FormDataSchema.typedef], { all: true });
+const typeDefs = mergeTypes([FormDataSchema.typedef, AuthSchema.typedef], {
+  all: true,
+});
 
-const resolvers = mergeResolvers([FormDataSchema.resolvers]);
+const resolvers = mergeResolvers([
+  FormDataSchema.resolvers,
+  AuthSchema.resolvers,
+]);
 
 const server = new ApolloServer({
   typeDefs,
@@ -34,7 +40,7 @@ createConnection({
   database: "acofjdzg",
   synchronize: true,
   logging: false,
-  entities: [require("./entities/FormData")],
+  entities: [require("./entities/FormData"), require("./entities/Auth")],
 })
   .then((/*res*/) => {
     app.listen({ port: 2000 }),
