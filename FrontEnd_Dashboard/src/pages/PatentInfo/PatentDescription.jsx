@@ -114,7 +114,7 @@ class PatentDescription extends Component {
                   <br />
                   <Badge
                     status="processing"
-                    text={`목포해양대 : ${MokpoRatio}%`}
+                    text={`미래대 : ${MokpoRatio}%`}
                   />
                 </Td>
               </Tr>
@@ -122,13 +122,13 @@ class PatentDescription extends Component {
                 <Td>특허권자</Td>
                 <Td colSpan={3}>
                   {' '}
-                  <Badge status="processing" text={`김성민 : ${KSMRatio}%`} />
+                  <Badge status="processing" text={`홍길동 : ${KSMRatio}%`} />
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Badge status="processing" text={`김동섭 : ${KDSRatio}%`} />
+                  <Badge status="processing" text={`청길동 : ${KDSRatio}%`} />
                   <br />
-                  <Badge status="processing" text={`전시식 : ${JSSRatio}%`} />
+                  <Badge status="processing" text={`꿈돌이 : ${JSSRatio}%`} />
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <Badge status="processing" text={`김병석 : ${KBSRatio}%`} />
+                  <Badge status="processing" text={`둘리 : ${KBSRatio}%`} />
                   <br />
                 </Td>
               </Tr>

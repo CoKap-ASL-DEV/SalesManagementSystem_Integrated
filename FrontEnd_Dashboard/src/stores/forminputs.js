@@ -222,12 +222,12 @@ export default class FormInputStore {
     this.ExecBuyPrice_MPack =
       this.BuyPrice_MPack * this.ExecPurchaseRatio * 0.01;
 
-    this.KEPCORatio = 80;
-    this.MokpoRatio = 20;
-    this.KSMRatio = 35;
-    this.KDSRatio = 35;
-    this.JSSRatio = 5;
-    this.KBSRatio = 5;
+    this.KEPCORatio = 10;
+    this.MokpoRatio = 10;
+    this.KSMRatio = 10;
+    this.KDSRatio = 10;
+    this.JSSRatio = 10;
+    this.KBSRatio = 10;
 
     //    console.log('Hello,onClick')
   };
