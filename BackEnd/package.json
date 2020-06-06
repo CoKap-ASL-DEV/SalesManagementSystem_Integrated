@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.8.0",
-    "apollo-server-express": "^2.8.1",
+    "apollo-server-express": "^2.14.2",
     "crypto": "^1.0.1",
     "graphql": "^14.4.2",
     "jsonwebtoken": "^8.5.1",
