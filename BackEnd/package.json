@@ -15,7 +15,7 @@
   "author": "DSL_DEV <biz-dsldev@kepco.co.kr> (nosite.com)",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^2.8.0",
+    "apollo-server": "^2.14.2",
     "apollo-server-express": "^2.8.1",
     "crypto": "^1.0.1",
     "graphql": "^14.4.2",
